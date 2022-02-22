@@ -1,0 +1,48 @@
+.years-navigation-item {
+    text-align: center;
+    background-color: #ffffff20;
+    backdrop-filter: blur(12px);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5 ease;
+}
+.years-navigation-item:hover {
+    background-color: #ffffff50;
+}
+.years-navigation-text {
+    font-weight: bold;
+    font-size: 15px;
+    background: #A770EF;
+    background: -webkit-linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF);
+    background: linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF);
+    backdrop-filter: blur(0px);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    padding: 5px;
+}
+.years-navigation-overflow {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+/* ScrollBar */
+/* width */
+.years-navigation-overflow::-webkit-scrollbar {
+    width: 9px;
+    background-color: #F5F5F518;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    scroll-behavior: smooth;
+}
+  
+/* Handle */
+.years-navigation-overflow::-webkit-scrollbar-thumb {
+    background: #23252650;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #979797, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 20px;
+}
+/* Handle on hover */
+.years-navigation-overflow::-webkit-scrollbar:hover {
+    background-color: #F5F5F540;
+}

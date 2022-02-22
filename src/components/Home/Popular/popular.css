@@ -1,0 +1,97 @@
+
+
+.popularTitle {
+    padding: 45px 0px 30px 50px;
+    display: flex;
+}
+.popularFilmCont {
+    padding: 0px 90px 50px 90px;
+    cursor: pointer;
+}
+.popularFilm  {
+    position: relative;
+    width: 100%;
+}
+.popularImage {
+    width: 100%;
+    transition: filter .5s ease;
+    border-radius: 20px;
+}
+.popular-item-title {
+    font-weight: bold;
+    padding-top: 10px;
+}
+.popularButton {
+    max-width: 50%;
+    transition: opacity .5s ease;
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+} 
+.popular-rating {
+    width: 80px;
+    background-color: #00000050;
+    backdrop-filter: blur(2px);
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 0%;
+    border-radius: 20px 0px 20px 0px;
+    transition: .5s ease;
+}
+.popularFilm:hover .popularImage {
+    filter: blur(2px);
+}
+.popularFilm:hover .popularButton {
+    opacity: 1;
+}
+.popularFilm:hover .popular-rating {
+    background-color: #00000090;
+}
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .popularFilmCont {
+        padding: 0px 10px 60px 10px;
+    }
+    .popularTitle {
+        padding: 45px 0px 30px 0px;
+        justify-content: center
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .popularFilmCont {
+        padding: 0px 30px 50px 30px;
+    }
+    .popularTitle {
+        padding: 45px 0px 30px 30px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .popularFilmCont {
+        padding: 10px 90px 70px 90px;
+    }
+    .popularTitle {
+        padding: 45px 0px 30px 50px;
+    }
+}

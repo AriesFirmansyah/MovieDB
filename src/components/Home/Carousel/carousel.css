@@ -1,0 +1,80 @@
+/* .padding-cont1 {
+    background-color: #1d1d1d;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+} */
+.home-carousel-container {
+    background-color: #1d1d1d;
+}
+.carousel1-image {
+    height: 550px;
+}
+.carousel1-title {
+    position: absolute;
+    padding: 40px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.carousel1-grid {
+    /* height: 560px; */
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+}
+.pointer-cursor {
+    cursor: pointer;
+}
+
+
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .carousel1-image {
+        height: 200px;
+    }
+    .carousel1-title {
+        padding: 10px;
+        font-size: 18px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .carousel1-image {
+        height: 300px;
+    }
+    .carousel1-title {
+        padding: 10px;
+        font-size: 25px
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .carousel1-image {
+        height: 400px;
+    }
+    .carousel1-title {
+        padding: 30px;
+        font-size: 35px
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .carousel1-image {
+        height: 550px;
+    }
+    .carousel1-title {
+        padding: 40px;
+        font-size: 45px
+    }
+}

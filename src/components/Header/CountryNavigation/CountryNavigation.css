@@ -1,0 +1,57 @@
+.country-navigation-item {
+    text-align: center;
+    background-color: #ffffff20;
+    backdrop-filter: blur(12px);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5 ease;
+    max-width: 200px;
+}
+.country-navigation-item:hover {
+    background-color: #ffffff50;
+}
+.country-navigation-text {
+    font-weight: bold;
+    font-size: 15px;
+    background: #A770EF;
+    background: -webkit-linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF);
+    background: linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF);
+    backdrop-filter: blur(0px);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    padding: 5px;
+}
+.country-navigation-overflow {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.country-navigation-search {
+    max-width: 100%;
+    padding: 10px 20px 10px 20px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* ScrollBar */
+/* width */
+.country-navigation-overflow::-webkit-scrollbar {
+    background-color: #F5F5F518;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    scroll-behavior: smooth;
+}
+  
+/* Handle */
+.country-navigation-overflow::-webkit-scrollbar-thumb {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #979797, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+    border-radius: 20px;
+}
+/* Handle on hover */
+.country-navigation-overflow::-webkit-scrollbar:hover {
+    background-color: #F5F5F540;
+}

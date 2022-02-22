@@ -1,0 +1,21 @@
+.footerContainer {
+    padding: 30px 70px 40px 70px;
+}
+.logoFooter {
+    width: 40px;
+    height: 40px;
+}
+.logo-textFooter {
+    margin-left: 2%;
+    color: #BB3C3C;
+    font-weight: bold;
+    font-size:40px;
+    margin-top: -10px;
+}
+.footerDescription {
+    text-align: justify;
+    padding-bottom: 40px;
+}
+.color-footer1 {
+    color: #939393;
+}

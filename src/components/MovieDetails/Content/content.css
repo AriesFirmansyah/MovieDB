@@ -1,0 +1,46 @@
+.content-container {
+    transform: translateY(-12%);
+}
+.content-review-text {
+    max-height: 150px;
+    overflow-y: scroll;
+    padding-right: 20px;
+}
+.headingTitle1 {
+    display: flex;
+    padding-top: 50px;
+}
+.headingTitle1 h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 1px;
+}
+
+
+/* ScrollBar */
+/* width */
+.content-review-text::-webkit-scrollbar {
+    width: 13px;
+    background-color: #F5F5F520;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+  
+/* Track */
+.content-review-text::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey;  */
+    border-radius: 20px;
+}
+  
+/* Handle */
+.content-review-text::-webkit-scrollbar-thumb {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #979797, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+    border-radius: 20px;
+}
+/* Handle on hover */
+.content-review-text::-webkit-scrollbar:hover {
+    background-color: #F5F5F550;
+}

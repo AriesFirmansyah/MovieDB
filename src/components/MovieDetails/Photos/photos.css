@@ -1,0 +1,45 @@
+.photos-container1 {
+    padding: 20px 0px 40px 0px
+}
+
+.photos-container2 {
+    display:flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-width: 100%;
+    padding-bottom: 12px;
+    scroll-behavior: auto;
+}
+.image-size {
+    width: 120px;
+    height: 180px;
+    /* flex: 0 0 auto; */
+    margin-right: 10px;
+    border-radius: 4px;
+    scroll-behavior: smooth;
+    cursor: pointer;
+}
+
+/* ScrollBar */
+/* width */
+.photos-container2::-webkit-scrollbar {
+    height: 12px;
+    background-color: #F5F5F520;
+    border-radius: 20px;
+    transition: 0.3s;
+    scroll-behavior: smooth;
+}
+  
+/* Handle */
+.photos-container2::-webkit-scrollbar-thumb {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #979797, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+    border-radius: 20px;
+}
+/* Handle on hover */
+.photos-container2::-webkit-scrollbar:hover {
+    background-color: #F5F5F550;
+}
+  
