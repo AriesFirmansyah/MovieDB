@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 
 const propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
     handleOpen: PropTypes.func,
     handleSlide: PropTypes.func
 };
@@ -36,29 +36,34 @@ const Videos = ({data, handleOpen, handleSlide}) => {
         prevArrow: <HiddenArrow  />
     };
     return (
-        <>
-            <SimpleGrid columns={1} spacing="0px">
-                <GridItem colSpan={1} w="100%" height="290" 
-                    sx={{textAlign: 'center', marginTop: 4}}>
-                    <Slider {...settings}>
-                        {
-                            data && data.map(movies => {
-                                return ( 
-                                    <div className="video-slider1" key={movies.key}>
-                                        <img src={`//img.youtube.com/vi/${movies.key}/maxresdefault.jpg`} 
-                                            onClick={() =>  {
-                                                handleSlide(movies.key);
-                                                handleOpen();
-                                            }} />
-                                    </div>
-                                );
-                            })
-                        }
-                    
-                    </Slider>
-                </GridItem>
-            </SimpleGrid>
-        </>
+        data.length != 0 ? (
+            <>
+                <SimpleGrid columns={1} spacing="0px">
+                    <GridItem colSpan={1} w="100%" height="290" 
+                        sx={{textAlign: 'center', marginTop: 4}}>
+                        <Slider {...settings}>
+                            {
+                                data && data.map(movies => {
+                                    return ( 
+                                        <div className="video-slider1" key={movies.key}>
+                                            <img src={`//img.youtube.com/vi/${movies.key}/maxresdefault.jpg`} 
+                                                onClick={() =>  {
+                                                    handleSlide(movies.key);
+                                                    handleOpen();
+                                                }} />
+                                        </div>
+                                    );
+                                })
+                            }
+                        
+                        </Slider>
+                    </GridItem>
+                </SimpleGrid>
+            </>
+        ) : 
+            (
+                <p><i>&nbsp;&nbsp;&nbsp;&nbsp;There is no video!</i></p>
+            )
     );
 };
 

@@ -29,8 +29,10 @@ const moviesReducer = (state = data, action) => {
         if(action.payload.data.belongs_to_collection != null) {
             state.details_backdrop = action.payload.data
                 .belongs_to_collection.backdrop_path;
-        } else {
+        } else if (action.payload.data.backdrop_path != null){
             state.details_backdrop = action.payload.data.backdrop_path;
+        } else {
+            state.details_backdrop = action.payload.data.poster_path;
         }
         state.details_genre = action.payload.data.genres;
 

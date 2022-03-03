@@ -36,9 +36,9 @@ const Cast = ({movie}) => {
                     <Slider {...settings}
                         style={{width : '100%' }}>
                         {
-                            movie.details_credit.cast.map(e => {
+                            movie.details_credit.cast.map((e, index) => {
                                 return (
-                                    <div className='cast-card-gap' Key={e.id}>
+                                    <div className='cast-card-gap' key={index}>
                                         <div className='cast-card-container'>
                                             {
                                                 e.profile_path != null ? (

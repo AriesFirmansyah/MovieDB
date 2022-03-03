@@ -16,6 +16,7 @@ const propTypes = {
 };
 
 const Carousel = ({movie}) => {
+    // console.log(movie);
     return (
         <>
             <Image src={`${poster_BaseURL}${movie.details_backdrop}`} 

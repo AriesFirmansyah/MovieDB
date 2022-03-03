@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     isOpen: PropTypes.bool,
-    data: PropTypes.object,
+    data: PropTypes.array,
     slide: PropTypes.number
 };
 

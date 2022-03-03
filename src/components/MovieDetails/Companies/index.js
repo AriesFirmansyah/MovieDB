@@ -30,7 +30,7 @@ const Companies = ({movie}) => {
                         movie.details.production_companies.map(e => {
                             if(e.logo_path != null) {
                                 return (
-                                    <div className="companies-item">
+                                    <div className="companies-item" key={e.id}>
                                         <div className="companies-image-container">
                                             <img src={`${photo_BaseURL}${e.logo_path}`} 
                                                 className="companies-image" />

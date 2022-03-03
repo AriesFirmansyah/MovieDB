@@ -174,7 +174,18 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                                 borderRadius: '15px'}}>
                             <div>
                                 <h1><b>Original Language</b></h1>
-                                <h1><i>{movie.details.spoken_languages[0].name}</i></h1> <br></br>
+                                <h1>
+                                    <i>
+                                        {
+                                            movie.details.spoken_languages.length != 0 ? (
+                                                movie.details.spoken_languages[0].name
+                                            ) : 
+                                                (
+                                                    "-"
+                                                )
+                                        }
+                                    </i>
+                                </h1> <br></br>
 
                                 <h1><b>Budget</b></h1>
                                 {

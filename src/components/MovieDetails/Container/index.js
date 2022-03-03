@@ -100,8 +100,6 @@ const Movies = () => {
                 <Lightbox isOpen={isOpen} data={dataLightbox} 
                     slide={slideLightbox} />
                 <Recommendation movie={movie} navigation={navigation} />
-
-
             </>
     );
 };
