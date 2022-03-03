@@ -6,7 +6,7 @@ export const GetSearch = (query) => {
     const url = `${baseUrl}${Key}&language=en-US&query=${query}&page=1&include_adult=fals`;
     const request = axios.get(url);
     return {
-        type: "GET_SEARCH",
+        type: 'GET_SEARCH',
         payload: request
     };
-}
+};

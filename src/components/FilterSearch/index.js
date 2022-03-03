@@ -3,9 +3,9 @@ import './FilterSearch.css';
 import { 
     useLocation,
     useNavigate
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import { 
     GetMoviesCountry,
     GetMoviesYear,
@@ -14,22 +14,21 @@ import {
     GetMoviesNowPlaying,
     GetMoviesPopular,
     GetMoviesTrending
-} from "../../redux/actions/discover";
+} from '../../redux/actions/discover';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 import PopularTitle from './../../images/popularTitle1.png';
-import moment from "moment";
+import moment from 'moment';
 import PlayButton from './../../images/play-button.png';
 import {
     Heading,
     SimpleGrid,
     GridItem,
-    Link,
 } from '@chakra-ui/react';
 
 // Base URL
-const poster_BaseURL = "https://image.tmdb.org/t/p/original";
+const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
 const FilterSearch = () => {    
     const location = useLocation();
@@ -45,14 +44,14 @@ const FilterSearch = () => {
     console.log(location);
     const FetchRedux = async () => {
         switch(location.state.type) {
-            case 'year': dispatch(GetMoviesYear(location.state.key)); break;
-            case 'country': dispatch(GetMoviesCountry(location.state.key)); break;
-            case 'genre': dispatch(GetMoviesGenre(location.state.key)); break;
-            case 'movies' : dispatch(GetMovies()); break;
-            case 'trending' : dispatch(GetMoviesTrending()); break;
-            case 'now-playing' : dispatch(GetMoviesNowPlaying());
-            case 'popular' : dispatch(GetMoviesPopular());
-            default: break;
+        case 'year': dispatch(GetMoviesYear(location.state.key)); break;
+        case 'country': dispatch(GetMoviesCountry(location.state.key)); break;
+        case 'genre': dispatch(GetMoviesGenre(location.state.key)); break;
+        case 'movies': dispatch(GetMovies()); break;
+        case 'trending': dispatch(GetMoviesTrending()); break;
+        case 'now-playing': dispatch(GetMoviesNowPlaying()); break;
+        case 'popular':dispatch(GetMoviesPopular()); break;
+        default: break;
         }
     };
 
@@ -63,7 +62,7 @@ const FilterSearch = () => {
                 key : item.id
             }
         });
-    }
+    };
 
     useEffect(() => {
         if(loading) {
@@ -87,7 +86,7 @@ const FilterSearch = () => {
                 </div>
                 <div className="search-filter-cont">
                     <SimpleGrid columns={[2, 4, 4, 4, 6]}  
-                        spacing={{base: "40px", sm: "40px", md: "40px", lg: "40px", xl : "40px" }}>
+                        spacing={{base: '40px', sm: '40px', md: '40px', lg: '40px', xl : '40px' }}>
                         {
                             discover.data.results && discover.data.results.map((e, index) => {
                                 return (
@@ -105,14 +104,14 @@ const FilterSearch = () => {
                                             </div>
                                         </GridItem>
                                     )
-                                )
+                                );
                             })
                         }
                     </SimpleGrid>
                 </div>
             </>
         )
-    )
-}
+    );
+};
 
 export default FilterSearch;

@@ -4,6 +4,7 @@ import Year from './../../../images/year.png';
 import './YearsNavigation.css';
 
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // Chakra-UI
 import {
@@ -13,13 +14,16 @@ import {
     Button,
     GridItem,
     SimpleGrid
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import { 
     ChevronDownIcon, 
 } from '@chakra-ui/icons';
 
 const maxOffset = 20;
+const propTypes = {
+    handleYear: PropTypes.func
+};
 
 const YearsNavigation = ({handleYear}) => {
     const [year, setYear] = useState([]);
@@ -54,25 +58,28 @@ const YearsNavigation = ({handleYear}) => {
                         <div className='years-navigation-overflow'>
                             <SimpleGrid columns={3} spacing="40px" 
                                 style={{padding : '10px 20px 10px 20px'}}>
-                                    {
-                                        year.map((e, index) => {
-                                            return(
-                                                <div className='years-navigation-item'
-                                                    onClick={() => handleYear(e)}>
-                                                    <GridItem colSpan={1} key={index}>
-                                                        <h1 className='years-navigation-text'>{e}</h1>
-                                                    </GridItem>
-                                                </div>
-                                            )
-                                        })
-                                    }
+                                {
+                                    year.map((e, index) => {
+                                        return(
+                                            <div className='years-navigation-item'
+                                                onClick={() => handleYear(e)}
+                                                key={index}>
+                                                <GridItem colSpan={1} key={index}>
+                                                    <h1 className='years-navigation-text'>{e}</h1>
+                                                </GridItem>
+                                            </div>
+                                        );
+                                    })
+                                }
                             </SimpleGrid>
                         </div>
                     </MenuList>
                 </Menu>
             </GridItem>
         </>
-    )
-}
+    );
+};
+
+YearsNavigation.propTypes = propTypes;
 
 export default YearsNavigation;

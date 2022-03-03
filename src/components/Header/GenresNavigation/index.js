@@ -12,12 +12,18 @@ import {
     Button,
     GridItem,
     SimpleGrid
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import { 
     ChevronDownIcon, 
 } from '@chakra-ui/icons';
 
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    genres: PropTypes.object,
+    handleGenre: PropTypes.func
+};
 
 const GenresNavigation = ({genres, handleGenre}) => {
     // console.log(genres);
@@ -48,12 +54,13 @@ const GenresNavigation = ({genres, handleGenre}) => {
                                 genres.data.map((e) => {
                                     return (
                                         <div className='genres-navigation-item'
-                                            onClick={() => handleGenre(e)}>
+                                            onClick={() => handleGenre(e)}
+                                            key={e.id}>
                                             <GridItem colSpan={1} key={e.id}>
                                                 <h1 className='genres-navigation-text'>{e.name}</h1>
                                             </GridItem>
                                         </div>
-                                    )
+                                    );
                                 })
                             }
                         </SimpleGrid>
@@ -61,7 +68,9 @@ const GenresNavigation = ({genres, handleGenre}) => {
                 </Menu>
             </GridItem>
         </>
-    )
-}
+    );
+};
+
+GenresNavigation.propTypes = propTypes;
 
 export default GenresNavigation;

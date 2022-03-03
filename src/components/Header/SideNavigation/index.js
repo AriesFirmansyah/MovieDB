@@ -13,7 +13,7 @@ import {
     GridItem,
     SimpleGrid,
     Button
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import { 
     HamburgerIcon, 
@@ -23,14 +23,21 @@ import {
     EditIcon,
     Search2Icon,
 } from '@chakra-ui/icons';
-import { FaSun, FaMoon } from 'react-icons/fa'
+import { FaSun, FaMoon } from 'react-icons/fa';
 import moment from 'moment';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetSearch } from '../../../redux/actions/search';
+import PropTypes from 'prop-types';
 
-const poster_BaseURL = "https://image.tmdb.org/t/p/original";
+const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
+
+const propTypes = {
+    isDark: PropTypes.bool,
+    toggleColorMode: PropTypes.func,
+    handleSearch: PropTypes.func
+};
 
 const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
     const [dataResults, setDataResults] = useState([]);
@@ -39,11 +46,11 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
     const [isFocus, setIsFocus] = useState(false);
 
     const dispatch = useDispatch();
-    const search = useSelector(state => state.search)
+    const search = useSelector(state => state.search);
 
     const FetchRedux = async (query) => {
         dispatch(GetSearch(query));
-    }
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -57,27 +64,27 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                 });
                 setDataResults(results);
                 setLoading(false);
-            }, 300)
+            }, 300);
         } 
         else {
             setDataResults([]);
             setLoading(false);
         }
         setSearchInput(temp);
-    }
+    };
     const handleFocus = (isBlur, routes) => {
         if(!isBlur) {
             handleSearch(routes);
             setTimeout(() => {
                 setIsFocus(false);
-            }, 100)
+            }, 100);
         } else {
             setTimeout(() => {
                 setIsFocus(false);
-            }, 100)
+            }, 100);
         }
         
-    }
+    };
     return (
         <GridItem colSpan={{base : 4, md: 12, lg: 4, xl : 4 }} w="100%" height="80px" className="component">
             {
@@ -85,20 +92,19 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                     <div className='side-navigation-input-cont'>
                         <InputGroup>
                             <InputRightElement
-                            pointerEvents="none"
-                            children={
+                                pointerEvents="none">
                                 <Button isLoading={loading} 
                                     spinnerPlacement='end'
                                     sx={{
                                         width: '100%',
                                         background: 'transparent',
                                         justifyContent: 'right'
-                                        }}
+                                    }}
                                     className="no-shadow"
-                                        >
+                                >
                                     <Search2Icon color="gray.300" />
                                 </Button>
-                            }/>
+                            </InputRightElement>
                             <Input type="tel" placeholder="Search..." 
                                 style={{ 
                                     color: 'aliceblue', 
@@ -135,7 +141,7 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                                             </SimpleGrid>
                                         )
                                         
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -144,19 +150,18 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                     <div className='side-navigation-input-cont-empty'>
                         <InputGroup>
                             <InputRightElement
-                            pointerEvents="none"
-                            children={
+                                pointerEvents="none">
                                 <Button isLoading={loading} 
                                     spinnerPlacement='end'
                                     sx={{
                                         width: '100%',
                                         background: 'transparent',
                                         justifyContent: 'right'
-                                        }}
+                                    }}
                                     className="no-shadow">
                                     <Search2Icon color="gray.300" />
                                 </Button>
-                            }/>
+                            </InputRightElement>
                             <Input type="tel" placeholder="Search..." 
                                 style={{ 
                                     color: 'aliceblue', 
@@ -173,8 +178,8 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                 )
             }
             <IconButton icon={isDark ? <FaSun /> : <FaMoon />}
-            onClick={toggleColorMode}
-            style={{backgroundColor: '', marginRight: 10, marginLeft: 10}} />
+                onClick={toggleColorMode}
+                style={{backgroundColor: '', marginRight: 10, marginLeft: 10}} />
             <Menu>
                 <MenuButton
                     as={IconButton}
@@ -198,7 +203,9 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                 </MenuList>
             </Menu>
         </GridItem>
-    )
-}
+    );
+};
+
+SideNavigation.propTypes = propTypes;
 
 export default SideNavigation;

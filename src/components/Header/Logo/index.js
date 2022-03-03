@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Logo from './../../../images/logo.png';
 
 import './logo.css';
@@ -7,7 +7,7 @@ import './logo.css';
 // Chakra-UI
 import {
     GridItem
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const LogoHeader = () => {
     return (
@@ -21,7 +21,7 @@ const LogoHeader = () => {
                 </Link>
             </GridItem>
         </>
-    )
-}
+    );
+};
 
 export default LogoHeader;

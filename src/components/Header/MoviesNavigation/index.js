@@ -3,22 +3,26 @@ import Movies from './../../../images/movies.png';
 
 import './MoviesNavigation.css';
 
+import PropTypes from 'prop-types';
+
 
 // Chakra-UI
 import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
     Button,
-    Image,
     GridItem,
     SimpleGrid
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import { 
     ChevronDownIcon, 
 } from '@chakra-ui/icons';
+
+const propTypes = {
+    handleMovie: PropTypes.func
+};
 
 const MoviesNavigation = ({handleMovie}) => {
     return (
@@ -73,7 +77,9 @@ const MoviesNavigation = ({handleMovie}) => {
                 </Menu>
             </GridItem>
         </>
-    )
-}
+    );
+};
+
+MoviesNavigation.propTypes = propTypes;
 
 export default MoviesNavigation;

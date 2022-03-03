@@ -7,11 +7,13 @@ import {
 } from '@chakra-ui/react';
 
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
-const poster_BaseURL = "https://image.tmdb.org/t/p/original";
+const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
 const propTypes = {
-}
+    movie: PropTypes.object
+};
 
 const Carousel = ({movie}) => {
     return (
@@ -20,7 +22,7 @@ const Carousel = ({movie}) => {
                 className="movieDetailsCarousel-image" w="100%" />
             <div className='moviedetails-carousel1'>
                 <SimpleGrid columns={[7, 7, 7, 7, 7]} 
-                    spacing={{base: "10px", sm: "10px", md: "40px", lg: "40px", xl : "40px" }} 
+                    spacing={{base: '10px', sm: '10px', md: '40px', lg: '40px', xl : '40px' }} 
                     className='moviedetails-carousel2'>
                     <GridItem colSpan={{base : 2, sm: 2, md: 2, lg: 2, xl : 2 }} >
                         <h1 style={{fontSize: '30px', marginTop: '3px'}}>
@@ -48,7 +50,8 @@ const Carousel = ({movie}) => {
                             {
                                 movie.details_genre && movie.details_genre.map((dataGenre, index) => {
                                     return (
-                                        <h2 style={{display: 'inline-block', fontWeight: '500'}}>
+                                        <h2 style={{display: 'inline-block', fontWeight: '500'}}
+                                            key={index}>
                                             {dataGenre.name} 
                                             {index < movie.details.genres.length-1 ? ',' : '' } 
                                             &nbsp;&nbsp;
@@ -69,8 +72,8 @@ const Carousel = ({movie}) => {
                 </SimpleGrid>
             </div>
         </>
-    )
-}
+    );
+};
 
 Carousel.propTypes = propTypes;
 

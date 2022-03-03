@@ -1,11 +1,11 @@
-import moviesReducer from "./movies";
-import trendingReducer from "./trending";
-import genresReducer from "./genres";
-import countriesReducer from "./countries";
-import discoverReducer from "./discover";
-import searchReducer from "./search";
+import moviesReducer from './movies';
+import trendingReducer from './trending';
+import genresReducer from './genres';
+import countriesReducer from './countries';
+import discoverReducer from './discover';
+import searchReducer from './search';
 
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
     movies : moviesReducer,

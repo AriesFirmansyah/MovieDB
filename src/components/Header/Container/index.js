@@ -9,16 +9,15 @@ import moment from 'moment';
 // Chakra-UI
 import {
     SimpleGrid,
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { useColorMode } from '@chakra-ui/color-mode'
+import { useColorMode } from '@chakra-ui/color-mode';
 // import { FaSun, FaMoon } from 'react-icons/fa'
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { GetGenres } from '../../../redux/actions/genres';
 import { GetCountries } from '../../../redux/actions/countries';
-import { GetAllMovie } from '../../../redux/actions/movies';
 
 import LogoHeader from '../Logo';
 import MoviesNavigation from '../MoviesNavigation';
@@ -31,7 +30,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const isDark = colorMode === "dark";
+    const isDark = colorMode === 'dark';
 
     const dispatch = useDispatch();
     const genres = useSelector(state => state.genres);
@@ -44,7 +43,7 @@ const Nav = () => {
     const FetchRedux = async () => {
         dispatch(GetGenres());
         dispatch(GetCountries());
-    }
+    };
     const HandleCountry = (routes) => {
         navigate(`/movies/${routes.english_name}`, {
             state: {
@@ -54,7 +53,7 @@ const Nav = () => {
             },
         });
         navigate(0);
-    }
+    };
     const HandleYear = (routes) => {
         navigate(`/movies/${routes}`, {
             state: {
@@ -64,7 +63,7 @@ const Nav = () => {
             },
         });
         navigate(0);
-    }
+    };
     const HandleGenre = (routes) => {
         navigate(`/movies/${routes.name}`, {
             state: {
@@ -74,10 +73,10 @@ const Nav = () => {
             },
         });
         navigate(0);
-    }
+    };
     const HandleMovie = (routes) => {
         if(routes === 'movies') {
-            navigate(`/movies/all`, {
+            navigate('/movies/all', {
                 state: {
                     name: '',
                     key: routes,
@@ -94,7 +93,7 @@ const Nav = () => {
             });
         }
         navigate(0);
-    }
+    };
     const HandleSearch = (routes) => {
         navigate(`/movie-details/${routes.original_title}(${moment(routes.release_date).format('YYYY')})`, {
             state : {
@@ -103,7 +102,7 @@ const Nav = () => {
             }
         });
         navigate(0);
-    }
+    };
     
 
     useEffect(() => {
@@ -119,21 +118,21 @@ const Nav = () => {
         loading ? (
             <p>load</p>
         )
-        :
-        (
-            <div style={{width: '100%'}}>
-                <SimpleGrid columns={[3, 8, 12, 16]} spacing="40px" className="cont1">
-                    <LogoHeader />
-                    <MoviesNavigation handleMovie={HandleMovie} />
-                    <GenresNavigation genres={genres} handleGenre={HandleGenre} />
-                    <CountryNavigation countries={countries} handleCountry={HandleCountry} />
-                    <YearsNavigation handleYear={HandleYear} />
-                    <SideNavigation isDark={isDark} toggleColorMode={toggleColorMode}
-                        handleSearch={HandleSearch}  />
-                </SimpleGrid>
-            </div>
-        ) 
-    )
-}
+            :
+            (
+                <div style={{width: '100%'}}>
+                    <SimpleGrid columns={[3, 8, 12, 16]} spacing="40px" className="cont1">
+                        <LogoHeader />
+                        <MoviesNavigation handleMovie={HandleMovie} />
+                        <GenresNavigation genres={genres} handleGenre={HandleGenre} />
+                        <CountryNavigation countries={countries} handleCountry={HandleCountry} />
+                        <YearsNavigation handleYear={HandleYear} />
+                        <SideNavigation isDark={isDark} toggleColorMode={toggleColorMode}
+                            handleSearch={HandleSearch}  />
+                    </SimpleGrid>
+                </div>
+            ) 
+    );
+};
 
 export default Nav;

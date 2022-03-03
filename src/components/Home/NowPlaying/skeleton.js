@@ -4,7 +4,7 @@ const Loading = () => {
         <>
             <p>Loading NowPlaying</p>
         </>
-    )
-}
+    );
+};
 
 export default Loading;

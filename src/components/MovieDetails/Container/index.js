@@ -1,37 +1,35 @@
-import React, { useEffect, useState} from "react";
-import moment from "moment";
+import React, { useEffect, useState} from 'react';
+import moment from 'moment';
 import { 
-    useParams, 
     useNavigate, 
     useLocation 
-} from "react-router-dom";
+} from 'react-router-dom';
 
 // import './../movie.css';
 
 
-import Carousel from "../Carousel";
-import Content from "../Content";
-import Cast from "../Cast";
-import Companies from "../Companies";
-import Lightbox from "../Lightbox";
-import Recommendation from "../Recommendation";
+import Carousel from '../Carousel';
+import Content from '../Content';
+import Cast from '../Cast';
+import Companies from '../Companies';
+import Lightbox from '../Lightbox';
+import Recommendation from '../Recommendation';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  GetMovieDetails,
-  GetImageMovieDetails,
-  GetVideoMovieDetails,
-  GetCreditMovieDetails,
-  GetSocialMediaMovieDetails,
-  GetKeywordMovieDetails,
-  GetReviewMovieDetails,
-  GetRecomendationMovieDetails
+    GetMovieDetails,
+    GetImageMovieDetails,
+    GetVideoMovieDetails,
+    GetCreditMovieDetails,
+    GetSocialMediaMovieDetails,
+    GetKeywordMovieDetails,
+    GetReviewMovieDetails,
+    GetRecomendationMovieDetails
 } from './../../../redux/actions/movies';
 
 
 const Movies = () => {
-    const param = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(true);
@@ -44,23 +42,23 @@ const Movies = () => {
     const [slideLightbox, setSlideLightbox]= useState(1);
   
     const FetchRedux = async () => {
-      dispatch(GetMovieDetails(location.state.key));
-      dispatch(GetImageMovieDetails(location.state.key));
-      dispatch(GetVideoMovieDetails(location.state.key));
-      dispatch(GetCreditMovieDetails(location.state.key));
-      dispatch(GetSocialMediaMovieDetails(location.state.key));
-      dispatch(GetKeywordMovieDetails(location.state.key));
-      dispatch(GetReviewMovieDetails(location.state.key));
-      dispatch(GetRecomendationMovieDetails(location.state.key));
-    }
+        dispatch(GetMovieDetails(location.state.key));
+        dispatch(GetImageMovieDetails(location.state.key));
+        dispatch(GetVideoMovieDetails(location.state.key));
+        dispatch(GetCreditMovieDetails(location.state.key));
+        dispatch(GetSocialMediaMovieDetails(location.state.key));
+        dispatch(GetKeywordMovieDetails(location.state.key));
+        dispatch(GetReviewMovieDetails(location.state.key));
+        dispatch(GetRecomendationMovieDetails(location.state.key));
+    };
 
     const handleLightBox = () => {
         setIsOpen(!isOpen);
-    }
+    };
     const handleSlideLightbox = (key) => {
         let temp = dataIndexLightbox.findIndex(index => index === key);
         setSlideLightbox(temp + 1);
-    }
+    };
     const navigation = (routes) => {
         navigate(`/movie-details/${routes.original_title}(${moment(routes.release_date).format('YYYY')})`, {
             state : {
@@ -69,22 +67,22 @@ const Movies = () => {
             }
         });
         navigate(0);
-    }
+    };
 
     useEffect(() => {
         if(loading) {
             FetchRedux();
             setTimeout(() => {
                 setLoading(false);
-            }, 500)
+            }, 500);
         }
         setTimeout(() => {
             movie.details_video.map(e => {
                 const temp = `https://www.youtube.com/embed/${e.key}`;
                 setDataLightbox(data => [...data, temp]);
                 setDataIndexLightbox(data => [...data, e.key]);
-            })
-        }, 1000)
+            });
+        }, 1000);
     }, []);
 
     return (
@@ -92,7 +90,7 @@ const Movies = () => {
             <>
                 <p>Loading</p>
             </>
-        :
+            :
             <> 
                 <Carousel movie={movie} />
                 <Companies movie={movie} />
@@ -106,5 +104,5 @@ const Movies = () => {
 
             </>
     );
-}
+};
 export default Movies;

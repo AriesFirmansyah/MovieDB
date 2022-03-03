@@ -3,7 +3,7 @@ const Loading = () => {
         <>
             <p>Loading Popular</p>
         </>
-    )
-}
+    );
+};
 
 export default Loading;

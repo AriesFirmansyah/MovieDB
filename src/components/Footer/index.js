@@ -18,7 +18,7 @@ const Footer = () => {
             <Divider/>
             <div className='footerContainer'>
                 <SimpleGrid columns={[1, 1, 3, 3, 3]} 
-                spacing={{base: "10px",sm: "10px", md: "10px", lg: "10px", xl : "10px" }} >
+                    spacing={{base: '10px',sm: '10px', md: '10px', lg: '10px', xl : '10px' }} >
                     <GridItem colSpan={1}>
                         <div style={{display: 'flex'}}>
                             <img src={Logo} className="logoFooter" />
@@ -45,6 +45,6 @@ const Footer = () => {
             </div>
         </>
     );
-}
+};
 
 export default Footer;

@@ -1,8 +1,13 @@
-import Slider from "react-slick";
+import Slider from 'react-slick';
 
 import './companies.css';
+import PropTypes from 'prop-types';
 
-const photo_BaseURL = "https://image.tmdb.org/t/p/original";
+const photo_BaseURL = 'https://image.tmdb.org/t/p/original';
+
+const propTypes = {
+    movie: PropTypes.object
+};
 
 const Companies = ({movie}) => {
     const settings = {
@@ -28,17 +33,19 @@ const Companies = ({movie}) => {
                                     <div className="companies-item">
                                         <div className="companies-image-container">
                                             <img src={`${photo_BaseURL}${e.logo_path}`} 
-                                            className="companies-image" />
+                                                className="companies-image" />
                                         </div>
                                     </div>
-                                )
+                                );
                             }
                         })
                     }
                 </Slider>
             </div>
         </>
-    )
-}
+    );
+};
+
+Companies.propTypes = propTypes;
 
 export default Companies;

@@ -3,7 +3,6 @@ import './carousel.css';
 
 // React
 import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
 
 // Chakra-UI
 import { 
@@ -14,9 +13,9 @@ import {
 
 // React Slick Carousel
 
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 // Assets
 import ChakraLogo from './../../../images/logolibrary/chakrauilogo.png';
@@ -30,12 +29,17 @@ import Loading from './skeleton';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  GetTrendingData
+    GetTrendingData
 } from './../../../redux/actions/trending';
 
-// Base URL
-const poster_BaseURL = "https://image.tmdb.org/t/p/original";
+import PropTypes from 'prop-types';
 
+// Base URL
+const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
+
+const propTypes = {
+    handleFilm: PropTypes.func
+};
 
 const Carousel = ({handleFilm}) => {
     const dispatch = useDispatch();
@@ -46,20 +50,20 @@ const Carousel = ({handleFilm}) => {
     const [loading, setLoading] = React.useState(true);
   
     const FetchRedux = async () => {
-      dispatch(GetTrendingData());
-    }
+        dispatch(GetTrendingData());
+    };
 
     useEffect(() => {
         if(loading) {
             FetchRedux();
             setTimeout(() => {
                 setLoading(false);
-            }, 2000)
+            }, 2000);
         }
     
     }, []);
       
-      const settings = {
+    const settings = {
         dots: false,
         infinite: true,
         speed: 500,
@@ -69,12 +73,12 @@ const Carousel = ({handleFilm}) => {
         autoplaySpeed: 5000,
         pauseOnHover: true,
     
-        className: "center",
+        className: 'center',
         centerMode: true,
-        centerPadding: "0px",
-      };
+        centerPadding: '0px',
+    };
     
-      const settings2 = {
+    const settings2 = {
         dots: false,
         infinite: true,
         speed: 1500,
@@ -86,35 +90,36 @@ const Carousel = ({handleFilm}) => {
         rtl: true,
         focusOnSelect: true,
     
-        className: "center",
-        centerPadding: "60px",
+        className: 'center',
+        centerPadding: '60px',
         swipeToSlide: true,
         nextArrow: <HiddenArrow  />,
         prevArrow: <HiddenArrow  />
-      };
+    };
     return (
         loading === true ? 
             <>
                 <Loading />
             </>
-        :
+            :
             <>
                 <SimpleGrid columns={1} spacing="40px" className='home-carousel-container'>
                     <GridItem colSpan={1} w="100%" className="carousel1-grid">
                         <Slider {...settings} style={{zIndex: '0'}}>
                             {
-                            trending.data.map(trending => {
-                                return (
-                                <div onClick={() => handleFilm(trending)} className="pointer-cursor"
-                                style={{zIndex: '0'}}>
-                                    <h4 className="carousel1-title">
-                                    {trending.original_title}
-                                    </h4>
-                                    <Image src={`${poster_BaseURL}${trending.backdrop_path}`}   
-                                    w='100%' className="carousel1-image" />
-                                </div>
-                                );
-                            })
+                                trending.data.map(trending => {
+                                    return (
+                                        <div onClick={() => handleFilm(trending)} className="pointer-cursor"
+                                            style={{zIndex: '0'}} 
+                                            key={trending.id}>
+                                            <h4 className="carousel1-title">
+                                                {trending.original_title}
+                                            </h4>
+                                            <Image src={`${poster_BaseURL}${trending.backdrop_path}`}   
+                                                w='100%' className="carousel1-image" />
+                                        </div>
+                                    );
+                                })
                             }
 
                         </Slider>
@@ -149,21 +154,19 @@ const Carousel = ({handleFilm}) => {
                     </GridItem>
                 </SimpleGrid>
             </>
-    )
-}
+    );
+};
 
 
 
 const HiddenArrow = () => {
     return (
         <div
-            style={{ display: "none", background: "red" }}
+            style={{ display: 'none', background: 'red' }}
         />
-);
+    );
+};
 
+Carousel.propTypes = propTypes;
 
-  
- 
-  }
-
-  export default Carousel;
+export default Carousel;

@@ -16,13 +16,19 @@ import {
     InputGroup,
     InputRightElement,
     Input
-  } from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import { 
     ChevronDownIcon, 
     Search2Icon
 } from '@chakra-ui/icons';
 
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    countries: PropTypes.object,
+    handleCountry: PropTypes.func
+};
 
 const CountryNavigation = ({countries, handleCountry}) => {
     const [filter, setFilter] = useState('');
@@ -41,9 +47,8 @@ const CountryNavigation = ({countries, handleCountry}) => {
             setDataCountries(countries.data);
         }
         setFilter(temp);
-    }
+    };
     return (
-
         <>
             <GridItem colSpan={2} w="100%" height="80px" className="component hideNav">
                 <Menu isLazy>
@@ -67,8 +72,9 @@ const CountryNavigation = ({countries, handleCountry}) => {
                         <div className='country-navigation-search'>
                             <InputGroup style={{maxWidth: '100%'}}>
                                 <InputRightElement
-                                pointerEvents="none"
-                                children={<Search2Icon color="gray.300" />}/>
+                                    pointerEvents="none">
+                                    <Search2Icon color="gray.300" />
+                                </InputRightElement>
                                 <Input type="tel" placeholder="Search country..." 
                                     style={{ 
                                         color: 'aliceblue', 
@@ -83,33 +89,36 @@ const CountryNavigation = ({countries, handleCountry}) => {
                         <div className='country-navigation-overflow'>
                             <SimpleGrid columns={2} spacing="30px" 
                                 style={{padding : '10px 20px 10px 20px'}}>
-                                    {
-                                        dataCountries && dataCountries.length > 0 ? (
-                                            dataCountries.map((e, index) => {
-                                                return(
-                                                    <div className='country-navigation-item' key={index} 
-                                                        onClick={() => handleCountry(e)}>
-                                                        <GridItem colSpan={1}>
-                                                            <h1 className='country-navigation-text'>{e.english_name}</h1>
-                                                        </GridItem>
-                                                    </div>
-                                                )
-                                            })
-                                        ) 
+                                {
+                                    dataCountries && dataCountries.length > 0 ? (
+                                        dataCountries.map((e, index) => {
+                                            return(
+                                                <div className='country-navigation-item' key={index} 
+                                                    onClick={() => handleCountry(e)}>
+                                                    <GridItem colSpan={1}>
+                                                        <h1 className='country-navigation-text'>{e.english_name}</h1>
+                                                    </GridItem>
+                                                </div>
+                                            );
+                                        })
+                                    ) 
                                         : 
                                         (
                                             <div className='country-navigation-item'>
                                                 <h1 className='country-navigation-text'>No results found! </h1>
                                             </div>
                                         )
-                                    }
+                                }
                             </SimpleGrid>
                         </div>
                     </MenuList>
                 </Menu>
             </GridItem>
         </>
-    )
+    );
 
-}
+};
+
+CountryNavigation.propTypes = propTypes;
+
 export default CountryNavigation;
