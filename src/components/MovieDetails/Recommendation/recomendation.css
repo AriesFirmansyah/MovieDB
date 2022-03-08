@@ -1,0 +1,85 @@
+.recommendation-container {
+    padding: 0px 40px 50px 40px;
+}
+.recommendation-container h1 {
+    font-weight: 700;
+    font-size: 25px;
+    padding-bottom: 30px;
+    letter-spacing: 1.5px;
+}
+.card-flex-recommendation {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    overflow-x: scroll;
+    scroll-behavior: auto;
+    /* overflow-y: hidden; */
+}
+.card-item-recommendation {
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+}
+.card-item-recommendation img {
+    border-radius: 20px;
+    transition: filter .5s ease;
+}
+.recommendation-play-button {
+    max-width: 50%;
+    transition: opacity .5s ease;
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -90%);
+    -ms-transform: translate(-50%, -90%);
+    text-align: center;
+    opacity: 0;
+}
+.card-item-recommendation h1 {
+    font-size: 15px;
+    padding: 10px;
+}
+.recommendation-rating {
+    padding-left: 5px;
+    width: 80px;
+    background-color: #ffffff50;
+    backdrop-filter: blur(2px);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 0%;
+    border-radius: 20px 0px 20px 0px;
+    transition: .5s ease;
+}
+
+.card-item-recommendation:hover .recommendation-play-button{
+    opacity: 1;
+}
+.card-item-recommendation:hover .recommendation-image {
+    filter: blur(2px);
+}
+.card-item-recommendation:hover .recommendation-rating {
+    background-color: #00000090;
+}
+
+/* ScrollBar */
+/* width */
+.card-flex-recommendation::-webkit-scrollbar {
+    height: 12px;
+    background-color: #F5F5F520;
+    border-radius: 20px;
+    transition: 0.3s;
+    scroll-behavior: smooth;
+}
+  
+/* Handle */
+.card-flex-recommendation::-webkit-scrollbar-thumb {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #979797, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+    border-radius: 20px;
+}
+/* Handle on hover */
+.card-flex-recommendation::-webkit-scrollbar:hover {
+    background-color: #F5F5F550;
+}

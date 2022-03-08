@@ -1,0 +1,100 @@
+.nowPlayingTitle {
+    padding: 45px 0px 30px 50px;
+    display: flex;
+}
+.nowPlayingFilmCont {
+    padding: 0px 90px 50px 90px;
+    cursor: pointer;
+}
+.nowPlayingFilm  {
+    position: relative;
+    width: 100%;
+    transition: opacity .5s ease;
+}
+.nowPlayingImage {
+    width: 100%;
+    transition: filter .5s ease;
+    border-radius: 20px;
+}
+.now-playing-title {
+    font-weight: bold;
+    padding-top: 10px;
+}
+.nowPlayingButton {
+    max-width: 50%;
+    transition: opacity .5s ease;
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+}
+.now-playing-rating {
+    width: 80px;
+    background-color: #00000050;
+    backdrop-filter: blur(2px);
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 0%;
+    border-radius: 20px 0px 20px 0px;
+    transition: .5s ease;
+}
+
+.nowPlayingFilm:hover .nowPlayingImage {
+    /* opacity: 0.3; */
+    filter: blur(2px);
+    /* -webkit-filter: blur(1px); */
+}
+
+.nowPlayingFilm:hover .nowPlayingButton {
+    opacity: 1;
+}
+.nowPlayingFilm:hover .now-playing-rating {
+    background-color: #00000090;
+}
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .nowPlayingFilmCont {
+        padding: 0px 10px 60px 10px;
+    }
+    .nowPlayingTitle {
+        padding: 45px 0px 30px 0px;
+        justify-content: center
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .nowPlayingFilmCont {
+        padding: 0px 30px 50px 30px;
+    }
+    .nowPlayingTitle {
+        padding: 45px 0px 30px 30px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .nowPlayingFilmCont {
+        padding: 10px 90px 70px 90px;
+    }
+    .nowPlayingTitle {
+        padding: 45px 0px 30px 50px;
+    }
+}

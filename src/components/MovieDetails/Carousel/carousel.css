@@ -1,0 +1,65 @@
+.movieDetailsCarousel-image {
+    height: 700px;
+    
+}
+.moviedetails-carousel1 {
+    background-color: #F8D24299;
+    color: black;   
+    font-weight: bold;
+    padding: 40px 60px 40px 60px;
+    transform: translateY(-100%);
+    backdrop-filter: blur(5px);
+
+}
+/* .moviedetails-blur {
+    background: #F8D24260; 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(1.3px);
+    z-index: -1;
+
+} */
+.moviedetails-carousel2 {
+    font-weight: bold;
+    z-index:2;
+
+}
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .movieDetailsCarousel-image {
+        height: 200px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .movieDetailsCarousel-image {
+        height: 300px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .movieDetailsCarousel-image {
+        height: 400px;
+        /* object-fit: cover; */
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .movieDetailsCarousel-image {
+        /* height: 550px; */
+        height: 700px;
+    }
+}

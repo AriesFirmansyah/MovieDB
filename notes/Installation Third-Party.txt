@@ -1,0 +1,22 @@
+#Installation
+- npm install axios
+- npm install react-slick
+- npm install slick-carousel --save
+- npm i react-loading-skeleton --save
+- npm install react-router-dom@6
+- npm install moment --save
+- npm i react-number-format
+- npm install react-icons --save
+- npm install --save prop-types
+- npm install --save react-autocomplete
+
+
+#Redux 
+npm install --save redux react-redux
+npm install --save redux-thunk
+npm i redux-promise-middleware
+
+#React-Image-Lightbox
+- npm install react-image-lightbox
+- npm i react-image-video-lightbox (ga kepake)
+- npm install fslightbox-react
