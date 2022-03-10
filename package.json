@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint src/**/*.js",
+    "lint-fix": "eslint src/**/*.js --fix"
   },
   "keywords": [],
   "author": "",

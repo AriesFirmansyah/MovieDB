@@ -9,6 +9,7 @@ module.exports = {
         // eslint-disable-next-line no-undef
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
+        chunkFilename: '[name].chunk.js',
     },
     devServer: {
         port: 3010,
