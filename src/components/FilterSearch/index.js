@@ -37,11 +37,11 @@ const FilterSearch = () => {
     const dispatch = useDispatch();
     const discover = useSelector(state => state.discover);
     
-    console.log(discover);
+    // console.log(discover);
 
     const [loading, setLoading] = useState(true);
 
-    console.log(location);
+    // console.log(location);
     const FetchRedux = async () => {
         switch(location.state.type) {
         case 'year': dispatch(GetMoviesYear(location.state.key)); break;

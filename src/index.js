@@ -8,11 +8,13 @@ import ReactDOM from 'react-dom';
 
 // React
 import {
-    // BrowserRouter,
+    BrowserRouter,
     Routes,
     Route,
-    HashRouter
+    HashRouter,
+    MemoryRouter,
 } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 // Components
 import Container from './components/Home/Container';
@@ -20,6 +22,7 @@ import Movies from './components/MovieDetails/Container';
 import Footer from './components/Footer';
 import Navigation from './components/Header/Container';
 import FilterSearch from './components/FilterSearch';
+import Login from './components/Login';
 
 // Chakra-UI
 import { ChakraProvider } from '@chakra-ui/react';
@@ -38,11 +41,14 @@ const store = createStore(
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+const hist = createBrowserHistory();
+
 ReactDOM.render(
     <ChakraProvider>
         <Provider store={store}>
-            <HashRouter>
+            <BrowserRouter history={hist}>
                 <Navigation />
+                <Login />
                 <Routes>
                     <Route exact path="/" element={<Container />} />
                     <Route path="/movie-details/:key" element={<Movies />} />
@@ -57,7 +63,7 @@ ReactDOM.render(
                     />
                 </Routes>
                 <Footer />
-            </HashRouter>
+            </BrowserRouter>
         </Provider>
     </ChakraProvider>,
     document.getElementById('app')

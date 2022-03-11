@@ -1,19 +1,15 @@
-// eslint-disable-next-line no-undef
 const path = require('path');
-// eslint-disable-next-line no-undef
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// eslint-disable-next-line no-undef
 module.exports = {
     output: {
-        // eslint-disable-next-line no-undef
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
-        chunkFilename: '[name].chunk.js',
+        chunkFilename: '[id].[chunkhash].js',
         publicPath: '/'
     },
     devServer: {
-        port: 3010,
+        port: 3000,
         // watchContentBase: true,
         hot: true,
         historyApiFallback: true,
