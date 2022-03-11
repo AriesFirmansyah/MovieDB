@@ -11,8 +11,6 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    HashRouter,
-    MemoryRouter,
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
@@ -44,15 +42,16 @@ const store = createStore(
 const hist = createBrowserHistory();
 
 ReactDOM.render(
+    
     <ChakraProvider>
         <Provider store={store}>
             <BrowserRouter history={hist}>
                 <Navigation />
-                <Login />
                 <Routes>
                     <Route exact path="/" element={<Container />} />
                     <Route path="/movie-details/:key" element={<Movies />} />
                     <Route path="/movies/:country" element={<FilterSearch />} />
+                    <Route path="/login" element={<Login />} />
                     <Route
                         path="*"
                         element={
