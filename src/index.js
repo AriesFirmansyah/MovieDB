@@ -8,9 +8,10 @@ import ReactDOM from 'react-dom';
 
 // React
 import {
-    BrowserRouter,
+    // BrowserRouter,
     Routes,
-    Route
+    Route,
+    HashRouter
 } from 'react-router-dom';
 
 // Components
@@ -40,10 +41,10 @@ const store = createStore(
 ReactDOM.render(
     <ChakraProvider>
         <Provider store={store}>
-            <BrowserRouter>
+            <HashRouter>
                 <Navigation />
                 <Routes>
-                    <Route path="/" element={<Container />} />
+                    <Route exact path="/" element={<Container />} />
                     <Route path="/movie-details/:key" element={<Movies />} />
                     <Route path="/movies/:country" element={<FilterSearch />} />
                     <Route
@@ -56,7 +57,7 @@ ReactDOM.render(
                     />
                 </Routes>
                 <Footer />
-            </BrowserRouter>
+            </HashRouter>
         </Provider>
     </ChakraProvider>,
     document.getElementById('app')

@@ -10,11 +10,13 @@ module.exports = {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
         chunkFilename: '[name].chunk.js',
+        publicPath: '/'
     },
     devServer: {
         port: 3010,
         // watchContentBase: true,
         hot: true,
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -41,8 +43,8 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: 'images/',
-                            publicPath: 'images/'
+                            outputPath: '/images/',
+                            publicPath: '/images/'
                         }
                     }
                 ]

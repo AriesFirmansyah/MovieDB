@@ -9,7 +9,7 @@ const propTypes = {
     data: PropTypes.array
 };
 const Photos = ({data}) => {
-    console.log(data);
+    // console.log(data);
     const [dataImages, setDataImages] = useState({
         imageIndex: 0,
         isOpen: false,
