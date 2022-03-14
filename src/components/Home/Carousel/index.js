@@ -1,5 +1,5 @@
 // CSS
-import './carousel.css';
+import './carousel.scss';
 
 // React
 import React, { useEffect } from 'react';
