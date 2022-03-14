@@ -20,10 +20,42 @@ const Cast = ({movie}) => {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 8,
         slidesToScroll: 1,
         arrows: false,
         swipeToSlide: true,
+        responsive : [
+            {   
+                breakpoint: 576,
+                settings : {
+                    slidesToShow: 3
+                }
+            },
+            {   
+                breakpoint: 768,
+                settings : {
+                    slidesToShow: 4
+                }
+            },
+            {   
+                breakpoint: 992,
+                settings : {
+                    slidesToShow: 5
+                }
+            },
+            {   
+                breakpoint: 1200,
+                settings : {
+                    slidesToShow: 6
+                }
+            },
+            {   
+                breakpoint: 1400,
+                settings : {
+                    slidesToShow: 7
+                }
+            },
+        ]
     };
 
     return (
