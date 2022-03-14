@@ -93,8 +93,29 @@ const Carousel = ({handleFilm}) => {
         className: 'center',
         centerPadding: '60px',
         swipeToSlide: true,
-        nextArrow: <HiddenArrow  />,
-        prevArrow: <HiddenArrow  />
+        arrows: false,
+
+        responsive : [
+            {   
+                breakpoint: 576,
+                settings : {
+                    slidesToShow: 1
+                }
+            },
+            {   
+                breakpoint: 768,
+                settings : {
+                    slidesToShow: 2
+                }
+            },
+            {   
+                breakpoint: 992,
+                settings : {
+                    slidesToShow: 3
+                }
+            },
+        ]
+
     };
     return (
         loading === true ? 
@@ -154,16 +175,6 @@ const Carousel = ({handleFilm}) => {
                     </GridItem>
                 </SimpleGrid>
             </>
-    );
-};
-
-
-
-const HiddenArrow = () => {
-    return (
-        <div
-            style={{ display: 'none', background: 'red' }}
-        />
     );
 };
 
