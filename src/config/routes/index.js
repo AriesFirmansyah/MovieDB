@@ -7,6 +7,8 @@ import {
 import { createBrowserHistory } from 'history';
 
 
+import ReactBreakpoints from 'react-breakpoints';
+
 // Components
 import Container from '../../components/Home/Container';
 import Movies from '../../components/MovieDetails/Container';
@@ -18,26 +20,34 @@ import Footer from '../../components/Footer';
 
 const hist = createBrowserHistory();
 
+const breakpoints = {
+    mobile: 479,
+    tablet: 480,
+    desktop: 1200
+};
+
 const Routes = () => {
     return (
-        <BrowserRouter history={hist}>
-            <Navigation />
-            <Router>
-                <Route exact path="/" element={<Container />} />
-                <Route path="/movie-details/:key" element={<Movies />} />
-                <Route path="/movies/:country" element={<FilterSearch />} />
-                <Route path="/login" element={<Login />} />
-                <Route
-                    path="*"
-                    element={
-                        <main style={{ padding: '1rem' }}>
-                            <p>{"There's nothing here!"}</p>
-                        </main>
-                    }
-                />
-            </Router>
-            <Footer />
-        </BrowserRouter>
+        <ReactBreakpoints breakpoints={breakpoints}>
+            <BrowserRouter history={hist}>
+                <Navigation />
+                <Router>
+                    <Route exact path="/" element={<Container />} />
+                    <Route path="/movie-details/:key" element={<Movies />} />
+                    <Route path="/movies/:country" element={<FilterSearch />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: '1rem' }}>
+                                <p>{"There's nothing here!"}</p>
+                            </main>
+                        }
+                    />
+                </Router>
+                <Footer />
+            </BrowserRouter>
+        </ReactBreakpoints>
     );
 };
 

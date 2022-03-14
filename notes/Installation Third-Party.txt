@@ -9,7 +9,7 @@
 - npm install react-icons --save
 - npm install --save prop-types
 - npm install --save react-autocomplete
-
+- npm i react-breakpoints -f
 
 #Redux 
 npm install --save redux react-redux
