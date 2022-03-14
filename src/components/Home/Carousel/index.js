@@ -90,8 +90,8 @@ const Carousel = ({handleFilm}) => {
         rtl: true,
         focusOnSelect: true,
     
-        className: 'center',
-        centerPadding: '60px',
+        // className: 'center',
+        // centerPadding: '60px',
         swipeToSlide: true,
         arrows: false,
 
@@ -99,19 +99,46 @@ const Carousel = ({handleFilm}) => {
             {   
                 breakpoint: 576,
                 settings : {
-                    slidesToShow: 1
+                    slidesToShow: 1,
+                    dots: false,
+                    infinite: true,
+                    speed: 1500,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    pauseOnHover: true,
+                    rtl: true,
+                    focusOnSelect: true,
                 }
             },
             {   
                 breakpoint: 768,
                 settings : {
-                    slidesToShow: 2
+                    slidesToShow: 2,
+                    dots: false,
+                    infinite: true,
+                    speed: 1500,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    pauseOnHover: true,
+                    rtl: true,
+                    focusOnSelect: true,
                 }
             },
             {   
                 breakpoint: 992,
                 settings : {
-                    slidesToShow: 3
+                    slidesToShow: 3,
+                    dots: false,
+                    infinite: true,
+                    speed: 1500,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    pauseOnHover: true,
+                    rtl: true,
+                    focusOnSelect: true,
                 }
             },
         ]

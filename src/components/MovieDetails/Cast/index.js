@@ -28,31 +28,61 @@ const Cast = ({movie}) => {
             {   
                 breakpoint: 576,
                 settings : {
-                    slidesToShow: 3
+                    slidesToShow: 3,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
                 }
             },
             {   
                 breakpoint: 768,
                 settings : {
-                    slidesToShow: 4
+                    slidesToShow: 4,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
                 }
             },
             {   
                 breakpoint: 992,
                 settings : {
-                    slidesToShow: 5
+                    slidesToShow: 5,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
                 }
             },
             {   
                 breakpoint: 1200,
                 settings : {
-                    slidesToShow: 6
+                    slidesToShow: 6,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
                 }
             },
             {   
                 breakpoint: 1400,
                 settings : {
-                    slidesToShow: 7
+                    slidesToShow: 7,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
                 }
             },
         ]
