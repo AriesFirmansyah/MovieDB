@@ -81,7 +81,7 @@ const Carousel = ({handleFilm}) => {
     const settings2 = {
         dots: false,
         infinite: true,
-        speed: 1500,
+        speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -94,51 +94,25 @@ const Carousel = ({handleFilm}) => {
         // centerPadding: '60px',
         swipeToSlide: true,
         arrows: false,
+        swipe: false,
 
         responsive : [
             {   
                 breakpoint: 576,
                 settings : {
                     slidesToShow: 1,
-                    dots: false,
-                    infinite: true,
-                    speed: 1500,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 3000,
-                    pauseOnHover: true,
-                    rtl: true,
-                    focusOnSelect: true,
                 }
             },
             {   
                 breakpoint: 768,
                 settings : {
                     slidesToShow: 2,
-                    dots: false,
-                    infinite: true,
-                    speed: 1500,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 3000,
-                    pauseOnHover: true,
-                    rtl: true,
-                    focusOnSelect: true,
                 }
             },
             {   
                 breakpoint: 992,
                 settings : {
-                    slidesToShow: 3,
-                    dots: false,
-                    infinite: true,
-                    speed: 1500,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 3000,
-                    pauseOnHover: true,
-                    rtl: true,
-                    focusOnSelect: true,
+                    slidesToShow: 3
                 }
             },
         ]
@@ -175,28 +149,20 @@ const Carousel = ({handleFilm}) => {
                     <GridItem colSpan={1} w="100%" height="90" 
                         sx={{textAlign: 'center', marginTop: -4}} >
                         <Slider {...settings2}>
-                            <div>
-                                <Image src={ChakraLogo} alt='Dan Abramov'  style={{margin: 'auto'}}  
-                                    w='200px' h="50px" />
+                            <div className='tech-image'>
+                                <Image src={ChakraLogo} alt='Chakra UI' className='chakraui' />
                             </div>
-                            <div>
-                                <Image src={ReactLogo} alt='Dan Abramov'  style={{margin: 'auto', marginTop: -10}} 
-                                    w='190px' h="80px" />
+                            <div className='tech-image'>
+                                <Image src={ReactLogo} alt='React JS' className='reactjs' />
                             </div>
-                            <div>
-                                <Image src={ReduxLogo} alt='Dan Abramov'  
-                                    style={{margin: 'auto',  marginTop: -23}} 
-                                    w='300px' h="100px" />
+                            <div className='tech-image'>
+                                <Image src={ReduxLogo} alt='Redux' className='redux' />
                             </div>
-                            <div>
-                                <Image src={NodeJsLogo} alt='Dan Abramov'  
-                                    style={{margin: 'auto', marginTop: -22, marginLeft: 35}} 
-                                    w='200px' h="90px" />
+                            <div className='tech-image'>
+                                <Image src={NodeJsLogo} alt='Node JS'  className='nodejs' />
                             </div>
-                            <div>
-                                <Image src={ReduxLogo} alt='Dan Abramov'  
-                                    style={{margin: 'auto',  marginTop: -23}} 
-                                    w='300px' h="100px" />
+                            <div className='tech-image'>
+                                <Image src={ReduxLogo} alt='Redux2'  className='redux' />
                             </div>
                         </Slider>
                     </GridItem>

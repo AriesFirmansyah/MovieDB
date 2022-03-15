@@ -1,0 +1,23 @@
+[1] Home Responsive
+- Responsive Tech Carousel  --> done
+- Add list of Tech Carousel
+
+[2] Filter Results
+- Pagination
+
+[3] Movie Details
+- Responsive Carousel
+- Responsive Summary Movie (in carousel)
+- Responsive Companies 
+- Responsive Content --> done
+- Responsive Recommendations --> done
+
+[4] Auth
+- Create Login Page
+- Responsive Login Page
+- Create Register Page
+- Responsive Register Page
+
+[5] Navigation
+- Responsive Navigation --> done
+- Responsive Options Menu (Right Side)

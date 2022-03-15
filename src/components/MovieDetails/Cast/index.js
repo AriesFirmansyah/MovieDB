@@ -26,7 +26,31 @@ const Cast = ({movie}) => {
         swipeToSlide: true,
         responsive : [
             {   
-                breakpoint: 576,
+                breakpoint: 379,
+                settings : {
+                    slidesToShow: 1,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
+                }
+            },
+            {   
+                breakpoint: 536,
+                settings : {
+                    slidesToShow: 2,
+                    dots: false,
+                    infinite: false,
+                    speed: 500,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipeToSlide: true,
+                }
+            },
+            {   
+                breakpoint: 756,
                 settings : {
                     slidesToShow: 3,
                     dots: false,
@@ -38,21 +62,9 @@ const Cast = ({movie}) => {
                 }
             },
             {   
-                breakpoint: 768,
-                settings : {
-                    slidesToShow: 4,
-                    dots: false,
-                    infinite: false,
-                    speed: 500,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    swipeToSlide: true,
-                }
-            },
-            {   
                 breakpoint: 992,
                 settings : {
-                    slidesToShow: 5,
+                    slidesToShow: 4,
                     dots: false,
                     infinite: false,
                     speed: 500,
@@ -92,7 +104,7 @@ const Cast = ({movie}) => {
         <>
             {/* <p>Total updates: {slideIndex} </p> */}
       
-            <Container maxW='container.xl' className='cast-padding-container'>
+            <Container maxW='container.xl'>
                 <div className='cast-container'>
                     <h1 className='title-cast'>Cast</h1>
                     <Slider {...settings}

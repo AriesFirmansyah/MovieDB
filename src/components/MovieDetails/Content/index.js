@@ -39,13 +39,13 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                 <Container maxW='container.xl'>
                     <SimpleGrid 
                         columns={[8, 8, 8, 8, 8]} 
-                        row={[5, 5, 5, 5, 5]} 
+                        row={[1, 1, 5, 5, 5]} 
                         spacing={{base: '10px', sm: '10px', md: '20px', lg: '40px', xl : '40px' }} 
                         sx={{
                             padding: '0px 30px 40px 30px',}}>
                         <GridItem 
-                            rowSpan={5} 
-                            colSpan={{base : 5, sm: 5, md: 5, lg: 5, xl : 5 }} 
+                            rowSpan={{base : 1, sm: 1, md: 5, lg: 5, xl : 5 }}
+                            colSpan={{base : 8, sm: 8, md: 5, lg: 5, xl : 5 }} 
                             style={{background: '#1D3540', padding: '20px 30px 0px 30px',
                                 borderRadius: '15px'}}>
                             <h1 style={{fontWeight: '700', fontSize: '25px', paddingBottom: '30px'}}>
@@ -104,8 +104,8 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                             </div>
                         </GridItem>
                         <GridItem 
-                            rowSpan={{base : 3, sm: 3, md: 3, lg: 3, xl : 3 }} 
-                            colSpan={{base : 3, sm: 3, md: 3, lg: 3, xl : 3 }} 
+                            rowSpan={{base : 1, sm: 1, md: 3, lg: 3, xl : 3 }} 
+                            colSpan={{base : 8, sm: 5, md: 3, lg: 3, xl : 3 }} 
                             style={{background: '#1D3540', padding: '20px 20px 20px 30px',
                                 borderRadius: '15px'}}>
                             <h1 style={{fontSize: '25px'}}><b>Reviews</b></h1><br></br>
@@ -169,7 +169,7 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                         </GridItem>
                         <GridItem 
                             rowSpan={{base : 1, sm: 1, md: 1, lg: 1, xl : 1 }} 
-                            colSpan={{base : 3, sm: 3, md: 3, lg: 3, xl : 3 }} 
+                            colSpan={{base : 8, sm: 3, md: 3, lg: 3, xl : 3 }} 
                             style={{background: '#1D3540', padding: '20px 20px 20px 30px',
                                 borderRadius: '15px'}}>
                             <div>
@@ -258,7 +258,7 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                         </GridItem>
                         <GridItem 
                             rowSpan={{base : 1, sm: 1, md: 1, lg: 1, xl : 1 }} 
-                            colSpan={{base : 3, sm: 3, md: 3, lg: 3, xl : 3 }} 
+                            colSpan={{base : 8, sm: 8, md: 3, lg: 3, xl : 3 }} 
                             style={{background: '#1D3540', padding: '20px 20px 20px 30px',
                                 borderRadius: '15px'}}>
                             <h1><b>Keywords</b></h1>
