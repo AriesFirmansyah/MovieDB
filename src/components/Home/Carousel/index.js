@@ -34,6 +34,17 @@ import {
 
 import PropTypes from 'prop-types';
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// import required modules
+import { Autoplay, Navigation } from "swiper";
+
+
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -63,20 +74,20 @@ const Carousel = ({handleFilm}) => {
     
     }, []);
       
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        pauseOnHover: true,
+    // const settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 5000,
+    //     pauseOnHover: true,
     
-        className: 'center',
-        centerMode: true,
-        centerPadding: '0px',
-    };
+    //     className: 'center',
+    //     centerMode: true,
+    //     centerPadding: '0px',
+    // };
     
     const settings2 = {
         dots: false,
@@ -125,9 +136,44 @@ const Carousel = ({handleFilm}) => {
             </>
             :
             <>
+                
                 <SimpleGrid columns={1} spacing="40px" className='home-carousel-container'>
                     <GridItem colSpan={1} w="100%" className="carousel1-grid">
-                        <Slider {...settings} style={{zIndex: '0'}}>
+                        <Swiper 
+                            navigation={true} 
+                            modules={[
+                                Navigation,
+                                Autoplay
+                            ]} 
+                            loop={true} 
+                            autoplay={{
+                                delay: 5000,
+                                disableOnInteraction: false,
+                            }}
+                            className="mySwiper"
+                            style={{
+                                zIndex: '0',
+                                "--swiper-navigation-color": "#fff",
+                            }}>
+                            {/* <SwiperSlide>Slide 1</SwiperSlide> */}
+                            {
+                                trending.data.map(trending => {
+                                    return (
+                                        <SwiperSlide onClick={() => handleFilm(trending)} className="pointer-cursor"
+                                            style={{zIndex: '0'}} 
+                                            key={trending.id}>
+                                            <h4 className="carousel1-title">
+                                                {trending.original_title}
+                                            </h4>
+                                            <Image src={`${poster_BaseURL}${trending.backdrop_path}`}   
+                                                w='100%' className="carousel1-image" />
+                                        </SwiperSlide>
+                                    );
+                                })
+                            }
+                        </Swiper>
+                        <br></br>
+                        {/* <Slider {...settings} style={{zIndex: '0'}}>
                             {
                                 trending.data.map(trending => {
                                     return (
@@ -144,7 +190,7 @@ const Carousel = ({handleFilm}) => {
                                 })
                             }
 
-                        </Slider>
+                        </Slider> */}
                     </GridItem>
                     <GridItem colSpan={1} w="100%" height="90" 
                         sx={{textAlign: 'center', marginTop: -4}} >
