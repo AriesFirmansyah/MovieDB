@@ -1,0 +1,16 @@
+[1] Home Responsive
+
+[2] Filter Results
+- Pagination
+
+[3] Movie Details
+- Responsive Carousel
+- Responsive Summary Movie (in carousel)
+- Responsive Companies 
+- Responsive Content
+
+[4] Auth
+- Create Login Page
+- Responsive Login Page
+- Create Register Page
+- Responsive Register Page

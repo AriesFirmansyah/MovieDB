@@ -34,7 +34,7 @@ const Routes = () => {
                 <Router>
                     <Route exact path="/" element={<Container />} />
                     <Route path="/movie-details/:key" element={<Movies />} />
-                    <Route path="/movies/:country" element={<FilterSearch />} />
+                    <Route path="/movies/:key" element={<FilterSearch />} />
                     <Route path="/login" element={<Login />} />
                     <Route
                         path="*"
