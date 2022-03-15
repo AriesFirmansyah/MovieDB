@@ -104,7 +104,7 @@ const Cast = ({movie}) => {
         <>
             {/* <p>Total updates: {slideIndex} </p> */}
       
-            <Container maxW='container.xl' className='cast-padding-container'>
+            <Container maxW='container.xl'>
                 <div className='cast-container'>
                     <h1 className='title-cast'>Cast</h1>
                     <Slider {...settings}
