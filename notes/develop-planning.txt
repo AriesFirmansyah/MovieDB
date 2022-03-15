@@ -1,23 +1,30 @@
 [1] Home Responsive
 - Responsive Tech Carousel  --> done
+- Responsive title in carousel --> done
 - Add list of Tech Carousel
+- Add Skeleton
 
 [2] Filter Results
 - Pagination
+- Add Skeleton
 
 [3] Movie Details
-- Responsive Carousel
-- Responsive Summary Movie (in carousel)
-- Responsive Companies 
+- Responsive Carousel --> done
+- Responsive Summary Movie (in carousel) --> done
+- Responsive Companies --> done
 - Responsive Content --> done
 - Responsive Recommendations --> done
+- Add Skeleton
 
 [4] Auth
 - Create Login Page
 - Responsive Login Page
 - Create Register Page
 - Responsive Register Page
+- Add Skeleton
 
 [5] Navigation
 - Responsive Navigation --> done
 - Responsive Options Menu (Right Side)
+- Add Skeleton
+
