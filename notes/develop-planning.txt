@@ -1,5 +1,6 @@
 [1] Home Responsive
-- Responsive Tech Carousel 
+- Responsive Tech Carousel  --> done
+- Add list of Tech Carousel
 
 [2] Filter Results
 - Pagination
