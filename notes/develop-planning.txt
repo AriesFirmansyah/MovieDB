@@ -1,7 +1,7 @@
 [1] Home Responsive
 - Responsive Tech Carousel  --> done
 - Responsive title in carousel --> done
-- Add list of Tech Carousel
+- Add list of Tech Carousel --> done
 - Add Skeleton
 
 [2] Filter Results

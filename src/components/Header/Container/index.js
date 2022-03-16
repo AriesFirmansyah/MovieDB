@@ -1,5 +1,5 @@
 // CSS
-import './container.css';
+import './container.scss';
 
 // React
 import { useEffect, useState } from 'react';

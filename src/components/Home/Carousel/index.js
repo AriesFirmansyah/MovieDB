@@ -22,6 +22,11 @@ import ChakraLogo from './../../../images/logolibrary/chakrauilogo.png';
 import NodeJsLogo from './../../../images/logolibrary/nodejslogo.png';
 import ReactLogo from './../../../images/logolibrary/reactjslogo.png';
 import ReduxLogo from './../../../images/logolibrary/reactreduxlogo.png';
+import FacebookLogo from './../../../images/logolibrary/facebook.png';
+import GoogleLogo from './../../../images/logolibrary/google.png';
+import SwiperLogo from './../../../images/logolibrary/swiperjs.png';
+import WebpackLogo from './../../../images/logolibrary/webpack.png';
+
 
 // Components
 import Loading from './skeleton';
@@ -95,7 +100,7 @@ const Carousel = ({handleFilm}) => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        // autoplay: true,
         autoplaySpeed: 3000,
         pauseOnHover: true,
         rtl: true,
@@ -105,7 +110,7 @@ const Carousel = ({handleFilm}) => {
         // centerPadding: '60px',
         swipeToSlide: true,
         arrows: false,
-        swipe: false,
+        // swipe: false,
 
         responsive : [
             {   
@@ -155,7 +160,6 @@ const Carousel = ({handleFilm}) => {
                                 zIndex: '0',
                                 "--swiper-navigation-color": "#fff",
                             }}>
-                            {/* <SwiperSlide>Slide 1</SwiperSlide> */}
                             {
                                 trending.data.map(trending => {
                                     return (
@@ -173,24 +177,6 @@ const Carousel = ({handleFilm}) => {
                             }
                         </Swiper>
                         <br></br>
-                        {/* <Slider {...settings} style={{zIndex: '0'}}>
-                            {
-                                trending.data.map(trending => {
-                                    return (
-                                        <div onClick={() => handleFilm(trending)} className="pointer-cursor"
-                                            style={{zIndex: '0'}} 
-                                            key={trending.id}>
-                                            <h4 className="carousel1-title">
-                                                {trending.original_title}
-                                            </h4>
-                                            <Image src={`${poster_BaseURL}${trending.backdrop_path}`}   
-                                                w='100%' className="carousel1-image" />
-                                        </div>
-                                    );
-                                })
-                            }
-
-                        </Slider> */}
                     </GridItem>
                     <GridItem colSpan={1} w="100%" height="90" 
                         sx={{textAlign: 'center', marginTop: -4}} >
@@ -208,7 +194,16 @@ const Carousel = ({handleFilm}) => {
                                 <Image src={NodeJsLogo} alt='Node JS'  className='nodejs' />
                             </div>
                             <div className='tech-image'>
-                                <Image src={ReduxLogo} alt='Redux2'  className='redux' />
+                                <Image src={GoogleLogo} alt='Google'  className='google' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={FacebookLogo} alt='Facebook'  className='facebook' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={SwiperLogo} alt='Swiper JS'  className='swiperjs' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={WebpackLogo} alt='Webpack'  className='webpack' />
                             </div>
                         </Slider>
                     </GridItem>

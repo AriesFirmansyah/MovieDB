@@ -3,8 +3,7 @@
     display: flex;
 }
 .nowPlayingFilmCont {
-    padding: 0px 90px 50px 90px;
-    cursor: pointer;
+    padding: 0px 90px 50px 90px
 }
 .nowPlayingFilm  {
     position: relative;

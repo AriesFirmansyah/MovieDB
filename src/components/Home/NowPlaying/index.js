@@ -79,10 +79,10 @@ const NowPlaying = ({handleFilm}) => {
                                         key={nowPlayingData.id} onClick={() => handleFilm(nowPlayingData)}> 
                                         <div className='nowPlayingFilm'>
                                             <img src={`${poster_BaseURL}${nowPlayingData.poster_path}`} 
-                                                className='nowPlayingImage' />
+                                                className='nowPlayingImage pointer' />
                                             <img src={PlayButton} className='nowPlayingButton' />
                                             <div className='now-playing-rating'>⭐{nowPlayingData.vote_average.toFixed(1)}</div>
-                                            <h1 className='now-playing-title'>
+                                            <h1 className='now-playing-title pointer'>
                                                 {nowPlayingData.title} ({moment(nowPlayingData.release_date).format('YYYY')})
                                             </h1>
                                         </div>
