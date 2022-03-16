@@ -1,4 +1,4 @@
-import './genres.css';
+import './genres.scss';
 
 // Assets
 import Genre from './../../../images/genre.png';

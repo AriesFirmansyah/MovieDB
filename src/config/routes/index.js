@@ -23,7 +23,7 @@ const hist = createBrowserHistory();
 const breakpoints = {
     mobile: 479,
     tablet: 480,
-    desktop: 1200
+    desktop: 992
 };
 
 const Routes = () => {

@@ -1,29 +1,34 @@
-import  './SideNavigation.css';
+import  './SideNavigation.scss';
 
 // Chakra-UI
 import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
     Input,
     InputGroup,
     InputRightElement,
     IconButton,
     GridItem,
     SimpleGrid,
-    Button
+    Button,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Box
 } from '@chakra-ui/react';
 
 import { 
-    HamburgerIcon, 
-    AddIcon,
-    ExternalLinkIcon,
-    RepeatIcon,
-    EditIcon,
+    HamburgerIcon,
     Search2Icon,
 } from '@chakra-ui/icons';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { RiMovie2Fill, RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
+import { MdOutlineLocalMovies, MdDateRange } from 'react-icons/md';
+import { HiOutlineGlobe } from 'react-icons/hi';
+import { ImUserPlus } from 'react-icons/im';
 import moment from 'moment';
 
 import { useState } from 'react';
@@ -36,10 +41,18 @@ const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 const propTypes = {
     isDark: PropTypes.bool,
     toggleColorMode: PropTypes.func,
-    handleSearch: PropTypes.func
+    handleSearch: PropTypes.func,
+    handleMovie: PropTypes.func,
+    handleLogin: PropTypes.func
 };
 
-const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
+const SideNavigation = ({
+    isDark, 
+    toggleColorMode, 
+    handleSearch, 
+    handleMovie,
+    handleLogin,
+}) => {
     const [dataResults, setDataResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
@@ -86,7 +99,8 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
         
     };
     return (
-        <GridItem colSpan={{base : 4, md: 12, lg: 4, xl : 4 }} w="100%" height="80px" className="component">
+        <GridItem colSpan={{base : 4, md: 12, lg: 4, xl : 4 }} w="100%" height="80px" 
+            className="component side-navigation-container">
             {
                 searchInput !== '' && isFocus ? (
                     <div className='side-navigation-input-cont'>
@@ -187,11 +201,71 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                     icon={<HamburgerIcon />}
                     variant="outline"
                 />
-                <MenuList>
-                    <MenuItem icon={<AddIcon />} command="⌘T">
-                    New Tab
-                    </MenuItem>
-                    <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
+                <MenuList sx={{padding : 0}}>
+                    <Accordion allowMultiple>
+                        <AccordionItem className='no-border'>
+                            <AccordionButton className='no-box side-navigation-movies'
+                                _expanded={{ bg: 'teal' }}>
+                                <RiMovie2Fill style={{marginRight : '10px'}} />
+                                <Box flex='1' textAlign='left'>
+                                    <b>Movies</b>
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                            <AccordionPanel pb={4}>
+                                <div className='side-navigation-movies-expand'>
+                                    <h1 onClick={() => handleMovie('movies')}>All Movies</h1>
+                                    <h1 onClick={() => handleMovie('trending')}>Trending</h1>
+                                    <h1 onClick={() => handleMovie('now-playing')}>Now Playing</h1>
+                                    <h1 onClick={() => handleMovie('popular')}>Popular</h1>
+                                </div>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+                    <div className='side-navigation-items'>
+                        <MdOutlineLocalMovies className='side-navigation-items-icon' />
+                        <Box flex='1' textAlign='left'>
+                            Genres
+                        </Box>
+                    </div>
+                    <div className='side-navigation-items'>
+                        <HiOutlineGlobe className='side-navigation-items-icon' />
+                        <Box flex='1' textAlign='left'>
+                            Country
+                        </Box>
+                    </div>
+                    <div className='side-navigation-items'>
+                        <MdDateRange className='side-navigation-items-icon' />
+                        <Box flex='1' textAlign='left'>
+                            Years
+                        </Box>
+                    </div>
+                    <div className='side-navigation-auth-cont'>
+                        <div className='side-navigation-login pointer'
+                            onClick={handleLogin}>
+                            <RiLoginBoxFill className='side-navigation-login-icon'/>
+                            <Box flex='1' textAlign='left'>
+                                Log in
+                            </Box>
+                        </div>
+                    </div>
+                    <div className='side-navigation-auth-cont'>
+                        <div className='side-navigation-logout pointer'>
+                            <RiLogoutBoxFill className='side-navigation-logout-icon' />
+                            <Box flex='1' textAlign='left'>
+                                Log out
+                            </Box>
+                        </div>
+                    </div>
+                    <div className='side-navigation-auth-cont'>
+                        <div className='side-navigation-register pointer'>
+                            <ImUserPlus className='side-navigation-register-icon' />
+                            <Box flex='1' textAlign='left'>
+                                Register
+                            </Box>
+                        </div>
+                    </div>
+                    {/* <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
                     New Window
                     </MenuItem>
                     <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
@@ -199,7 +273,7 @@ const SideNavigation = ({isDark, toggleColorMode, handleSearch}) => {
                     </MenuItem>
                     <MenuItem icon={<EditIcon />} command="⌘O">
                     Open File...
-                    </MenuItem>
+                    </MenuItem> */}
                 </MenuList>
             </Menu>
         </GridItem>

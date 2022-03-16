@@ -25,6 +25,10 @@
 
 [5] Navigation
 - Responsive Navigation --> done
-- Responsive Options Menu (Right Side)
+- Responsive Options Menu (Right Side) --> done
+- Responsive Search Bar
 - Add Skeleton
+
+[6] Mobile
+- Genres, Country, Years menu for mobile
 

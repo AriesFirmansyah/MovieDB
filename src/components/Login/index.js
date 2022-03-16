@@ -121,7 +121,7 @@ const Login = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder='Password'
                             />
-                            <InputRightElement width='4.5rem'>
+                            <InputRightElement width='4.5rem' sx={{zIndex: 0}}>
                                 <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
                                     {showPassword ? 'Hide' : 'Show'}
                                 </Button>

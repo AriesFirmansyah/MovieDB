@@ -64,7 +64,7 @@ const Popular = ({handleFilm}) => {
                 <div className="popularTitle">
                     <img src={PopularTitle} style={{marginRight: '10px'}} />
                     <Heading as='h4' size='xl'>
-                    POPULAR
+                        POPULAR
                     </Heading>
                 </div>
                 <div className="popularFilmCont">
@@ -77,10 +77,10 @@ const Popular = ({handleFilm}) => {
                                         key={popularData.id} onClick={() => handleFilm(popularData)}> 
                                         <div className='popularFilm'>
                                             <img src={`${poster_BaseURL}${popularData.poster_path}`} 
-                                                className='popularImage' />
+                                                className='popularImage pointer' />
                                             <img src={PlayButton} className='popularButton' />
-                                            <div className='popular-rating'>⭐{popularData.vote_average.toFixed(1)}</div>
-                                            <h1 className='popular-item-title'>
+                                            <div className='popular-rating pointer'>⭐{popularData.vote_average.toFixed(1)}</div>
+                                            <h1 className='popular-item-title pointer'>
                                                 {popularData.title} ({moment(popularData.release_date).format('YYYY')})
                                             </h1>
                                         </div>
