@@ -100,7 +100,7 @@ const Carousel = ({handleFilm}) => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 3000,
         pauseOnHover: true,
         rtl: true,
@@ -110,7 +110,7 @@ const Carousel = ({handleFilm}) => {
         // centerPadding: '60px',
         swipeToSlide: true,
         arrows: false,
-        // swipe: false,
+        swipe: false,
 
         responsive : [
             {   
