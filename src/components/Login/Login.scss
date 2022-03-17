@@ -28,6 +28,19 @@
         text-decoration: underline;
     }
 }
+.login-option-mobile {
+    text-align: left;
+    padding: 0px 0px 30px 0px;
+    span {
+        font-weight: bold;
+        cursor: pointer;
+        color: #63B3ED;
+    }
+    span:hover {
+        text-decoration: underline;
+    }
+    display: none;
+}
 .login-input {
     background-color: #ffffff15 !important;
     border: none !important;
@@ -42,6 +55,9 @@
     .login-option {
         display: none;
     }
+    .login-option-mobile {
+        display: block;
+    }
     .login-text-header {
         text-align: center;
     }
@@ -54,12 +70,16 @@
     .login-option {
         display: none;
     }
+    .login-option-mobile {
+        display: block;
+    }
     .login-text-header {
         text-align: center;
     }
     .login-container {
         transform: translate(0%, 0%);
     }
+    
 }
 
 @media only screen and (min-width: 768px) {
@@ -71,6 +91,9 @@
         img {
             transform: translate(40%, 0%);
         }
+    }
+    .login-option-mobile {
+        display: none;
     }
 }
 

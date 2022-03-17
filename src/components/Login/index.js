@@ -138,9 +138,6 @@ const Login = () => {
                                 className='login-input'
                             />
                             <InputRightElement width='4.5rem' sx={{zIndex: 1, marginRight: -3}}>
-                                {/* <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
-                                    {showPassword ? 'Hide' : 'Show'}
-                                </Button> */}
                                 { 
                                     showPassword ? 
                                         <div onClick={handleShowPassword}>
@@ -160,16 +157,23 @@ const Login = () => {
                             Sign In
                         </Button>
 
+                        <div className="login-option-mobile">
+                            <h1>
+                                Don't have an account ? 
+                                You can <span>Register here!</span>
+                            </h1>
+                        </div>
+
                         <SimpleGrid columns={10}>
-                            <GridItem colSpan={{base : 2, sm: 2, md: 2, lg: 3, xl : 3 }}>
+                            <GridItem colSpan={{base : 2, sm: 3, md: 2, lg: 3, xl : 3 }}>
                                 <Divider />
                             </GridItem>
-                            <GridItem colSpan={{base : 6, sm: 6, md: 6, lg: 4, xl : 4 }}>
+                            <GridItem colSpan={{base : 6, sm: 4, md: 6, lg: 4, xl : 4 }}>
                                 <h1 style={{color: 'gray', marginTop: '-12px'}}>
                                     or continue with
                                 </h1>
                             </GridItem>
-                            <GridItem colSpan={{base : 2, sm: 2, md: 2, lg: 3, xl : 3 }}>
+                            <GridItem colSpan={{base : 2, sm: 3, md: 2, lg: 3, xl : 3 }}>
                                 <Divider />
                             </GridItem>
                         </SimpleGrid>
