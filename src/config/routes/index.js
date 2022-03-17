@@ -45,6 +45,11 @@ const Routes = () => {
                         }
                     />
                 </Router>
+                {
+                    window.location.pathname !== '/login' ? (
+                        <Footer />
+                    ) : null
+                }
                 <Footer />
             </BrowserRouter>
         </ReactBreakpoints>

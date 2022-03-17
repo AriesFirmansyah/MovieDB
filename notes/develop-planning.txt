@@ -17,8 +17,9 @@
 - Add Skeleton
 
 [4] Auth
-- Create Login Page
-- Responsive Login Page
+- Create Login Page --> done
+- Responsive Login Page --> done 
+- Login function 
 - Create Register Page
 - Responsive Register Page
 - Add Skeleton
