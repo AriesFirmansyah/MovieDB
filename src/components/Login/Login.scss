@@ -1,6 +1,7 @@
 .login-container {
     padding: 60px 60px 60px 60px;
-    transform: translate(0%, 50%);
+    // justify-content: center;
+    
 }
 .login-text-header {
     font-size: 30px;
@@ -76,9 +77,6 @@
     .login-text-header {
         text-align: center;
     }
-    .login-container {
-        transform: translate(0%, 0%);
-    }
     
 }
 
@@ -106,4 +104,24 @@
 }
 
 @media only screen and (min-width: 1200px) {
+    .login-container {
+        padding: 60px 180px 60px 180px;
+        height: 65vh;
+        transform: translate(0%, 10%);
+    }
+}
+@media only screen and (min-width: 1400px) {
+    .login-container {
+        padding: 60px 280px 60px 280px;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    .login-container {
+        padding: 60px 380px 60px 380px;
+    }
+}
+@media only screen and (min-width: 1800px) {
+    .login-container {
+        padding: 60px 480px 60px 480px;
+    }
 }
