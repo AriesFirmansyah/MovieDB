@@ -108,6 +108,10 @@ const Nav = () => {
         navigate(`/login`);
         navigate(0);
     };
+    const handleRegister = () => {
+        navigate(`/register`);
+        navigate(0);
+    };
 
     useEffect(() => {
         if(loading){
@@ -125,7 +129,7 @@ const Nav = () => {
             :
             (
                 <div style={{width: '100%'}}>
-                    <SimpleGrid columns={[4, 8, 12, 16]} spacing="40px" className="cont1">
+                    <SimpleGrid columns={[4, 12, 12, 12, 16]} spacing="40px" className="cont1">
                         <LogoHeader />
                         <MoviesNavigation handleMovie={HandleMovie} />
                         <GenresNavigation genres={genres} handleGenre={HandleGenre} />
@@ -136,7 +140,8 @@ const Nav = () => {
                             toggleColorMode={toggleColorMode}
                             handleSearch={HandleSearch}
                             handleMovie={HandleMovie}
-                            handleLogin={HandleLogin} />
+                            handleLogin={HandleLogin}
+                            handleRegister={handleRegister} />
                     </SimpleGrid>
                 </div>
             ) 

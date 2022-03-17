@@ -14,20 +14,21 @@
 - Responsive Companies --> done
 - Responsive Content --> done
 - Responsive Recommendations --> done
+- Error Handling
 - Add Skeleton
 
 [4] Auth
 - Create Login Page --> done
 - Responsive Login Page --> done 
 - Login function 
-- Create Register Page
-- Responsive Register Page
+- Create Register Page --> done
+- Responsive Register Page --> done
 - Add Skeleton
 
 [5] Navigation
 - Responsive Navigation --> done
 - Responsive Options Menu (Right Side) --> done
-- Responsive Search Bar
+- Responsive Search Bar --> done
 - Add Skeleton
 
 [6] Mobile

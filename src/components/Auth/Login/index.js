@@ -29,7 +29,7 @@ import {
 
 import { AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 
-import People from './../../images/login/people.png';
+import People from '../../../images/login/people.png';
 
 
 const clientID = "15100114289-2rd2h4ses7ahd5cdcr40sbopcs1b4us6.apps.googleusercontent.com";
@@ -112,7 +112,7 @@ const Login = () => {
                 
             </div>
             <div className='login-container'>
-                <Container maxW='container.xl'>
+                <Container maxW='container.md'>
                     <SimpleGrid columns={[10, 10, 10, 10, 10]} 
                         spacing={{base: '10px', sm: '10px', md: '10px', lg: '0px', xl : '0px' }}
                         style={{textAlign: 'center'}}>
@@ -122,7 +122,10 @@ const Login = () => {
                             <div className="login-option">
                                 <h1>
                                     Don't have an account ? <br></br>
-                                    You can <span>Register here!</span>
+                                    {"You can "}
+                                    <span onClick={() => window.location.href = '/register'}>
+                                        {"Register here!"}
+                                    </span>
                                 </h1>
                                 <img src={People} />
                             </div>
@@ -143,7 +146,6 @@ const Login = () => {
                                     { 
                                         showPassword ? 
                                             <div onClick={handleShowPassword}>
-                                                
                                                 <AiFillEye />
                                             </div>
                                             : 
@@ -162,7 +164,10 @@ const Login = () => {
                             <div className="login-option-mobile">
                                 <h1>
                                     Don't have an account ? 
-                                    You can <span>Register here!</span>
+                                    {" You can "} 
+                                    <span onClick={() => window.location.href = '/register'}>
+                                        {"Register here!"}
+                                    </span>
                                 </h1>
                             </div>
 

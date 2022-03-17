@@ -31,7 +31,7 @@ const MoviesNavigation = ({handleMovie}) => {
         <Media>
             {
                 ({ breakpoints, currentBreakpoint }) => 
-                    breakpoints[currentBreakpoint] !== breakpoints.mobile ? (
+                    breakpoints[currentBreakpoint] >= breakpoints.md ? (
                         <GridItem colSpan={2} w="100%" height="80px" className="component hideNav">
                             <Menu isLazy>
                                 <MenuButton>

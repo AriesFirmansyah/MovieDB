@@ -115,13 +115,13 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                                 )
                             }
                             {   
-                                movie.details_review.map(data => {
+                                movie.details_review.map((data, index) => {
                                     // if(data.author_details.rating != null) {
                                     if(review === 0){
                                         review++;
                                         return (
                                             <>  
-                                                <div style={{display: 'flex'}}>
+                                                <div style={{display: 'flex'}} key={index}>
                                                     {
                                                         data.author_details.rating != null ? (
                                                             <CircularProgress value={data.author_details.rating * 10}
@@ -263,9 +263,9 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                                 borderRadius: '15px'}}>
                             <h1><b>Keywords</b></h1>
                             {
-                                movie.details_keyword.keywords.map(data => {
+                                movie.details_keyword.keywords.map((data, index) => {
                                     return (
-                                        <Tag sx={{margin: '5px 5px 5px 0px'}} key={data.id}>
+                                        <Tag sx={{margin: '5px 5px 5px 0px'}} key={index}>
                                             {data.name}
                                         </Tag>
                                     );

@@ -105,23 +105,7 @@
 
 @media only screen and (min-width: 1200px) {
     .login-container {
-        padding: 60px 180px 60px 180px;
         height: 65vh;
         transform: translate(0%, 10%);
-    }
-}
-@media only screen and (min-width: 1400px) {
-    .login-container {
-        padding: 60px 280px 60px 280px;
-    }
-}
-@media only screen and (min-width: 1600px) {
-    .login-container {
-        padding: 60px 380px 60px 380px;
-    }
-}
-@media only screen and (min-width: 1800px) {
-    .login-container {
-        padding: 60px 480px 60px 480px;
     }
 }

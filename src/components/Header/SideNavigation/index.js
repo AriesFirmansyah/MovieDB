@@ -34,6 +34,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetSearch } from '../../../redux/actions/search';
+import { Media } from 'react-breakpoints';
 import PropTypes from 'prop-types';
 
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
@@ -43,7 +44,8 @@ const propTypes = {
     toggleColorMode: PropTypes.func,
     handleSearch: PropTypes.func,
     handleMovie: PropTypes.func,
-    handleLogin: PropTypes.func
+    handleLogin: PropTypes.func,
+    handleRegister: PropTypes.func
 };
 
 const SideNavigation = ({
@@ -52,6 +54,7 @@ const SideNavigation = ({
     handleSearch, 
     handleMovie,
     handleLogin,
+    handleRegister,
 }) => {
     const [dataResults, setDataResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
@@ -90,7 +93,7 @@ const SideNavigation = ({
             handleSearch(routes);
             setTimeout(() => {
                 setIsFocus(false);
-            }, 100);
+            }, 1000);
         } else {
             setTimeout(() => {
                 setIsFocus(false);
@@ -99,7 +102,7 @@ const SideNavigation = ({
         
     };
     return (
-        <GridItem colSpan={{base : 4, md: 12, lg: 4, xl : 4 }} w="100%" height="80px" 
+        <GridItem colSpan={{base : 4, sm: 12, md: 12, lg: 12, xl : 4 }} w="100%" height="80px" 
             className="component side-navigation-container">
             {
                 searchInput !== '' && isFocus ? (
@@ -123,6 +126,7 @@ const SideNavigation = ({
                                 style={{ 
                                     color: 'aliceblue', 
                                     border: 'none',
+                                    zIndex: 0
                                 }}
                                 value={searchInput} 
                                 onChange={(e) => handleChange(e)}
@@ -130,29 +134,28 @@ const SideNavigation = ({
                                 onBlur={() => handleFocus(true)}
                                 className='no-shadow' />
                         </InputGroup>
-                        <div className='side-navigation-result'>
+                        <div className='side-navigation-results-cont'>
                             {
-                                dataResults && dataResults.map (e => {
+                                dataResults && dataResults.map ((e, index) => {
                                     return (
                                         e.poster_path && (
-
-                                            <SimpleGrid columns={12} spacing="30px" 
-                                                style={{padding : '10px 20px 10px 20px'}}>
-                                                <GridItem colSpan={{base : 1, sm: 1, md: 2, lg: 2, xl : 2 }} >
-                                                    <img src={`${poster_BaseURL}${e.poster_path}`} 
-                                                        className='side-navigation-result-image' 
-                                                        onClick={() => handleFocus(false, e)} />
-                                                </GridItem>
-                                                <GridItem colSpan={{base : 11, sm: 11, md: 10, lg: 10, xl : 10 }}>
+                                            <div className='side-navigation-results' key={index}>
+                                                <img src={`${poster_BaseURL}${e.poster_path}`} 
+                                                    className='side-navigation-result-image' 
+                                                    onClick={() => handleFocus(false, e)} />
+                                                <div className='side-navigation-results-text-cont'>
                                                     <h1 className='side-navigation-results-text'
-                                                        onClick={() => handleSearch(e)}>
+                                                        onClick={() => {
+                                                            console.log('click');
+                                                            handleSearch(e);
+                                                        } }>
                                                         {e.title} ({moment(e.release_date).format('YYYY')})
                                                     </h1>
                                                     <h1 className='side-navigation-results-rating'>
                                                         ⭐{e.vote_average.toFixed(1)}
                                                     </h1>
-                                                </GridItem>
-                                            </SimpleGrid>
+                                                </div>
+                                            </div>
                                         )
                                         
                                     );
@@ -202,44 +205,53 @@ const SideNavigation = ({
                     variant="outline"
                 />
                 <MenuList sx={{padding : 0}}>
-                    <Accordion allowMultiple>
-                        <AccordionItem className='no-border'>
-                            <AccordionButton className='no-box side-navigation-movies'
-                                _expanded={{ bg: 'teal' }}>
-                                <RiMovie2Fill style={{marginRight : '10px'}} />
-                                <Box flex='1' textAlign='left'>
-                                    <b>Movies</b>
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                            <AccordionPanel pb={4}>
-                                <div className='side-navigation-movies-expand'>
-                                    <h1 onClick={() => handleMovie('movies')}>All Movies</h1>
-                                    <h1 onClick={() => handleMovie('trending')}>Trending</h1>
-                                    <h1 onClick={() => handleMovie('now-playing')}>Now Playing</h1>
-                                    <h1 onClick={() => handleMovie('popular')}>Popular</h1>
-                                </div>
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                    <div className='side-navigation-items'>
-                        <MdOutlineLocalMovies className='side-navigation-items-icon' />
-                        <Box flex='1' textAlign='left'>
-                            Genres
-                        </Box>
-                    </div>
-                    <div className='side-navigation-items'>
-                        <HiOutlineGlobe className='side-navigation-items-icon' />
-                        <Box flex='1' textAlign='left'>
-                            Country
-                        </Box>
-                    </div>
-                    <div className='side-navigation-items'>
-                        <MdDateRange className='side-navigation-items-icon' />
-                        <Box flex='1' textAlign='left'>
-                            Years
-                        </Box>
-                    </div>
+                    <Media>
+                        {
+                            ({ breakpoints, currentBreakpoint }) => 
+                                breakpoints[currentBreakpoint] === breakpoints.mobile ? (
+                                    <>
+                                        <Accordion allowMultiple>
+                                            <AccordionItem className='no-border'>
+                                                <AccordionButton className='no-box side-navigation-movies'
+                                                    _expanded={{ bg: 'teal' }}>
+                                                    <RiMovie2Fill style={{marginRight : '10px'}} />
+                                                    <Box flex='1' textAlign='left'>
+                                                        <b>Movies</b>
+                                                    </Box>
+                                                    <AccordionIcon />
+                                                </AccordionButton>
+                                                <AccordionPanel pb={4}>
+                                                    <div className='side-navigation-movies-expand'>
+                                                        <h1 onClick={() => handleMovie('movies')}>All Movies</h1>
+                                                        <h1 onClick={() => handleMovie('trending')}>Trending</h1>
+                                                        <h1 onClick={() => handleMovie('now-playing')}>Now Playing</h1>
+                                                        <h1 onClick={() => handleMovie('popular')}>Popular</h1>
+                                                    </div>
+                                                </AccordionPanel>
+                                            </AccordionItem>
+                                        </Accordion>
+                                        <div className='side-navigation-items'>
+                                            <MdOutlineLocalMovies className='side-navigation-items-icon' />
+                                            <Box flex='1' textAlign='left'>
+                                                Genres
+                                            </Box>
+                                        </div>
+                                        <div className='side-navigation-items'>
+                                            <HiOutlineGlobe className='side-navigation-items-icon' />
+                                            <Box flex='1' textAlign='left'>
+                                                Country
+                                            </Box>
+                                        </div>
+                                        <div className='side-navigation-items'>
+                                            <MdDateRange className='side-navigation-items-icon' />
+                                            <Box flex='1' textAlign='left'>
+                                                Years
+                                            </Box>
+                                        </div>
+                                    </>
+                                ) : null
+                        }   
+                    </Media>
                     <div className='side-navigation-auth-cont'>
                         <div className='side-navigation-login pointer'
                             onClick={handleLogin}>
@@ -258,22 +270,14 @@ const SideNavigation = ({
                         </div>
                     </div>
                     <div className='side-navigation-auth-cont'>
-                        <div className='side-navigation-register pointer'>
+                        <div className='side-navigation-register pointer'
+                            onClick={handleRegister}>
                             <ImUserPlus className='side-navigation-register-icon' />
                             <Box flex='1' textAlign='left'>
                                 Register
                             </Box>
                         </div>
                     </div>
-                    {/* <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
-                    New Window
-                    </MenuItem>
-                    <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
-                    Open Closed Tab
-                    </MenuItem>
-                    <MenuItem icon={<EditIcon />} command="⌘O">
-                    Open File...
-                    </MenuItem> */}
                 </MenuList>
             </Menu>
         </GridItem>
