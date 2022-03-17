@@ -1,6 +1,6 @@
 import Slider from 'react-slick';
 
-import './companies.css';
+import './companies.scss';
 import PropTypes from 'prop-types';
 
 const photo_BaseURL = 'https://image.tmdb.org/t/p/original';
@@ -22,8 +22,6 @@ const Companies = ({movie}) => {
     return (
         <>
             <div className="companies-container">
-                {/* <p>tes</p> */}
-
                 <Slider {...settings}>
                     {
                         movie.details.production_companies && 

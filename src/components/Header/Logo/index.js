@@ -12,7 +12,8 @@ import {
 const LogoHeader = () => {
     return (
         <>
-            <GridItem colSpan={4} w="100%" height="80px" >
+            <GridItem colSpan={{base : 4, sm: 12, md: 4, lg: 4, xl : 4 }} 
+                w="100%" height="80px" >
                 <Link to="/" className="navigation-logo">
                     <img src={Logo} className="logo" />
                     <h1 className="logo-text">

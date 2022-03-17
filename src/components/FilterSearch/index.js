@@ -95,10 +95,10 @@ const FilterSearch = () => {
                                             key={index} onClick={() => handleItems(e)} > 
                                             <div className='search-filter-film'>
                                                 <img src={`${poster_BaseURL}${e.poster_path}`} 
-                                                    className='search-filter-image' />
+                                                    className='search-filter-image pointer' />
                                                 <img src={PlayButton} className='search-filter-playing-button' />
-                                                <div className='search-filter-rating'>⭐{e.vote_average.toFixed(1)}</div>
-                                                <h1 className='search-filter-film-title'>
+                                                <div className='search-filter-rating pointer'>⭐{e.vote_average.toFixed(1)}</div>
+                                                <h1 className='search-filter-film-title pointer'>
                                                     {e.title} ({moment(e.release_date).format('YYYY')})
                                                 </h1>
                                             </div>

@@ -10,6 +10,7 @@
 - npm install --save prop-types
 - npm install --save react-autocomplete
 - npm i react-breakpoints -f
+- npm i swiper
 
 #Redux 
 npm install --save redux react-redux

@@ -22,6 +22,11 @@ import ChakraLogo from './../../../images/logolibrary/chakrauilogo.png';
 import NodeJsLogo from './../../../images/logolibrary/nodejslogo.png';
 import ReactLogo from './../../../images/logolibrary/reactjslogo.png';
 import ReduxLogo from './../../../images/logolibrary/reactreduxlogo.png';
+import FacebookLogo from './../../../images/logolibrary/facebook.png';
+import GoogleLogo from './../../../images/logolibrary/google.png';
+import SwiperLogo from './../../../images/logolibrary/swiperjs.png';
+import WebpackLogo from './../../../images/logolibrary/webpack.png';
+
 
 // Components
 import Loading from './skeleton';
@@ -33,6 +38,17 @@ import {
 } from './../../../redux/actions/trending';
 
 import PropTypes from 'prop-types';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// import required modules
+import { Autoplay, Navigation } from "swiper";
+
 
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
@@ -63,29 +79,29 @@ const Carousel = ({handleFilm}) => {
     
     }, []);
       
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        pauseOnHover: true,
+    // const settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 5000,
+    //     pauseOnHover: true,
     
-        className: 'center',
-        centerMode: true,
-        centerPadding: '0px',
-    };
+    //     className: 'center',
+    //     centerMode: true,
+    //     centerPadding: '0px',
+    // };
     
     const settings2 = {
         dots: false,
         infinite: true,
-        speed: 500,
+        speed: 2500,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 5000,
         pauseOnHover: true,
         rtl: true,
         focusOnSelect: true,
@@ -125,13 +141,29 @@ const Carousel = ({handleFilm}) => {
             </>
             :
             <>
+                
                 <SimpleGrid columns={1} spacing="40px" className='home-carousel-container'>
                     <GridItem colSpan={1} w="100%" className="carousel1-grid">
-                        <Slider {...settings} style={{zIndex: '0'}}>
+                        <Swiper 
+                            navigation={true} 
+                            modules={[
+                                Navigation,
+                                Autoplay
+                            ]} 
+                            loop={true} 
+                            autoplay={{
+                                delay: 5000,
+                                disableOnInteraction: false,
+                            }}
+                            className="mySwiper"
+                            style={{
+                                zIndex: '0',
+                                "--swiper-navigation-color": "#fff",
+                            }}>
                             {
                                 trending.data.map(trending => {
                                     return (
-                                        <div onClick={() => handleFilm(trending)} className="pointer-cursor"
+                                        <SwiperSlide onClick={() => handleFilm(trending)} className="pointer-cursor"
                                             style={{zIndex: '0'}} 
                                             key={trending.id}>
                                             <h4 className="carousel1-title">
@@ -139,12 +171,12 @@ const Carousel = ({handleFilm}) => {
                                             </h4>
                                             <Image src={`${poster_BaseURL}${trending.backdrop_path}`}   
                                                 w='100%' className="carousel1-image" />
-                                        </div>
+                                        </SwiperSlide>
                                     );
                                 })
                             }
-
-                        </Slider>
+                        </Swiper>
+                        <br></br>
                     </GridItem>
                     <GridItem colSpan={1} w="100%" height="90" 
                         sx={{textAlign: 'center', marginTop: -4}} >
@@ -162,7 +194,16 @@ const Carousel = ({handleFilm}) => {
                                 <Image src={NodeJsLogo} alt='Node JS'  className='nodejs' />
                             </div>
                             <div className='tech-image'>
-                                <Image src={ReduxLogo} alt='Redux2'  className='redux' />
+                                <Image src={GoogleLogo} alt='Google'  className='google' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={FacebookLogo} alt='Facebook'  className='facebook' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={SwiperLogo} alt='Swiper JS'  className='swiperjs' />
+                            </div>
+                            <div className='tech-image'>
+                                <Image src={WebpackLogo} alt='Webpack'  className='webpack' />
                             </div>
                         </Slider>
                     </GridItem>

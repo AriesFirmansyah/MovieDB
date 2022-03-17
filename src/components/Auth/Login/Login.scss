@@ -1,0 +1,111 @@
+.login-container {
+    padding: 60px 60px 60px 60px;
+    // justify-content: center;
+    
+}
+.login-text-header {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 0px 40px 0px
+}
+.login-option {
+    // justify-content: end;
+    display: flex;
+    text-align: left;
+    h1 {
+        margin: 30px 0px 0px 0px
+    }
+    span {
+        font-weight: bold;
+        cursor: pointer;
+        color: #63B3ED;
+    }
+    img {
+        max-width: 140px;
+        transform: translate(60%, 0%);
+    }
+    span:hover {
+        text-decoration: underline;
+    }
+}
+.login-option-mobile {
+    text-align: left;
+    padding: 0px 0px 30px 0px;
+    span {
+        font-weight: bold;
+        cursor: pointer;
+        color: #63B3ED;
+    }
+    span:hover {
+        text-decoration: underline;
+    }
+    display: none;
+}
+.login-input {
+    background-color: #ffffff15 !important;
+    border: none !important;
+}
+.login-input:focus {
+    box-shadow: none !important;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 600px) {
+    .login-option {
+        display: none;
+    }
+    .login-option-mobile {
+        display: block;
+    }
+    .login-text-header {
+        text-align: center;
+    }
+    .login-container {
+        transform: translate(0%, 0%);
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .login-option {
+        display: none;
+    }
+    .login-option-mobile {
+        display: block;
+    }
+    .login-text-header {
+        text-align: center;
+    }
+    
+}
+
+@media only screen and (min-width: 768px) {
+    .login-text-header {
+        text-align: left;
+    }
+    .login-option {
+        display: flex;
+        img {
+            transform: translate(40%, 0%);
+        }
+    }
+    .login-option-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .login-option {
+        img {
+            transform: translate(60%, 0%);
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .login-container {
+        height: 65vh;
+        transform: translate(0%, 10%);
+    }
+}

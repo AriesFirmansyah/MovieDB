@@ -1,0 +1,112 @@
+.register-container {
+    // background-color: #ffffff10;
+    background: #FC354C90;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ABFBC90, #FC354C90);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0ABFBC90, #FC354C90); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    backdrop-filter: blur(22px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 50px 0px 50px 0px;
+
+    .header-text {
+        padding-bottom: 50px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .register-login {
+        padding: 8px 0px 50px 0px;
+        font-size: 15px;
+        
+        span {
+            font-weight: bold;
+            cursor: pointer;
+            color: #63B3ED;
+        }
+        span:hover {
+            text-decoration: underline;
+        }
+    }
+    .register-login-mobile {
+        font-size: 15px;
+        
+        span {
+            font-weight: bold;
+            cursor: pointer;
+            color: #63B3ED;
+        }
+        span:hover {
+            text-decoration: underline;
+        }
+    }
+    .register-right-side {
+        padding: 0px 0px 0px 20px;
+        border-radius: 10px;
+
+        .header-text {
+            font-size: 20px;
+            padding: 0;
+        }
+    
+    }
+    .register-submit {
+        margin-top: 10px;
+    }
+}
+.register-input {
+    background-color: #ffffff20 !important;
+    backdrop-filter: blur(22px);
+    border: none !important;
+}
+.register-input:focus {
+    box-shadow: none !important;
+}
+
+
+/* Responsive */
+
+@media only screen and (max-width: 600px) {
+    .register-container {
+        .header-text {
+            padding-bottom: 0px;
+        }
+
+        .register-login-mobile {
+            padding-bottom: 50px;
+            display: block;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .register-container {
+        .header-text {
+            padding-bottom: 0px;
+        }
+
+        .register-login-mobile {
+            padding-bottom: 50px;
+            display: block;
+        }
+    }
+    
+}
+
+@media only screen and (min-width: 768px) {
+    .register-container {
+        .header-text {
+            padding-bottom: 50px;
+        }
+
+        .register-login-mobile {
+            display: none;
+        }
+    }
+    
+}
+
+@media only screen and (min-width: 992px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

@@ -1,4 +1,4 @@
-import './genres.css';
+import './genres.scss';
 
 // Assets
 import Genre from './../../../images/genre.png';
@@ -33,7 +33,7 @@ const GenresNavigation = ({genres, handleGenre}) => {
         <Media>
             {
                 ({ breakpoints, currentBreakpoint }) => 
-                    breakpoints[currentBreakpoint] !== breakpoints.mobile ? (
+                    breakpoints[currentBreakpoint] >= breakpoints.md ? (
                         <GridItem colSpan={2} w="100%" height="80px" className="component">
                             <Menu isLazy>
                                 <MenuButton>
