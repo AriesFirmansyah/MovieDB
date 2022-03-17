@@ -10,7 +10,6 @@ import {
     InputRightElement,
     IconButton,
     GridItem,
-    SimpleGrid,
     Button,
     Accordion,
     AccordionItem,
@@ -122,7 +121,7 @@ const SideNavigation = ({
                                     <Search2Icon color="gray.300" />
                                 </Button>
                             </InputRightElement>
-                            <Input type="tel" placeholder="Search..." 
+                            <Input type="text" placeholder="Search..." 
                                 style={{ 
                                     color: 'aliceblue', 
                                     border: 'none',
@@ -179,7 +178,7 @@ const SideNavigation = ({
                                     <Search2Icon color="gray.300" />
                                 </Button>
                             </InputRightElement>
-                            <Input type="tel" placeholder="Search..." 
+                            <Input type="text" placeholder="Search..." 
                                 style={{ 
                                     color: 'aliceblue', 
                                     border: 'none',
