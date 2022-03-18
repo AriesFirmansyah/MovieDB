@@ -1,5 +1,7 @@
 .content-container {
     transform: translateY(-12%);
+    z-index: 0;
+    padding-top: 20px;
 }
 .content-review-text {
     max-height: 150px;

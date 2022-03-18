@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 
 import './companies.scss';
 import PropTypes from 'prop-types';
+import { Container } from '@chakra-ui/react';
 
 const photo_BaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -29,10 +30,10 @@ const Companies = ({movie}) => {
                             if(e.logo_path != null) {
                                 return (
                                     <div className="companies-item" key={e.id}>
-                                        <div className="companies-image-container">
+                                        <Container maxW='container.sm'>
                                             <img src={`${photo_BaseURL}${e.logo_path}`} 
                                                 className="companies-image" />
-                                        </div>
+                                        </Container>
                                     </div>
                                 );
                             }
