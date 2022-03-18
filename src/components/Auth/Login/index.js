@@ -30,12 +30,15 @@ import {
 import { AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 
 import People from '../../../images/login/people.png';
+import { useColorMode } from '@chakra-ui/react';
 
 
 const clientID = "15100114289-2rd2h4ses7ahd5cdcr40sbopcs1b4us6.apps.googleusercontent.com";
 const facebookID = "5302591449775023";
 
 const Login = () => {
+    const { colorMode } = useColorMode();
+
     const [isLogged, setIsLogged] = useState(false);
     const [dataFacebook, setDataFacebook] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
@@ -114,8 +117,7 @@ const Login = () => {
             <div className='login-container'>
                 <Container maxW='container.md'>
                     <SimpleGrid columns={[10, 10, 10, 10, 10]} 
-                        spacing={{base: '10px', sm: '10px', md: '10px', lg: '0px', xl : '0px' }}
-                        style={{textAlign: 'center'}}>
+                        spacing={{base: '10px', sm: '10px', md: '10px', lg: '0px', xl : '0px' }}>
                         <GridItem colSpan={{base : 10, sm: 10, md: 6, lg: 6, xl : 6 }} >
 
                             <h1 className='login-text-header'>Sign In to Get Your Movies</h1>
@@ -132,7 +134,10 @@ const Login = () => {
                         </GridItem>
                         <GridItem colSpan={{base : 10, sm: 10, md: 4, lg: 4, xl : 4 }} >
                             <Input placeholder='Enter email or phone number' 
-                                className='login-input' />
+                                className={colorMode === 'dark' ? 
+                                    'login-input input-dark' :
+                                    'login-input input-light'
+                                } />
                             <br></br><br></br>
                             <InputGroup size='md'>
                                 <Input
@@ -140,7 +145,10 @@ const Login = () => {
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder='Password'
                                     style={{zIndex: 0}}
-                                    className='login-input'
+                                    className={colorMode === 'dark' ? 
+                                        'login-input input-dark' :
+                                        'login-input input-light'
+                                    }
                                 />
                                 <InputRightElement width='4.5rem' sx={{zIndex: 1, marginRight: -3}}>
                                     { 

@@ -36,7 +36,7 @@ const MoviesNavigation = ({handleMovie}) => {
                             <Menu isLazy>
                                 <MenuButton>
                                     <Button colorScheme="none" className="no-box" 
-                                        rightIcon={<ChevronDownIcon style={{fontSize: 30}} />}>
+                                        rightIcon={<ChevronDownIcon style={{fontSize: 30, color: 'black'}} />}>
                                         <div className="component">
                                             <img src={Movies} className="component-image" />
                                             <p style={{marginLeft: 5, color: 'aliceblue'}}>

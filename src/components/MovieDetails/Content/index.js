@@ -1,6 +1,6 @@
 import NumberFormat from 'react-number-format';
 import moment from 'moment';
-import './content.css';
+import './content.scss';
 
 
 import Videos from '../Videos';

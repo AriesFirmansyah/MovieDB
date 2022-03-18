@@ -43,11 +43,16 @@
     display: none;
 }
 .login-input {
-    background-color: #ffffff15 !important;
     border: none !important;
 }
 .login-input:focus {
     box-shadow: none !important;
+}
+.input-dark {
+    background-color: #ffffff15 !important;
+}
+.input-light {
+    background-color: #00000020 !important;
 }
 
 /* Responsive */
