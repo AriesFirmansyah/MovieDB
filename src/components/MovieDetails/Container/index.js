@@ -14,6 +14,7 @@ import Cast from '../Cast';
 import Companies from '../Companies';
 import Lightbox from '../Lightbox';
 import Recommendation from '../Recommendation';
+import Loading from './skeleton';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -88,7 +89,7 @@ const Movies = () => {
     return (
         loading === true ?
             <>
-                <p>Loading</p>
+                <Loading />
             </>
             :
             <> 

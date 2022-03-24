@@ -79,7 +79,7 @@ const CountryNavigation = ({countries, handleCountry}) => {
                                                 pointerEvents="none">
                                                 <Search2Icon color="gray.300" />
                                             </InputRightElement>
-                                            <Input type="tel" placeholder="Search country..." 
+                                            <Input type="text" placeholder="Search country..." 
                                                 style={{ 
                                                     color: 'aliceblue', 
                                                     background:'#ffffff50',

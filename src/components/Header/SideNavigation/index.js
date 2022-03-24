@@ -43,8 +43,7 @@ const propTypes = {
     toggleColorMode: PropTypes.func,
     handleSearch: PropTypes.func,
     handleMovie: PropTypes.func,
-    handleLogin: PropTypes.func,
-    handleRegister: PropTypes.func
+    handleNavigate: PropTypes.func,
 };
 
 const SideNavigation = ({
@@ -52,8 +51,7 @@ const SideNavigation = ({
     toggleColorMode, 
     handleSearch, 
     handleMovie,
-    handleLogin,
-    handleRegister,
+    handleNavigate
 }) => {
     const [dataResults, setDataResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
@@ -229,19 +227,22 @@ const SideNavigation = ({
                                                 </AccordionPanel>
                                             </AccordionItem>
                                         </Accordion>
-                                        <div className='side-navigation-items'>
+                                        <div className='side-navigation-items'
+                                            onClick={() => handleNavigate('/movies/genres')}>
                                             <MdOutlineLocalMovies className='side-navigation-items-icon' />
                                             <Box flex='1' textAlign='left'>
                                                 Genres
                                             </Box>
                                         </div>
-                                        <div className='side-navigation-items'>
+                                        <div className='side-navigation-items'
+                                            onClick={() => handleNavigate('/movies/country')}>
                                             <HiOutlineGlobe className='side-navigation-items-icon' />
                                             <Box flex='1' textAlign='left'>
                                                 Country
                                             </Box>
                                         </div>
-                                        <div className='side-navigation-items'>
+                                        <div className='side-navigation-items'
+                                            onClick={() => handleNavigate('/movies/years')}>
                                             <MdDateRange className='side-navigation-items-icon' />
                                             <Box flex='1' textAlign='left'>
                                                 Years
@@ -253,7 +254,7 @@ const SideNavigation = ({
                     </Media>
                     <div className='side-navigation-auth-cont'>
                         <div className='side-navigation-login pointer'
-                            onClick={handleLogin}>
+                            onClick={() => handleNavigate('/login')}>
                             <RiLoginBoxFill className='side-navigation-login-icon'/>
                             <Box flex='1' textAlign='left'>
                                 Log in
@@ -270,7 +271,7 @@ const SideNavigation = ({
                     </div>
                     <div className='side-navigation-auth-cont'>
                         <div className='side-navigation-register pointer'
-                            onClick={handleRegister}>
+                            onClick={() => handleNavigate('/register')}>
                             <ImUserPlus className='side-navigation-register-icon' />
                             <Box flex='1' textAlign='left'>
                                 Register

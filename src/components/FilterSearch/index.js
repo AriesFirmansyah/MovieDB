@@ -18,14 +18,16 @@ import {
 
 import { useEffect, useState } from 'react';
 
-import PopularTitle from './../../images/popularTitle1.png';
+import FilterTitle from './../../images/popularTitle1.png';
 import moment from 'moment';
 import PlayButton from './../../images/play-button.png';
 import {
     Heading,
     SimpleGrid,
     GridItem,
+    Skeleton
 } from '@chakra-ui/react';
+import Loading from './skeleton';
 
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
@@ -40,6 +42,7 @@ const FilterSearch = () => {
     // console.log(discover);
 
     const [loading, setLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState([]);
 
     // console.log(location);
     const FetchRedux = async () => {
@@ -64,22 +67,44 @@ const FilterSearch = () => {
         });
     };
 
+    const handleImageLoaded = (e, index) => {
+        e.preventDefault();
+        setImageLoading(item => ({
+            ...item,
+            [index]: false
+        }));
+    };
+
+    const ImageLoader = () => {
+        return (
+            <Skeleton sx={{borderRadius: '20px'}}>
+                <div style={{height: '270px'}} />
+            </Skeleton>
+        );
+    };
+
     useEffect(() => {
         if(loading) {
             FetchRedux();
             setTimeout(() => {
                 setLoading(!loading);
+                discover.data.results.map(() => {
+                    setImageLoading(old => [
+                        ...old, 
+                        true
+                    ]);
+                });
             }, 1000);
         }
     }, []);
 
     return (
         loading ? (
-            <><p>loading filter</p></>
+            <Loading />
         ) : (
             <>
                 <div className="search-filter-title">
-                    <img src={PopularTitle} style={{marginRight: '10px'}} />
+                    <img src={FilterTitle} style={{marginRight: '10px'}} />
                     <Heading as='h4' size='xl'>
                         {location.state.name.toString().toUpperCase()} MOVIES
                     </Heading>
@@ -95,7 +120,12 @@ const FilterSearch = () => {
                                             key={index} onClick={() => handleItems(e)} > 
                                             <div className='search-filter-film'>
                                                 <img src={`${poster_BaseURL}${e.poster_path}`} 
-                                                    className='search-filter-image pointer' />
+                                                    className={!imageLoading[index] ?
+                                                        'search-filter-image pointer' :
+                                                        'hide'
+                                                    }
+                                                    onLoad={(e) => handleImageLoaded(e, index)}/>
+                                                {imageLoading[index] && <ImageLoader />}
                                                 <img src={PlayButton} className='search-filter-playing-button' />
                                                 <div className='search-filter-rating pointer'>⭐{e.vote_average.toFixed(1)}</div>
                                                 <h1 className='search-filter-film-title pointer'>

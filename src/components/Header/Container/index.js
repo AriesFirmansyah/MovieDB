@@ -45,7 +45,7 @@ const Nav = () => {
         dispatch(GetGenres());
         dispatch(GetCountries());
     };
-    const HandleCountry = (routes) => {
+    const handleCountry = (routes) => {
         navigate(`/movies/${routes.english_name}`, {
             state: {
                 name: routes.english_name,
@@ -55,7 +55,7 @@ const Nav = () => {
         });
         navigate(0);
     };
-    const HandleYear = (routes) => {
+    const handleYear = (routes) => {
         navigate(`/movies/${routes}`, {
             state: {
                 name: `Year (${routes})`,
@@ -65,7 +65,7 @@ const Nav = () => {
         });
         navigate(0);
     };
-    const HandleGenre = (routes) => {
+    const handleGenre = (routes) => {
         navigate(`/movies/${routes.name}`, {
             state: {
                 name: `Genre (${routes.name})`,
@@ -75,7 +75,7 @@ const Nav = () => {
         });
         navigate(0);
     };
-    const HandleMovie = (routes) => {
+    const handleMovie = (routes) => {
         if(routes === 'movies') {
             navigate('/movies/all', {
                 state: {
@@ -95,7 +95,7 @@ const Nav = () => {
         }
         navigate(0);
     };
-    const HandleSearch = (routes) => {
+    const handleSearch = (routes) => {
         navigate(`/movie-details/${routes.original_title}(${moment(routes.release_date).format('YYYY')})`, {
             state : {
                 name : routes.original_title,
@@ -105,12 +105,8 @@ const Nav = () => {
         navigate(0);
     };
     
-    const HandleLogin = () => {
-        navigate(`/login`);
-        navigate(0);
-    };
-    const handleRegister = () => {
-        navigate(`/register`);
+    const handleNavigate = (routes) => {
+        navigate(routes);
         navigate(0);
     };
 
@@ -132,17 +128,16 @@ const Nav = () => {
                 <div style={{width: '100%'}}>
                     <SimpleGrid columns={[4, 12, 12, 12, 16]} spacing="40px" className="cont1">
                         <LogoHeader />
-                        <MoviesNavigation handleMovie={HandleMovie} />
-                        <GenresNavigation genres={genres} handleGenre={HandleGenre} />
-                        <CountryNavigation countries={countries} handleCountry={HandleCountry} />
-                        <YearsNavigation handleYear={HandleYear} />
+                        <MoviesNavigation handleMovie={handleMovie} />
+                        <GenresNavigation genres={genres} handleGenre={handleGenre} />
+                        <CountryNavigation countries={countries} handleCountry={handleCountry} />
+                        <YearsNavigation handleYear={handleYear} />
                         <SideNavigation 
                             isDark={isDark} 
                             toggleColorMode={toggleColorMode}
-                            handleSearch={HandleSearch}
-                            handleMovie={HandleMovie}
-                            handleLogin={HandleLogin}
-                            handleRegister={handleRegister} />
+                            handleSearch={handleSearch}
+                            handleMovie={handleMovie}
+                            handleNavigate={handleNavigate} />
                     </SimpleGrid>
                 </div>
             ) 
