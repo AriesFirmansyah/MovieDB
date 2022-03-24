@@ -46,12 +46,12 @@
 }
 @media only screen and (max-width: 550px) {
     .companies-container {
-        transform: translateY(-75%);
+        transform: translateY(-65%);
     }
 }
 @media only screen and (max-width: 485px) {
     .companies-container {
-        transform: translateY(-90%);
+        transform: translateY(-70%);
     }
     .companies-item {
         .companies-image {
@@ -60,46 +60,27 @@
         }
     }
 }
-@media only screen and (max-width: 430px) {
-    .companies-container {
-        transform: translateY(-92%);
-    }
-    .companies-item {
-        .companies-image {
-            width: 150px;
-            height: 50px;
-        }
-    }
-}
-@media only screen and (max-width: 380px) {
-    .companies-container {
-        transform: translateY(-95%);
-    }
-    .companies-item {
-        .companies-image {
-            width: 150px;
-            height: 50px;
-        }
-    }
-}
 @media only screen and (max-width: 330px) {
     .companies-container {
-        transform: translateY(-115%);
+        transform: translateY(-90%);
     }
 }
 @media only screen and (max-width: 300px) {
     .companies-container {
-        transform: translateY(-130%);
+        transform: translateY(-100%);
     }
 }
 @media only screen and (max-width: 260px) {
     .companies-container {
-        transform: translateY(-150%);
+        transform: translateY(-120%);
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+    .companies-container {
+        transform: translateY(-55%);
+    }
     .companies-item {
         .companies-image {
             width: 300px;

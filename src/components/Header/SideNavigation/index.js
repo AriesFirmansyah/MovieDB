@@ -207,7 +207,7 @@ const SideNavigation = ({
                     <Media>
                         {
                             ({ breakpoints, currentBreakpoint }) => 
-                                breakpoints[currentBreakpoint] === breakpoints.mobile ? (
+                                breakpoints[currentBreakpoint] <= breakpoints.sm ? (
                                     <>
                                         <Accordion allowMultiple>
                                             <AccordionItem className='no-border'>

@@ -27,8 +27,12 @@ const moviesReducer = (state = data, action) => {
 
     case 'GET_MOVIE_DETAILS_FULFILLED' :
         if(action.payload.data.belongs_to_collection != null) {
-            state.details_backdrop = action.payload.data
-                .belongs_to_collection.backdrop_path;
+            if(action.payload.data.belongs_to_collection.backdrop_path != null) {
+                state.details_backdrop = action.payload.data
+                    .belongs_to_collection.backdrop_path;
+            } else if (action.payload.data.backdrop_path != null){
+                state.details_backdrop = action.payload.data.backdrop_path;
+            }
         } else if (action.payload.data.backdrop_path != null){
             state.details_backdrop = action.payload.data.backdrop_path;
         } else {

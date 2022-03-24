@@ -1,11 +1,13 @@
-import './cast.css';
+import './cast.scss';
 
 import { 
     Container
 } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
 
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+import Loading from './skeleton';
 
 import castNull from './../../../images/movie-details/cast null.png';
 
@@ -100,6 +102,24 @@ const Cast = ({movie}) => {
         ]
     };
 
+    const [imageLoading, setImageLoading] = useState([]);
+    const handleImageLoaded = (e, index) => {
+        e.preventDefault();
+        setImageLoading(item => ({
+            ...item,
+            [index]: false
+        }));
+    };
+
+    useEffect(() => {
+        movie.details_credit.cast.map(() => {
+            setImageLoading(old => [
+                ...old, 
+                true
+            ]);
+        });
+    }, []);
+
     return (
         <>
             {/* <p>Total updates: {slideIndex} </p> */}
@@ -116,8 +136,16 @@ const Cast = ({movie}) => {
                                         <div className='cast-card-container'>
                                             {
                                                 e.profile_path != null ? (
-                                                    <img src={`${photo_BaseURL}${e.profile_path}`} 
-                                                        className='cast-image' />
+                                                    <div>
+                                                        {imageLoading[index] && (
+                                                            <Loading />
+                                                        )}
+                                                        <img src={`${photo_BaseURL}${e.profile_path}`} 
+                                                            className={!imageLoading[index] ? 'cast-image' : 'hide'}
+                                                            // style={{display: imageLoading[index] ? 'none' : 'block'}}
+                                                            onLoad={(e) => handleImageLoaded(e, index)} />
+                                                        
+                                                    </div>
                                                 ) : 
                                                     (
                                                         <img src={castNull} className='cast-image' 
@@ -136,9 +164,6 @@ const Cast = ({movie}) => {
                         }
                     </Slider>
                     <br></br>
-                    {/* <input onChange={handleClick} value={slideIndex}
-          type="range" min={0} max={maxRange}
-          className='slider' /> */}
                 </div>
             </Container>
         </>
