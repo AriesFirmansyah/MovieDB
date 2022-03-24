@@ -1,7 +1,6 @@
 import { 
     Skeleton
 } from '@chakra-ui/react';
-// import PlayButton from '../../../images/play-button.png';
 
 const Loading = () => {
     return (

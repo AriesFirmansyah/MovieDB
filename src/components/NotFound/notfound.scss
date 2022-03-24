@@ -1,0 +1,79 @@
+.notfound-container {
+    // height: 70vh;
+    background-color: #ffffff50;
+    border-radius: 20px;
+    border: 2px solid #b23b3b;
+    background: #FC354C90;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ABFBC90, #FC354C90);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0ABFBC90, #FC354C90); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.notfound-error {
+    img{
+        max-width: 300px;
+        max-height: 300px;
+        margin: auto;
+    }
+    .notfound-text{
+        h1 {
+            font-weight: bold;
+            font-size: 50px;
+            color: #b23b3b;
+        }
+        h2 {
+            text-align: justify;
+            color: #181818;
+        }
+        span {
+            font-weight: bold;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            -moz-animation:blink normal 3s infinite ease-in-out; /* Firefox */
+            -webkit-animation:blink normal 3s infinite ease-in-out; /* Webkit */
+            -ms-animation:blink normal 3s infinite ease-in-out; /* IE */
+            animation:blink normal 3s infinite ease-in-out; /* Opera */
+            transition:all 0.5s ease-in-out;
+        }
+    }
+}
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 600px) {
+    .notfound-error {
+        .notfound-text{
+            h1 {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .notfound-error {
+        .notfound-text{
+            h1 {
+                text-align: center;
+            }
+        }
+    }
+    
+}
+
+@media only screen and (min-width: 768px) {
+    .notfound-error {
+        .notfound-text{
+            h1 {
+                text-align: left;
+            }
+        }
+    }
+}

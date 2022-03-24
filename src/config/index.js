@@ -1,4 +1,4 @@
-import Routes from "./routes";
+import RoutesProvider from "./routes";
 
 // Redux
 import { createStore, applyMiddleware } from 'redux';
@@ -17,7 +17,7 @@ const store = createStore(
 const Config = () => {
     return (
         <Provider store={store}>
-            <Routes />
+            <RoutesProvider />
         </Provider>
     );
 };

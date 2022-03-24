@@ -5,18 +5,12 @@ import {
     Route,
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-
-
 import ReactBreakpoints from 'react-breakpoints';
 
-// Components
-import Container from '../../components/Home/Container';
-import Movies from '../../components/MovieDetails/Container';
 import Navigation from '../../components/Header/Container';
-import FilterSearch from '../../components/FilterSearch';
-import Login from '../../components/Auth/Login';
-import Register from '../../components/Auth/Register';
 import Footer from '../../components/Footer';
+
+import Routes from './routes';
 
 
 const hist = createBrowserHistory();
@@ -29,35 +23,29 @@ const breakpoints = {
     xl: 1200
 };
 
-const Routes = () => {
+const RoutesProvider = () => {
     return (
         <ReactBreakpoints breakpoints={breakpoints}>
             <BrowserRouter history={hist}>
                 <Navigation />
                 <Router>
-                    <Route exact path="/" element={<Container />} />
-                    <Route path="/movie-details/:key" element={<Movies />} />
-                    <Route path="/movies/:key" element={<FilterSearch />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route
-                        path="*"
-                        element={
-                            <main style={{ padding: '1rem' }}>
-                                <p>{"There's nothing here!"}</p>
-                            </main>
-                        }
-                    />
+                    {
+                        Routes.map((routes, index) => {
+                            return !routes.auth ? (
+                                <Route 
+                                    exact 
+                                    path={routes.path}
+                                    element={routes.component} key={index} />
+                            ) : null;
+                        })
+                    }
                 </Router>
-                {/* {
-                    window.location.pathname !== '/login' ? (
-                        <Footer />
-                    ) : null
-                } */}
                 <Footer />
             </BrowserRouter>
         </ReactBreakpoints>
     );
 };
 
-export default Routes;
+// AuthCheck.propTypes = propTypes;
+
+export default RoutesProvider;

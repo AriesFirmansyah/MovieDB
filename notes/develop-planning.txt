@@ -6,7 +6,7 @@
 
 [2] Filter Results
 - Pagination
-- Add Skeleton
+- Add Skeleton --> done
 
 [3] Movie Details
 - Responsive Carousel --> done
@@ -14,8 +14,8 @@
 - Responsive Companies --> done
 - Responsive Content --> done
 - Responsive Recommendations --> done
-- Error Handling
-- Add Skeleton
+- Error Handling --> done
+- Add Skeleton --> done
 
 [4] Auth
 - Create Login Page --> done
@@ -23,7 +23,6 @@
 - Login function 
 - Create Register Page --> done
 - Responsive Register Page --> done
-- Add Skeleton 
 
 [5] Navigation
 - Responsive Navigation --> done
@@ -32,7 +31,14 @@
 - Add Skeleton --> done
 
 [6] Mobile
-- Genres, Country, Years menu for mobile
-- Create Pages Genres, Country, Years menu for mobile
+- Genres, Country, Years menu for mobile --> done
+- Create Pages Genres, Country, Years menu for mobile --> done
+- Responsive Pages Genre, Country, Years menu for mobile --> done
+- Add Skeleton --> done
 
+[7] NotFound
+- Create Page Not Found --> done
+- Responsive Page Not Found --> done
 
+[8] Spinner
+- Add Spinner loading pages
