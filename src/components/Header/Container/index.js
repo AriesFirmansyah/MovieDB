@@ -27,6 +27,7 @@ import YearsNavigation from '../YearsNavigation';
 import SideNavigation from '../SideNavigation';
 
 import { useNavigate } from 'react-router-dom';
+import Loading from './skeleton';
 
 const Nav = () => {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -124,7 +125,7 @@ const Nav = () => {
 
     return (
         loading ? (
-            <p>load</p>
+            <Loading />
         )
             :
             (

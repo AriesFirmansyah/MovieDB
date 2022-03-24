@@ -19,18 +19,24 @@
     width: 150px;
     position: relative;
     cursor: pointer;
+    height: 350px;
+    overflow-y: hidden;
 }
 .card-item-recommendation img {
     border-radius: 20px;
     transition: filter .5s ease;
+}
+.recommendation-image {
+    width: 150px;
+    height: 220px;
 }
 .recommendation-play-button {
     max-width: 50%;
     transition: opacity .5s ease;
     position: absolute;
     top: 50%;
-    transform: translate(50%, -90%);
-    -ms-transform: translate(-50%, -90%);
+    transform: translate(50%, -130%);
+    -ms-transform: translate(-50%, -130%);
     text-align: center;
     opacity: 0;
 }

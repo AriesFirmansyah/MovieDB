@@ -30,6 +30,12 @@
 .pointer {
   cursor: pointer;
 }
+.hide {
+  display: none !important;
+}
+.show {
+  display: block;
+}
 
 /* ScrollBar */
 /* width */

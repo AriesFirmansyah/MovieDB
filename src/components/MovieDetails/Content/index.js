@@ -76,7 +76,6 @@ const Content = ({movie, handleOpen, handleSlide}) => {
                                             } else {
                                                 return ', ' + e.original_name;
                                             }
-                                            
                                         }
                                     })       
                                     

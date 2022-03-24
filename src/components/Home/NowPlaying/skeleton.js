@@ -1,9 +1,29 @@
-const Loading = () => {
+import {
+    SimpleGrid,
+    Skeleton,
+    GridItem,
+    
+} from '@chakra-ui/react';
 
+const Loading = () => {
     return (
-        <>
-            <p>Loading NowPlaying</p>
-        </>
+        <SimpleGrid 
+            columns={[2, 4, 4, 4, 6]} 
+            spacing={{base: '40px', sm: '40px', md: '40px', lg: '40px', xl : '40px' }}
+            sx={{padding: '30px'}}>
+            <GridItem colSpan={1} w="100%" height="250px" sx={{textAlign: 'center'}}>
+                <Skeleton sx={{width: '100%', height: '100%', borderRadius: '10px'}} />
+            </GridItem>
+            <GridItem colSpan={1} w="100%" height="250px" sx={{textAlign: 'center'}}>
+                <Skeleton sx={{width: '100%', height: '100%', borderRadius: '10px'}} />
+            </GridItem>
+            <GridItem colSpan={1} w="100%" height="250px" sx={{textAlign: 'center'}}>
+                <Skeleton sx={{width: '100%', height: '100%', borderRadius: '10px'}} />
+            </GridItem>
+            <GridItem colSpan={1} w="100%" height="250px" sx={{textAlign: 'center'}}>
+                <Skeleton sx={{width: '100%', height: '100%', borderRadius: '10px'}} />
+            </GridItem>
+        </SimpleGrid>
     );
 };
 
