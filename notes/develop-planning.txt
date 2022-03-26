@@ -39,6 +39,3 @@
 [7] NotFound
 - Create Page Not Found --> done
 - Responsive Page Not Found --> done
-
-[8] Spinner
-- Add Spinner loading pages
