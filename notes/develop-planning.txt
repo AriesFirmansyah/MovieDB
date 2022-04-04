@@ -39,3 +39,10 @@
 [7] NotFound
 - Create Page Not Found --> done
 - Responsive Page Not Found --> done
+
+[8] API
+- Create API (POST) --> done
+- Get All Users
+- Get User By Id
+- Update User
+- Delete User

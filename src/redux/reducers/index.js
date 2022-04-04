@@ -4,6 +4,7 @@ import genresReducer from './genres';
 import countriesReducer from './countries';
 import discoverReducer from './discover';
 import searchReducer from './search';
+import authReducer from './auth';
 
 import { combineReducers } from 'redux';
 
@@ -14,6 +15,7 @@ const allReducers = combineReducers({
     countries: countriesReducer,
     discover: discoverReducer,
     search: searchReducer,
+    auth: authReducer
 });
 
 export default allReducers;
