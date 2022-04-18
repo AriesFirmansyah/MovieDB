@@ -44,6 +44,7 @@ const propTypes = {
     handleSearch: PropTypes.func,
     handleMovie: PropTypes.func,
     handleNavigate: PropTypes.func,
+    handleLogout: PropTypes.func,
 };
 
 const SideNavigation = ({
@@ -51,7 +52,8 @@ const SideNavigation = ({
     toggleColorMode, 
     handleSearch, 
     handleMovie,
-    handleNavigate
+    handleNavigate,
+    handleLogout
 }) => {
     const [dataResults, setDataResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
@@ -262,7 +264,8 @@ const SideNavigation = ({
                         </div>
                     </div>
                     <div className='side-navigation-auth-cont'>
-                        <div className='side-navigation-logout pointer'>
+                        <div className='side-navigation-logout pointer'
+                            onClick={() => handleLogout()}>
                             <RiLogoutBoxFill className='side-navigation-logout-icon' />
                             <Box flex='1' textAlign='left'>
                                 Log out

@@ -20,8 +20,12 @@
 [4] Auth
 - Create Login Page --> done
 - Responsive Login Page --> done 
-- Login function 
+- Login With Google --> done
+- Login With Facebook
+- Login with MongoDB
+- Validation Login
 - Create Register Page --> done
+- Validation Register --> done
 - Responsive Register Page --> done
 
 [5] Navigation

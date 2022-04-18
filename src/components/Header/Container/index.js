@@ -18,6 +18,7 @@ import { useColorMode } from '@chakra-ui/color-mode';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetGenres } from '../../../redux/actions/genres';
 import { GetCountries } from '../../../redux/actions/countries';
+import { AuthLogout } from '../../../redux/actions/auth';
 
 import LogoHeader from '../Logo';
 import MoviesNavigation from '../MoviesNavigation';
@@ -110,6 +111,10 @@ const Nav = () => {
         navigate(0);
     };
 
+    const handleLogout = () => {
+        dispatch(AuthLogout());
+    };
+
     useEffect(() => {
         if(loading){
             FetchRedux();
@@ -137,7 +142,8 @@ const Nav = () => {
                             toggleColorMode={toggleColorMode}
                             handleSearch={handleSearch}
                             handleMovie={handleMovie}
-                            handleNavigate={handleNavigate} />
+                            handleNavigate={handleNavigate}
+                            handleLogout={handleLogout} />
                     </SimpleGrid>
                 </div>
             ) 

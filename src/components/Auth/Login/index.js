@@ -32,31 +32,43 @@ import { AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 import People from '../../../images/login/people.png';
 import { useColorMode } from '@chakra-ui/react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthLogin } from '../../../redux/actions/auth';
+
 
 const clientID = "15100114289-2rd2h4ses7ahd5cdcr40sbopcs1b4us6.apps.googleusercontent.com";
 const facebookID = "5302591449775023";
 
 const Login = () => {
     const { colorMode } = useColorMode();
+    const dispatch = useDispatch();
+    const dataUser = useSelector(state => state.auth);
 
     const [isLogged, setIsLogged] = useState(false);
     const [dataFacebook, setDataFacebook] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
-    
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     
     const handleShowPassword = () => setShowPassword(!showPassword);
 
-    const handleGoogleLogin = (response) => {
-        console.log('login success', response);
-        setIsLogged(true);
+    const handleGoogleLogin = async (res) => {
+        const profile = res?.profileObj;
+        const token = res?.tokenId;
+
+        // console.log(res);
+        try {
+            dispatch(AuthLogin({data: { profile, token }}));
+        } catch (err) {
+            console.log(err);
+        }
     };
+
+    console.log('user', dataUser);
 
     const handleGoogleFailure = (response) => {
         console.log('Login Gagal', response);
-    };
-
-    const handleGoogleLogout = (response) => {
-        console.log('logout', response);
     };
 
     const handleFacebookLogin = (response) => {
@@ -75,45 +87,36 @@ const Login = () => {
         });
     };
 
-    const tes = () => {
-        FB.logout(function() {
-            console.log('logout', response);
-        });
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected') {
-                console.log('connected', response);
-            } else if (response.status === 'not_authorized') {
-                console.log('not authorized');
-            } else {
-                console.log('else', response);
-            }
-        });
-    };
+    // const tes = () => {
+    //     FB.logout(function() {
+    //         console.log('logout', response);
+    //     });
+    //     FB.getLoginStatus(function(response) {
+    //         if (response.status === 'connected') {
+    //             console.log('connected', response);
+    //         } else if (response.status === 'not_authorized') {
+    //             console.log('not authorized');
+    //         } else {
+    //             console.log('else', response);
+    //         }
+    //     });
+    // };
 
+    const handleLogin = () => {
+
+    };
 
     useEffect(() => {
     }, []);
 
     return (
         <>
-            {/* <p>Login</p> */}
-            <div>
-                {/* <GoogleLogout
-                    clientId={clientID}
-                    buttonText="Logout"
-                    onLogoutSuccess={handleGoogleLogout}>
-                </GoogleLogout> */}
-                {/* <button onClick={tes}>
-                    logout
-                </button> */}
-                {
-                    dataFacebook && (
-                        <h1>{dataFacebook.name}</h1>
-                    )
-                }
-                
-                
-            </div>
+            {user ? (
+                <h1>{user.profile.name}</h1>
+            ) : (
+                <h1>null</h1>
+            )}
+
             <div className='login-container'>
                 <Container maxW='container.md'>
                     <SimpleGrid columns={[10, 10, 10, 10, 10]} 
@@ -123,7 +126,7 @@ const Login = () => {
                             <h1 className='login-text-header'>Sign In to Get Your Movies</h1>
                             <div className="login-option">
                                 <h1>
-                                    Don't have an account ? <br></br>
+                                    {"Don't have an account ?"} <br></br>
                                     {"You can "}
                                     <span onClick={() => window.location.href = '/register'}>
                                         {"Register here!"}
@@ -133,11 +136,13 @@ const Login = () => {
                             </div>
                         </GridItem>
                         <GridItem colSpan={{base : 10, sm: 10, md: 4, lg: 4, xl : 4 }} >
-                            <Input placeholder='Enter email or phone number' 
+                            <Input placeholder='Username' 
                                 className={colorMode === 'dark' ? 
                                     'login-input input-dark' :
                                     'login-input input-light'
-                                } />
+                                } 
+                                type="email"
+                                onChange={(e) => setUsername(e.target.value)} />
                             <br></br><br></br>
                             <InputGroup size='md'>
                                 <Input
@@ -149,6 +154,7 @@ const Login = () => {
                                         'login-input input-dark' :
                                         'login-input input-light'
                                     }
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <InputRightElement width='4.5rem' sx={{zIndex: 1, marginRight: -3}}>
                                     { 
@@ -165,13 +171,14 @@ const Login = () => {
                             </InputGroup>
 
                             <Button colorScheme='blue' 
-                                style={{marginTop: '30px', marginBottom: '30px', width: '100%'}}>
+                                style={{marginTop: '30px', marginBottom: '30px', width: '100%'}}
+                                onClick={handleLogin}>
                                 Sign In
                             </Button>
 
                             <div className="login-option-mobile">
                                 <h1>
-                                    Don't have an account ? 
+                                    {"Don't have an account ? "}
                                     {" You can "} 
                                     <span onClick={() => window.location.href = '/register'}>
                                         {"Register here!"}
@@ -184,7 +191,7 @@ const Login = () => {
                                     <Divider />
                                 </GridItem>
                                 <GridItem colSpan={{base : 6, sm: 4, md: 6, lg: 4, xl : 4 }}>
-                                    <h1 style={{color: 'gray', marginTop: '-12px'}}>
+                                    <h1 style={{color: 'gray', marginTop: '-12px', textAlign: 'center'}}>
                                         or continue with
                                     </h1>
                                 </GridItem>
@@ -204,7 +211,6 @@ const Login = () => {
                                                 sx={{
                                                     width: '100%',
                                                     backgroundColor: 'aliceblue', 
-                                                    // marginTop: '30px',
                                                     color: 'black'
                                                 }}>
                                                 <FcGoogle /> &nbsp;
@@ -225,9 +231,7 @@ const Login = () => {
                                                 sx={{
                                                     width: '100%',
                                                     backgroundColor: 'aliceblue', 
-                                                    // marginTop: '10px',
                                                     color: 'black',
-                                                    // marginLeft: '10px'
                                                 }}>
                                                 <BsFacebook style={{color: 'blue'}}/> &nbsp;
                                                 Facebook

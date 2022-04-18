@@ -5,6 +5,7 @@ import countriesReducer from './countries';
 import discoverReducer from './discover';
 import searchReducer from './search';
 import authReducer from './auth';
+import userReducer from './user';
 
 import { combineReducers } from 'redux';
 
@@ -15,7 +16,8 @@ const allReducers = combineReducers({
     countries: countriesReducer,
     discover: discoverReducer,
     search: searchReducer,
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer,
 });
 
 export default allReducers;
