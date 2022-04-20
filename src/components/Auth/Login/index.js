@@ -15,11 +15,6 @@ import {
 } from '@chakra-ui/react';
 
 import {
-    FaFacebook,
-    FaTwitter
-} from 'react-icons/fa';
-
-import {
     FcGoogle
 } from 'react-icons/fc';
 
@@ -33,13 +28,14 @@ import People from '../../../images/login/people.png';
 import { useColorMode } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthLogin } from '../../../redux/actions/auth';
-
-
-const clientID = "15100114289-2rd2h4ses7ahd5cdcr40sbopcs1b4us6.apps.googleusercontent.com";
-const facebookID = "5302591449775023";
+import { 
+    // AuthLogin, 
+    AuthOthersLogin,
+    AuthFacebookLogin
+} from '../../../redux/actions/auth';
 
 const Login = () => {
+
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const dataUser = useSelector(state => state.auth);
@@ -59,49 +55,30 @@ const Login = () => {
 
         // console.log(res);
         try {
-            dispatch(AuthLogin({data: { profile, token }}));
+            dispatch(AuthOthersLogin({data: { profile, token }}));
         } catch (err) {
             console.log(err);
         }
     };
 
-    console.log('user', dataUser);
+    // console.log('user', user);
 
     const handleGoogleFailure = (response) => {
         console.log('Login Gagal', response);
     };
 
     const handleFacebookLogin = (response) => {
+
+        try {
+            dispatch(AuthFacebookLogin(response));
+        } catch (err) {
+            console.log(err);
+        }
         
         console.log('facebook login', response);
         setDataFacebook(response);
-        // window.location.href = '/';
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected') {
-                console.log('connected', response);
-            } else if (response.status === 'not_authorized') {
-                console.log('not authorized');
-            } else {
-                console.log('tes');
-            }
-        });
     };
-
-    // const tes = () => {
-    //     FB.logout(function() {
-    //         console.log('logout', response);
-    //     });
-    //     FB.getLoginStatus(function(response) {
-    //         if (response.status === 'connected') {
-    //             console.log('connected', response);
-    //         } else if (response.status === 'not_authorized') {
-    //             console.log('not authorized');
-    //         } else {
-    //             console.log('else', response);
-    //         }
-    //     });
-    // };
-
+    
     const handleLogin = () => {
 
     };
@@ -111,12 +88,6 @@ const Login = () => {
 
     return (
         <>
-            {user ? (
-                <h1>{user.profile.name}</h1>
-            ) : (
-                <h1>null</h1>
-            )}
-
             <div className='login-container'>
                 <Container maxW='container.md'>
                     <SimpleGrid columns={[10, 10, 10, 10, 10]} 
@@ -204,7 +175,8 @@ const Login = () => {
                                 spacing={2}>
                                 <GridItem colSpan={5}>
                                     <GoogleLogin
-                                        clientId={clientID}
+                                        // eslint-disable-next-line no-undef
+                                        clientId={process.env.GOOGLE_CLIENT_ID}
                                         render={renderProps => (
                                             <Button disabled={renderProps.disabled}
                                                 onClick={renderProps.onClick}
@@ -224,7 +196,8 @@ const Login = () => {
                                 </GridItem>
                                 <GridItem colSpan={5}>
                                     <FacebookLogin
-                                        appId={facebookID}
+                                        // eslint-disable-next-line no-undef
+                                        appId={process.env.FACEBOOK_APP_ID}
                                         render={renderProps => (
                                             <Button disabled={renderProps.disabled}
                                                 onClick={renderProps.onClick}
@@ -237,7 +210,7 @@ const Login = () => {
                                                 Facebook
                                             </Button>
                                         )}
-                                        // autoLoad={true}
+                                        autoLoad={false}
                                         fields="name,email,picture"
                                         // onClick={componentClicked}
                                         callback={handleFacebookLogin} />

@@ -9,6 +9,22 @@ export const AuthLogin = (data) => {
         payload: request
     };
 };
+export const AuthOthersLogin = (data) => {
+    const url = (`/v1/auth/others-login`);
+    const request = API.post(url, data);
+    return {
+        type: 'OTHERS_LOGIN',
+        payload: request
+    };
+};
+export const AuthFacebookLogin = (profile) => {
+    const url = (`/v1/auth/facebook-login`);
+    const request = API.post(url, profile);
+    return {
+        type: 'FACEBOOK_LOGIN',
+        payload: request
+    };
+};
 export const AuthLogout = () => {
     return {
         type: 'LOGOUT'
