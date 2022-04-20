@@ -6252,6 +6252,14 @@
   "resolved" "https://registry.npmjs.org/html-escaper/-/html-escaper-2.0.2.tgz"
   "version" "2.0.2"
 
+"html-loader@^3.1.0":
+  "integrity" "sha512-ycMYFRiCF7YANcLDNP72kh3Po5pTcH+bROzdDwh00iVOAY/BwvpuZ1BKPziQ35Dk9D+UD84VGX1Lu/H4HpO4fw=="
+  "resolved" "https://registry.npmjs.org/html-loader/-/html-loader-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "html-minifier-terser" "^6.0.2"
+    "parse5" "^6.0.1"
+
 "html-minifier-terser@^6.0.2":
   "integrity" "sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw=="
   "resolved" "https://registry.npmjs.org/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz"
