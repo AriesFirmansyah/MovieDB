@@ -2,11 +2,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-let mode = "development";
+// let mode = "development";
 
 module.exports = {
-    mode: mode,
+    mode: 'development',
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
@@ -60,6 +61,7 @@ module.exports = {
         'React': 'react'
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
         new Dotenv(),
         new HtmlWebpackPlugin({

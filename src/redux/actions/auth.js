@@ -10,7 +10,7 @@ export const AuthLogin = (data) => {
     };
 };
 export const AuthOthersLogin = (data) => {
-    const url = (`/v1/auth/others-login`);
+    const url = (`/v1/auth/google-login`);
     const request = API.post(url, data);
     return {
         type: 'OTHERS_LOGIN',

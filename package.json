@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev" : "webpack --mode development",
+    "dev": "webpack --mode development",
     "start": "webpack serve",
     "build": "webpack --mode production",
     "watch": "webpack --watch",
@@ -61,6 +61,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.0",
     "dotenv-webpack": "^7.1.0",
     "file-loader": "^6.2.0",
