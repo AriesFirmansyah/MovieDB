@@ -28,7 +28,6 @@ const propTypes = {
 };
 
 const GenresNavigation = ({genres, handleGenre}) => {
-    // console.log(genres);
     return (
         <Media>
             {

@@ -20,7 +20,6 @@ const Companies = ({movie}) => {
         slidesToScroll: 1,
         arrows: false
     };
-    // console.log(movie.details.production_companies);
     
     useEffect(() => {
         movie.details.production_companies &&
@@ -30,7 +29,7 @@ const Companies = ({movie}) => {
             }
         });
     }, []);
-    // console.log(length);
+    
     return (
         length > 0 ? (
             <div className="companies-container">

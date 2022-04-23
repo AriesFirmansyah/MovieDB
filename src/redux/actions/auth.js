@@ -13,7 +13,7 @@ export const AuthOthersLogin = (data) => {
     const url = (`/v1/auth/google-login`);
     const request = API.post(url, data);
     return {
-        type: 'OTHERS_LOGIN',
+        type: 'GOOGLE_LOGIN',
         payload: request
     };
 };

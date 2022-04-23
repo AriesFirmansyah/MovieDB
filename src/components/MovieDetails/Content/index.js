@@ -28,7 +28,6 @@ const propTypes = {
 };
 
 const Content = ({movie, handleOpen, handleSlide}) => {
-    // console.log(movie);
     let writer = 0;
     let review = 0;
 

@@ -9,7 +9,6 @@ const propTypes = {
 };
 
 const Lightbox = ({isOpen, data, slide}) => {
-    // console.log(movie)
     return (
         <>
             <FsLightbox

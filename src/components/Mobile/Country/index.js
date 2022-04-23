@@ -66,8 +66,6 @@ const Country = () => {
         });
     };
 
-    // console.log(dataCountries);
-
     useEffect(() => {
         if(loading) {
             FetchRedux();

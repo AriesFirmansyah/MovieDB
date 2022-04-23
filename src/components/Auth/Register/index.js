@@ -65,7 +65,8 @@ const Register = () => {
             navigate('/' , {
                 state : {
                     showAlert: true,
-                    text: 'Register successed!'
+                    text: 'Register successed!',
+                    status: 'success'
                 }
             });
         }

@@ -8,13 +8,14 @@ import {
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-import AlertDialog from '../AlertDialog';
+import AlertDialog from '../../components/AlertDialog';
 
 const Container = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const [isOpen, setIsOpen] = useState(false);
+    const [status, setStatus] = useState('');
     const [alertText, setAlertText] = useState('');
 
     const handleFilm = (item) => {
@@ -30,6 +31,7 @@ const Container = () => {
         if (location.state) {
             if(location.state.showAlert) {
                 setIsOpen(true);
+                setStatus(location.state.status);
                 setAlertText(location.state.text);
             }
         }
@@ -40,7 +42,8 @@ const Container = () => {
             <AlertDialog 
                 isOpen={isOpen} 
                 setIsOpen={setIsOpen} 
-                alertText={alertText} />
+                alertText={alertText}
+                status={status} />
             <Carousel handleFilm={handleFilm} />
             <NowPlaying handleFilm={handleFilm} />
             <Popular handleFilm={handleFilm} />

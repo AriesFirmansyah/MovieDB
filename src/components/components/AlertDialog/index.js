@@ -12,10 +12,11 @@ import PropTypes from 'prop-types';
 const propTypes = {
     isOpen: PropTypes.bool,
     setIsOpen: PropTypes.func,
-    alertText: PropTypes.string
+    alertText: PropTypes.string,
+    status: PropTypes.string
 };
 
-const AlertDialog = ({isOpen, setIsOpen, alertText}) => {
+const AlertDialog = ({isOpen, setIsOpen, alertText, status}) => {
     const navigate = useNavigate();
 
     useEffect(() => {   
@@ -36,7 +37,7 @@ const AlertDialog = ({isOpen, setIsOpen, alertText}) => {
                     marginTop: '10px',
                     marginRight: '10px'
                 }}>
-                <Alert status='success' variant='solid' style={{borderRadius: '15px'}}>
+                <Alert status={status} variant='solid' style={{borderRadius: '15px'}}>
                     <AlertIcon />
                     {alertText}
                 </Alert>
