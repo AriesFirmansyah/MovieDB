@@ -21,12 +21,14 @@
 - Create Login Page --> done
 - Responsive Login Page --> done 
 - Login With Google --> done
-- Login With Facebook
-- Login with MongoDB
-- Validation Login
+- Login With Facebook --> done
+- Login with MongoDB --> done
+- Validation Login --> done
 - Create Register Page --> done
 - Validation Register --> done
 - Responsive Register Page --> done
+- OTP Validation Phone Number
+- Email verifycation
 
 [5] Navigation
 - Responsive Navigation --> done
@@ -45,8 +47,4 @@
 - Responsive Page Not Found --> done
 
 [8] API
-- Create API (POST) --> done
-- Get All Users
-- Get User By Id
-- Update User
-- Delete User
+- Integration API --> done
