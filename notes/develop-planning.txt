@@ -20,8 +20,12 @@
 [4] Auth
 - Create Login Page --> done
 - Responsive Login Page --> done 
-- Login function 
+- Login With Google --> done
+- Login With Facebook
+- Login with MongoDB
+- Validation Login
 - Create Register Page --> done
+- Validation Register --> done
 - Responsive Register Page --> done
 
 [5] Navigation
@@ -40,5 +44,9 @@
 - Create Page Not Found --> done
 - Responsive Page Not Found --> done
 
-[8] Spinner
-- Add Spinner loading pages
+[8] API
+- Create API (POST) --> done
+- Get All Users
+- Get User By Id
+- Update User
+- Delete User
