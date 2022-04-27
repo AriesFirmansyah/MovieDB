@@ -26,7 +26,7 @@ import {
 } from '@chakra-ui/icons';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { RiMovie2Fill, RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
-import { MdOutlineLocalMovies, MdDateRange } from 'react-icons/md';
+import { MdOutlineLocalMovies, MdDateRange, MdFavorite } from 'react-icons/md';
 import { HiOutlineGlobe } from 'react-icons/hi';
 import { ImUserPlus } from 'react-icons/im';
 import moment from 'moment';
@@ -63,7 +63,7 @@ const SideNavigation = ({
     const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState('');
 
     const dispatch = useDispatch();
     const search = useSelector(state => state.search);
@@ -274,6 +274,15 @@ const SideNavigation = ({
                                 ) : null
                         }   
                     </Media>
+                    {user?.isAuth && (
+                        <div className='side-navigation-items'
+                            onClick={() => handleNavigate(`${user?.profile?.fullname}/favorite`)}>
+                            <MdFavorite className='side-navigation-items-icon' />
+                            <Box flex='1' textAlign='left'>
+                                Wishlist
+                            </Box>
+                        </div>
+                    )}
                     {!user?.isAuth && (
                         <div className='side-navigation-auth-cont'>
                             <div className='side-navigation-login pointer'

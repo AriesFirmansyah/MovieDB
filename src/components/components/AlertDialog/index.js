@@ -31,11 +31,12 @@ const AlertDialog = ({isOpen, setIsOpen, alertText, status}) => {
         isOpen === true ? (
             <Stack spacing={3}
                 style={{
-                    position: 'absolute',
+                    position: 'fixed',
                     top: '0',
                     right: '0',
                     marginTop: '10px',
-                    marginRight: '10px'
+                    marginRight: '10px',
+                    zIndex:2
                 }}>
                 <Alert status={status} variant='solid' style={{borderRadius: '15px'}}>
                     <AlertIcon />

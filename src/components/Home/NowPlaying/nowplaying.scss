@@ -55,6 +55,24 @@
     background-color: #00000090;
 }
 
+.now-playing-favorite {
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    padding: 7px;
+    margin-right: 5px;
+    transition: .5s ease;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;  
+}
+.fill {
+    color: red;
+}
+
 /* Responsive */
 
 /* Extra small devices (phones, 600px and down) */

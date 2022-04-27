@@ -6,6 +6,7 @@ import discoverReducer from './discover';
 import searchReducer from './search';
 import authReducer from './auth';
 import userReducer from './user';
+import favoriteReducer from './favorite';
 
 import { combineReducers } from 'redux';
 
@@ -18,6 +19,7 @@ const allReducers = combineReducers({
     search: searchReducer,
     auth: authReducer,
     user: userReducer,
+    favorite: favoriteReducer
 });
 
 export default allReducers;

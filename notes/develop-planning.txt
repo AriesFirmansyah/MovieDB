@@ -48,3 +48,8 @@
 
 [8] API
 - Integration API --> done
+
+[9] Favorite Movies
+- Add Favorite Page
+- Responsive Favorite Page
+- Integration API Add to Favorite

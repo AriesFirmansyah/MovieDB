@@ -45,7 +45,11 @@ const Container = () => {
                 alertText={alertText}
                 status={status} />
             <Carousel handleFilm={handleFilm} />
-            <NowPlaying handleFilm={handleFilm} />
+            <NowPlaying 
+                handleFilm={handleFilm}
+                setIsOpen={setIsOpen} 
+                setAlertText={setAlertText}
+                setStatus={setStatus} />
             <Popular handleFilm={handleFilm} />
         </div>
     );
