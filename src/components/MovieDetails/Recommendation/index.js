@@ -33,38 +33,41 @@ const Recomendation = ({movie, navigation}) => {
         });
     }, []);
 
+    // console.log(movie);
     return (
-        <>
-            <Container maxW='container.xl'>
-                <div className='recommendation-container'>
-                    <h1>Recommendations</h1>
-                    <div className='card-flex-recommendation'>
-                        {
-                            movie.details_recommendation && movie.details_recommendation.map ((e, index) => {
-                                return(
-                                    <div key={index}>
-                                        <div className='card-item-recommendation' 
-                                            onClick={() => navigation(e)}>
-                                            <img src={`${photo_BaseURL}${e.poster_path}`}
-                                                className={!imageLoading[index] ? 'recommendation-image' : 'hide'}
-                                                onLoad={(item) => handleImageLoaded(item, index)} />
-                                            {imageLoading[index] && <Loading />}
-                                            <img src={PlayButton} className='recommendation-play-button' />
-                                            <div className='recommendation-rating'>⭐{e.vote_average.toFixed(1)}</div>
-                                            <h1 className='recommendation-title'>
-                                                {e.original_title} ({moment(e.release_data).format('YYYY')})
-                                            </h1>
+        movie.details_recommendation.length !== 0 && (
+            <>
+                <Container maxW='container.xl'>
+                    <div className='recommendation-container'>
+                        <h1>Recommendations</h1>
+                        <div className='card-flex-recommendation'>
+                            {
+                                movie.details_recommendation && movie.details_recommendation.map ((e, index) => {
+                                    return(
+                                        <div key={index}>
+                                            <div className='card-item-recommendation' 
+                                                onClick={() => navigation(e)}>
+                                                <img src={`${photo_BaseURL}${e.poster_path}`}
+                                                    className={!imageLoading[index] ? 'recommendation-image' : 'hide'}
+                                                    onLoad={(item) => handleImageLoaded(item, index)} />
+                                                {imageLoading[index] && <Loading />}
+                                                <img src={PlayButton} className='recommendation-play-button' />
+                                                <div className='recommendation-rating'>⭐{e.vote_average.toFixed(1)}</div>
+                                                <h1 className='recommendation-title'>
+                                                    {e.original_title} ({moment(e.release_data).format('YYYY')})
+                                                </h1>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                );
-                            })
-                        }
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
 
-            </Container>
-        </>
+                </Container>
+            </>
+        )
     );
 };
 

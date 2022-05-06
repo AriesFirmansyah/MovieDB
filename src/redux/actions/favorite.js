@@ -16,6 +16,14 @@ export const GetAllFavorite = () => {
         payload: request
     };
 };
+export const GetUserFavorite = (uid) => {
+    const url = (`/v1/movie/userfavorite`);
+    const request = API.post(url, uid);
+    return {
+        type: 'GET_USER_FAVORITE',
+        payload: request
+    };
+};
 export const DeleteFavorite = (data) => {
     const url = (`/v1/movie/favorite`);
     const request = API.delete(url, data);

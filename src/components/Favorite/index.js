@@ -1,4 +1,4 @@
-import './FilterSearch.css';
+import './favorite.scss';
 
 import { 
     useLocation,
@@ -6,15 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-    GetMoviesCountry,
-    GetMoviesYear,
-    GetMoviesGenre,
-    GetMovies,
-    GetMoviesNowPlaying,
-    GetMoviesPopular,
-    GetMoviesTrending
-} from '../../redux/actions/discover';
+import { GetUserFavorite } from '../../redux/actions/favorite';
 
 import { useEffect, useState } from 'react';
 
@@ -30,13 +22,10 @@ import {
 import Loading from './skeleton';
 
 import { 
-    AddFavorite,
-    GetAllFavorite,
     DeleteFavorite
 } from '../../redux/actions/favorite';
 
 import {
-    MdFavoriteBorder,
     MdFavorite
 } from 'react-icons/md';
 
@@ -45,12 +34,11 @@ import AlertDialog from '../components/AlertDialog';
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
-const FilterSearch = () => {    
+const Favorite = () => {    
     const location = useLocation();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const discover = useSelector(state => state.discover);
 
     const favorite = useSelector(state => state.favorite);
     const [user, setUser] = useState('');
@@ -62,19 +50,6 @@ const FilterSearch = () => {
     const [loading, setLoading] = useState(true);
     const [imageLoading, setImageLoading] = useState([]);
     
-    const FetchRedux = async () => {
-        switch(location.state.type) {
-        case 'year': dispatch(GetMoviesYear(location.state.key)); break;
-        case 'country': dispatch(GetMoviesCountry(location.state.key)); break;
-        case 'genre': dispatch(GetMoviesGenre(location.state.key)); break;
-        case 'movies': dispatch(GetMovies()); break;
-        case 'trending': dispatch(GetMoviesTrending()); break;
-        case 'now-playing': dispatch(GetMoviesNowPlaying()); break;
-        case 'popular':dispatch(GetMoviesPopular()); break;
-        default: break;
-        }
-    };
-
     const handleItems = (item) => {
         navigate(`/movie-details/${item.original_title}(${moment(item.release_date).format('YYYY')})`, {
             state : {
@@ -104,80 +79,61 @@ const FilterSearch = () => {
         e.preventDefault();
 
         if (user?.isAuth) {
-            const found = favorite?.data?.data?.find(e => e.movie_id === movie.id.toString());
-            if (found) {
-                dispatch(DeleteFavorite({
-                    data: {
-                        id: found.movie_id,
-                        uid: found.uid
-                    }
-                }));
+            dispatch(DeleteFavorite({
+                data: {
+                    id: movie.movie_id,
+                    uid: movie.uid
+                }
+            }));
 
-                setTimeout(() => {
-                    dispatch(GetAllFavorite());
-                }, 200);
-
-                setTimeout(() => {
-                    if (favorite.message !== '') {
-                        setAlertText(favorite.message);
-                        setStatus('success');
-                        setIsOpen(true);
-                    }
-                }, 500);
-            } else {
-                dispatch(AddFavorite({ 
-                    data: {
-                        movie: movie,
-                        uid: user.profile.email
-                    }
+            setTimeout(() => {
+                dispatch(GetUserFavorite({
+                    uid: user.profile.email
                 }));
-                setTimeout(() => {
-                    dispatch(GetAllFavorite());
-                }, 200);
-                setTimeout(() => {
-                    if (favorite.message !== '') {
-                        setAlertText(favorite.message);
-                        setStatus('success');
-                        setIsOpen(true);
-                    }
-                }, 500);
-            }
+                if (favorite.message !== '') {
+                    setAlertText(favorite.message);
+                    setStatus('success');
+                    setIsOpen(true);
+                }
+            }, 500);
         } else {
-            setAlertText("Please login first!");
-            setStatus('error');
-            setIsOpen(true);
+            navigate('/' , {
+                state : {
+                    showAlert: true,
+                    text: 'Please login first!',
+                    status: 'error'
+                }
+            });
         }
     };
 	
-	
-    const Fill = (id) => {
-        const found = favorite?.data?.data?.find(e => e.movie_id === id.toString());
-        return (
-            found?.uid ? (
-                <MdFavorite className='fill'/>
-            ) : (
-                <MdFavoriteBorder/>
-            )
-        );
-    };
-
-
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
     useEffect(() => {
         if (user?.isAuth) {
-            dispatch(GetAllFavorite());
+            dispatch(GetUserFavorite({
+                uid: user.profile.email
+            }));
+        } else {
+            if(user === null) {
+                navigate('/' , {
+                    state : {
+                        showAlert: true,
+                        text: 'Please login first!',
+                        status: 'error'
+                    }
+                });
+            }
         }
     }, [user]);
 
     useEffect(() => {
         if (loading) {
-            FetchRedux();
             setTimeout(() => {
                 setLoading(!loading);
-                discover.data.results.map(() => {
+                favorite.data.map(() => {
                     setImageLoading(old => [
                         ...old, 
                         true
@@ -185,11 +141,6 @@ const FilterSearch = () => {
                 });
             }, 1000);
         }
-
-        if (location.state === null) {
-            navigate('/notfound');
-        }
-
     }, []);
 
     return (
@@ -200,14 +151,14 @@ const FilterSearch = () => {
                 <div className="search-filter-title">
                     <img src={FilterTitle} style={{marginRight: '10px'}} />
                     <Heading as='h4' size='xl'>
-                        {location.state.name.toString().toUpperCase()} MOVIES
+                        Favorite Movies
                     </Heading>
                 </div>
                 <div className="search-filter-cont">
                     <SimpleGrid columns={[2, 4, 4, 4, 6]}  
                         spacing={{base: '40px', sm: '40px', md: '40px', lg: '40px', xl : '40px' }}>
                         {
-                            discover.data.results && discover.data.results.map((e, index) => {
+                            favorite.data && favorite.data.map ((e, index) => {
                                 return (
                                     e.poster_path && (
                                         <GridItem colSpan={1} w="100%" sx={{textAlign: 'center'}} 
@@ -228,7 +179,7 @@ const FilterSearch = () => {
                                                     onClick={(i) => {
                                                         handleFavorite(i, e);
                                                     }}>
-                                                    {Fill(e.id)}
+                                                    <MdFavorite className='fill'/>
                                                 </div>
                                                 <h1 className='search-filter-film-title pointer'>
                                                     {e.title} ({moment(e.release_date).format('YYYY')})
@@ -251,4 +202,4 @@ const FilterSearch = () => {
     );
 };
 
-export default FilterSearch;
+export default Favorite;

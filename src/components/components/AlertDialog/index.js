@@ -23,7 +23,9 @@ const AlertDialog = ({isOpen, setIsOpen, alertText, status}) => {
         if (isOpen) {
             setTimeout(() => {
                 setIsOpen(!isOpen);
-                navigate(window.location.pathname, {});
+                if (window.location.pathname === '/') {
+                    navigate(window.location.pathname, {});
+                }
             }, 7000);
         }
     }, [isOpen]);

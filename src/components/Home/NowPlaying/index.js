@@ -116,6 +116,18 @@ const NowPlaying = ({
         }
     };
 
+    const Fill = (id) => {
+        const found = favorite?.data?.data?.find(e => e.movie_id === id.toString());
+        return (
+            found?.uid ? (
+                <MdFavorite className='fill'/>
+            ) : (
+                <MdFavoriteBorder/>
+            )
+        );
+    };
+
+
     useEffect(() => {
         if(loading) {
             FetchRedux();
@@ -140,17 +152,6 @@ const NowPlaying = ({
             dispatch(GetAllFavorite());
         }
     }, [user]);
-
-    const Fill = (id) => {
-        const found = favorite?.data?.data?.find(e => e.movie_id === id.toString());
-        return (
-            found?.uid ? (
-                <MdFavorite className='fill'/>
-            ) : (
-                <MdFavoriteBorder/>
-            )
-        );
-    };
 
     const ImageLoader = () => {
         return (

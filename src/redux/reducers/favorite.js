@@ -22,6 +22,16 @@ const favoriteReducer = (state = data, action) => {
         state.data = action?.payload?.data;
         return state;
 
+    case 'GET_USER_FAVORITE_FULFILLED' :
+        state.data = action?.payload?.data?.data;
+        state.message = action?.payload?.data?.message;
+        state.error = '';
+        return state;
+    
+    case 'GET_USER_FAVORITE_REJECTED' : 
+        state.error = action?.payload?.response?.data?.message;
+        return state;
+
     case 'DELETE_FAVORITE_FULFILLED' :
         state.message = action?.payload?.data?.message;
         return state;

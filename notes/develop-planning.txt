@@ -3,6 +3,7 @@
 - Responsive title in carousel --> done
 - Add list of Tech Carousel --> done
 - Add Skeleton --> done
+- Responsive Skeleton
 
 [2] Filter Results
 - Pagination
@@ -50,6 +51,14 @@
 - Integration API --> done
 
 [9] Favorite Movies
-- Add Favorite Page
-- Responsive Favorite Page
-- Integration API Add to Favorite
+- Add Favorite Page --> done
+- Responsive Favorite Page --> done
+- Add Skeleton --> done
+- Integration API Add to Favorite --> done
+
+[10] Animation
+- Add animate on scroll or when showing component
+
+[11] Tab
+- Add icon logo tab
+- Add title

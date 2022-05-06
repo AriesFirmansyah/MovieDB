@@ -50,7 +50,11 @@ const Container = () => {
                 setIsOpen={setIsOpen} 
                 setAlertText={setAlertText}
                 setStatus={setStatus} />
-            <Popular handleFilm={handleFilm} />
+            <Popular 
+                handleFilm={handleFilm}
+                setIsOpen={setIsOpen} 
+                setAlertText={setAlertText}
+                setStatus={setStatus} />
         </div>
     );
 };

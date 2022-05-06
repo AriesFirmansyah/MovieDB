@@ -1,2 +1,4 @@
-src/**/App.test.js
+src/**/*.test.js
+src/*.js
+src/*.test.js
 webpack.config.js

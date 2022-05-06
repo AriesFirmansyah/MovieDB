@@ -60,6 +60,50 @@
         }
     }
 }
+@media only screen and (max-width: 480px) {
+    .companies-container {
+        transform: translateY(-80%);
+    }
+    .companies-item {
+        .companies-image {
+            width: 180px;
+            height: 60px;
+        }
+    }
+}
+@media only screen and (max-width: 400px) {
+    .companies-container {
+        transform: translateY(-80%);
+    }
+    .companies-item {
+        .companies-image {
+            width: 150px;
+            height: 50px;
+        }
+    }
+}
+@media only screen and (max-width: 360px) {
+    .companies-container {
+        transform: translateY(-80%);
+    }
+    .companies-item {
+        .companies-image {
+            width: 130px;
+            height: 40px;
+        }
+    }
+}
+@media only screen and (max-width: 300px) {
+    .companies-container {
+        transform: translateY(0%);
+    }
+    .companies-item {
+        .companies-image {
+            width: 100px;
+            height: 30px;
+        }
+    }
+}
 @media only screen and (max-width: 330px) {
     .companies-container {
         transform: translateY(-90%);
