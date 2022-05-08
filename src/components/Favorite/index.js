@@ -85,17 +85,19 @@ const Favorite = () => {
                     uid: movie.uid
                 }
             }));
-
+            
             setTimeout(() => {
-                dispatch(GetUserFavorite({
-                    uid: user.profile.email
-                }));
                 if (favorite.message !== '') {
                     setAlertText(favorite.message);
                     setStatus('success');
                     setIsOpen(true);
+                    setTimeout(() => {
+                        dispatch(GetUserFavorite({
+                            uid: user.profile.email
+                        }));
+                    }, 200);
                 }
-            }, 500);
+            }, 1500);
         } else {
             navigate('/' , {
                 state : {
