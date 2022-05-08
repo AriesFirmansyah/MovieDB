@@ -24,7 +24,7 @@ const Videos = ({data, handleOpen, handleSlide}) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        //   autoplay: true,
+        autoplay: true,
         autoplaySpeed: 9000,
         pauseOnHover: true,
         //   rtl: true,

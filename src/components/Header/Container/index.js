@@ -113,6 +113,25 @@ const Nav = () => {
 
     const handleLogout = () => {
         dispatch(AuthLogout());
+
+        if (window.location.pathname === '/') {
+            navigate(window.location.pathname, {
+                state : {
+                    showAlert: true,
+                    text: "Logout successed!",
+                    status: 'info'
+                }
+            });
+        } else {
+            navigate('/', {
+                state : {
+                    showAlert: true,
+                    text: "Logout successed!",
+                    status: 'info'
+                }
+            });
+        }
+        navigate(0);
     };
 
     useEffect(() => {

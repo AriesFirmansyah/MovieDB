@@ -7,6 +7,7 @@ import NotFound from '../../components/NotFound';
 import Genres from '../../components/Mobile/Genres';
 import Years from '../../components/Mobile/Years';
 import Country from '../../components/Mobile/Country';
+import Favorite from '../../components/Favorite';
 
 const Routes = [
     {
@@ -56,6 +57,18 @@ const Routes = [
         path: '/movies/years',
         auth: false,
         component: <Years />,
+    },
+    {
+        name: 'Favorite',
+        path: '/:user/favorite',
+        auth: false,
+        component: <Favorite />,
+    },
+    {
+        name: 'Unknown Page',
+        path: '/notfound',
+        auth: false,
+        component: <NotFound />, 
     },
     {
         name: 'Unknown Page',

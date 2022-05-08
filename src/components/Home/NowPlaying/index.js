@@ -1,17 +1,10 @@
-// CSS
-import './nowplaying.css';
-
-// React
-import React, { useEffect, useState } from 'react';
-
-// Components
+import './nowplaying.scss';
+import { useEffect, useState } from 'react';
 import Loading from './skeleton';
 
-// Assets
 import PopularTitle from './../../../images/popularTitle1.png';
 import PlayButton from './../../../images/play-button.png';
 
-// Chakra-UI
 import { 
     SimpleGrid, 
     GridItem,
@@ -20,8 +13,6 @@ import {
 } from '@chakra-ui/react';
 
 import moment from 'moment';
-
-// Redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
     GetNowPlaying
@@ -29,20 +20,42 @@ import {
 
 import PropTypes from 'prop-types';
 
+import {
+    MdFavoriteBorder,
+    MdFavorite
+} from 'react-icons/md';
+
+import { 
+    AddFavorite,
+    GetAllFavorite,
+    DeleteFavorite
+} from '../../../redux/actions/favorite';
+
 
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
 const propTypes = {
-    handleFilm: PropTypes.func
+    handleFilm: PropTypes.func,
+    setIsOpen: PropTypes.func,
+    setAlertText: PropTypes.func,
+    setStatus: PropTypes.func
 };
 
-const NowPlaying = ({handleFilm}) => {
+const NowPlaying = ({
+    handleFilm,
+    setIsOpen,
+    setAlertText,
+    setStatus
+}) => {
     const dispatch = useDispatch();
     const movies = useSelector(state => state.movies);
-  
-    const [loading, setLoading] = React.useState(true);
+    const favorite = useSelector(state => state.favorite);
+    
+    const [loading, setLoading] = useState(true);
     const [imageLoading, setImageLoading] = useState([]);
+
+    const [user, setUser] = useState('');
 
     const FetchRedux = async () => {
         dispatch(GetNowPlaying());
@@ -54,6 +67,68 @@ const NowPlaying = ({handleFilm}) => {
             ...item,
             [index]: false
         }));
+    };
+
+    const handleFavorite = (e, movie) => {
+        e.preventDefault();
+
+        if (user?.isAuth) {
+            const found = favorite?.data?.data?.find(e => e.movie_id === movie.id.toString());
+            if (found) {
+                dispatch(DeleteFavorite({
+                    data: {
+                        id: found.movie_id,
+                        uid: found.uid
+                    }
+                }));
+
+                setTimeout(() => {
+                    dispatch(GetAllFavorite());
+                }, 500);
+
+                setTimeout(() => {
+                    if (favorite.message !== '') {
+                        setAlertText(favorite.message);
+                        setStatus('success');
+                        setIsOpen(true);
+                    }
+                }, 1500);
+            } else {
+                dispatch(AddFavorite({ 
+                    data: {
+                        movie: movie,
+                        uid: user.profile.email
+                    }
+                }));
+
+                setTimeout(() => {
+                    dispatch(GetAllFavorite());
+                }, 1000);
+
+                setTimeout(() => {
+                    if (favorite.message !== '') {
+                        setAlertText(favorite.message);
+                        setStatus('success');
+                        setIsOpen(true);
+                    }
+                }, 2500);
+            }
+        } else {
+            setAlertText("Please login first!");
+            setStatus('error');
+            setIsOpen(true);
+        }
+    };
+
+    const Fill = (id) => {
+        const found = favorite?.data?.data?.find(e => e.movie_id === id.toString());
+        return (
+            found?.uid ? (
+                <MdFavorite className='fill'/>
+            ) : (
+                <MdFavoriteBorder/>
+            )
+        );
     };
 
     useEffect(() => {
@@ -70,6 +145,16 @@ const NowPlaying = ({handleFilm}) => {
             }, 1000);
         }
     }, []);
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
+    useEffect(() => {
+        if (user?.isAuth) {
+            dispatch(GetAllFavorite());
+        }
+    }, [user]);
 
     const ImageLoader = () => {
         return (
@@ -99,14 +184,22 @@ const NowPlaying = ({handleFilm}) => {
                                 movies.now_playing.map((nowPlayingData, index) => {
                                     return (
                                         <GridItem colSpan={1} w="100%" sx={{textAlign: 'center'}}
-                                            key={nowPlayingData.id} onClick={() => handleFilm(nowPlayingData)}> 
+                                            key={nowPlayingData.id}> 
                                             <div className='nowPlayingFilm'>
                                                 <img src={`${poster_BaseURL}${nowPlayingData.poster_path}`} 
                                                     className={!imageLoading[index] ? 'nowPlayingImage pointer' : 'hide'}
-                                                    onLoad={(e) => handleImageLoaded(e, index)} />
+                                                    onLoad={(e) => handleImageLoaded(e, index)}
+                                                    onClick={() => handleFilm(nowPlayingData)} />
                                                 {imageLoading[index] && <ImageLoader />}
-                                                <img src={PlayButton} className='nowPlayingButton' />
+                                                <img src={PlayButton} className='nowPlayingButton' 
+                                                    onClick={() => handleFilm(nowPlayingData)} />
                                                 <div className='now-playing-rating'>⭐{nowPlayingData.vote_average.toFixed(1)}</div>
+                                                <div className='now-playing-favorite'
+                                                    onClick={(e) => {
+                                                        handleFavorite(e, nowPlayingData);
+                                                    }}>
+                                                    {Fill(nowPlayingData.id)}
+                                                </div>
                                                 <h1 className='now-playing-title pointer'>
                                                     {nowPlayingData.title} ({moment(nowPlayingData.release_date).format('YYYY')})
                                                 </h1>

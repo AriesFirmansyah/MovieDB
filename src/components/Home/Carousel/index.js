@@ -61,8 +61,6 @@ const Carousel = ({handleFilm}) => {
     const dispatch = useDispatch();
     const trending = useSelector(state => state.trending);
   
-    // console.log("trending", trending);
-  
     const [loading, setLoading] = React.useState(true);
   
     const FetchRedux = async () => {
@@ -78,21 +76,6 @@ const Carousel = ({handleFilm}) => {
         }
     
     }, []);
-      
-    // const settings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     autoplay: true,
-    //     autoplaySpeed: 5000,
-    //     pauseOnHover: true,
-    
-    //     className: 'center',
-    //     centerMode: true,
-    //     centerPadding: '0px',
-    // };
     
     const settings2 = {
         dots: false,
@@ -105,9 +88,6 @@ const Carousel = ({handleFilm}) => {
         pauseOnHover: true,
         rtl: true,
         focusOnSelect: true,
-    
-        // className: 'center',
-        // centerPadding: '60px',
         swipeToSlide: true,
         arrows: false,
         swipe: false,

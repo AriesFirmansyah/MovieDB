@@ -3,6 +3,7 @@
 - Responsive title in carousel --> done
 - Add list of Tech Carousel --> done
 - Add Skeleton --> done
+- Responsive Skeleton
 
 [2] Filter Results
 - Pagination
@@ -21,12 +22,14 @@
 - Create Login Page --> done
 - Responsive Login Page --> done 
 - Login With Google --> done
-- Login With Facebook
-- Login with MongoDB
-- Validation Login
+- Login With Facebook --> done
+- Login with MongoDB --> done
+- Validation Login --> done
 - Create Register Page --> done
 - Validation Register --> done
 - Responsive Register Page --> done
+- OTP Validation Phone Number
+- Email verifycation
 
 [5] Navigation
 - Responsive Navigation --> done
@@ -45,8 +48,19 @@
 - Responsive Page Not Found --> done
 
 [8] API
-- Create API (POST) --> done
-- Get All Users
-- Get User By Id
-- Update User
-- Delete User
+- Integration API --> done
+
+[9] Favorite Movies
+- Add Favorite Page --> done
+- Responsive Favorite Page --> done
+- Add Skeleton --> done
+- Integration API Add to Favorite --> done
+
+[10] Animation
+- Add animate on scroll or when showing component
+
+[11] Tab
+- Add icon logo tab
+- Add title
+
+[12] OTP Number Validation --> done

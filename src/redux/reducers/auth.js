@@ -1,15 +1,16 @@
 let data = {
     profile: '',
     token: '',
-    error: ''
+    error: '',
+    message: ''
 };
 
 const authReducer = (state = data, action) => {
     switch(action.type) {
     case 'LOGIN_FULFILLED' : 
-        // console.log(action)
         state.profile = action?.payload?.data?.profile;
         state.token = action?.payload?.data?.token;
+        state.message = action?.payload?.data?.message;
 
         localStorage.setItem('profile', JSON.stringify({...action?.payload?.data}));
         return state;
@@ -20,28 +21,32 @@ const authReducer = (state = data, action) => {
     case 'LOGIN_PENDING' : 
         return state;
 
-    case 'OTHERS_LOGIN_FULFILLED' : 
+    case 'GOOGLE_LOGIN_FULFILLED' : 
         state.profile = action?.payload?.data?.profile;
         state.token = action?.payload?.data?.token;
+        state.message = action?.payload?.data?.message;
 
         localStorage.setItem('profile', JSON.stringify({...action?.payload?.data}));
         return state;
-    case 'OTHERS_LOGIN_REJECTED' : 
+    case 'GOOGLE_LOGIN_REJECTED' : 
         state.error = action?.payload?.response?.data?.message;
         return state;
 
-    case 'OTHERS_LOGIN_PENDING' : 
+    case 'GOOGLE_LOGIN_PENDING' : 
         return state;
 
     case 'FACEBOOK_LOGIN_FULFILLED' : 
-        // console.log(action.payload.data);
-        state.profile = action?.payload?.data;
-        // state.token = action?.payload?.data?.token;
+        state.profile = action?.payload?.data?.profile;
+        state.token = action?.payload?.data?.token;
+        state.message = action?.payload?.data?.message;
 
-        // localStorage.setItem('profile', JSON.stringify({...action?.payload?.data}));
+        localStorage.setItem(
+            'profile', 
+            JSON.stringify({...action?.payload?.data})
+        );
         return state;
     case 'FACEBOOK_LOGIN_REJECTED' : 
-        // state.error = action?.payload?.response?.data?.message;
+        state.error = action?.payload?.response?.data?.message;
         return state;
 
     case 'FACEBOOK_LOGIN_PENDING' : 

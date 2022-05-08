@@ -10,7 +10,8 @@
     "watch": "webpack --watch",
     "clean": "rm -rf build",
     "lint": "eslint src/**/*.js",
-    "lint-fix": "eslint src/**/*.js --fix"
+    "lint-fix": "eslint src/**/*.js --fix",
+    "test": "jest --watch"
   },
   "browser": {
     "fs": false,
@@ -28,6 +29,7 @@
     "@emotion/styled": "^11.8.1",
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
+    "firebase": "^9.8.0",
     "framer-motion": "^6.2.8",
     "fslightbox-react": "^1.6.2-2",
     "moment": "^2.29.1",
@@ -55,6 +57,7 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@testing-library/react": "^13.1.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -67,6 +70,7 @@
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.2",
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",

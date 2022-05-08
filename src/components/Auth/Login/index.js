@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Login.scss';
-import { GoogleLogin, GoogleLogout, useGoogleLogout } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import { 
@@ -29,10 +29,14 @@ import { useColorMode } from '@chakra-ui/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { 
-    // AuthLogin, 
+    AuthLogin, 
     AuthOthersLogin,
     AuthFacebookLogin
 } from '../../../redux/actions/auth';
+
+import AlertDialog from '../../components/AlertDialog';
+
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -40,54 +44,126 @@ const Login = () => {
     const dispatch = useDispatch();
     const dataUser = useSelector(state => state.auth);
 
-    const [isLogged, setIsLogged] = useState(false);
-    const [dataFacebook, setDataFacebook] = useState(null);
+    const navigate = useNavigate();
+
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [alertText, setAlertText] = useState('');
+    const [status, setStatus] = useState('');
     
     const handleShowPassword = () => setShowPassword(!showPassword);
 
-    const handleGoogleLogin = async (res) => {
+    const handleGoogleLogin = async (res) => {  
         const profile = res?.profileObj;
         const token = res?.tokenId;
 
-        // console.log(res);
         try {
             dispatch(AuthOthersLogin({data: { profile, token }}));
+            setTimeout(() => {
+                if (dataUser.error !== '') {
+                    setAlertText(dataUser.error);
+                    setStatus('error');
+                    setIsOpen(!isOpen);
+                }
+                if (dataUser.message !== '') {
+                    navigate('/' , {
+                        state : {
+                            showAlert: true,
+                            text: dataUser.message,
+                            status: 'success'
+                        }
+                    });
+                }
+            }, 900);
+
         } catch (err) {
             console.log(err);
         }
     };
 
-    // console.log('user', user);
-
-    const handleGoogleFailure = (response) => {
-        console.log('Login Gagal', response);
+    const handleGoogleFailure = () => {
+        setAlertText("Login error!");
+        setStatus('error');
+        setIsOpen(!isOpen);
     };
 
-    const handleFacebookLogin = (response) => {
-
+    const handleFacebookLogin = async (response) => {
         try {
             dispatch(AuthFacebookLogin(response));
+            setTimeout(() => {
+                if (dataUser.error !== '') {
+                    setAlertText(dataUser.error);
+                    setStatus('error');
+                    setIsOpen(!isOpen);
+                }
+                
+                if (dataUser.message !== '') {
+                    navigate('/' , {
+                        state : {
+                            showAlert: true,
+                            text: dataUser.message,
+                            status: 'success'
+                        }
+                    });
+                }
+            }, 1000);
         } catch (err) {
             console.log(err);
         }
-        
-        console.log('facebook login', response);
-        setDataFacebook(response);
     };
     
     const handleLogin = () => {
+        try {
+            dispatch(AuthLogin({data: { email, password }}));
+            setTimeout(() => {
+                if (dataUser.error !== '') {
+                    setAlertText(dataUser.error);
+                    setStatus('error');
+                    setIsOpen(!isOpen);
+                }
+                if (dataUser.profile !== '') {
+                    navigate('/' , {
+                        state : {
+                            showAlert: true,
+                            text: dataUser.message,
+                            status: 'success'
+                        }
+                    });
+                }
+            }, 400);
 
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
+        if (user?.isAuth) {
+            navigate('/' , {
+                state : {
+                    showAlert: true,
+                    text: "Anda sudah login!",
+                    status: 'info'
+                }
+            });
+        }
     }, []);
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
 
     return (
         <>
+            <AlertDialog 
+                isOpen={isOpen} 
+                setIsOpen={setIsOpen} 
+                alertText={alertText}
+                status={status} />
             <div className='login-container'>
                 <Container maxW='container.md'>
                     <SimpleGrid columns={[10, 10, 10, 10, 10]} 
@@ -113,7 +189,7 @@ const Login = () => {
                                     'login-input input-light'
                                 } 
                                 type="email"
-                                onChange={(e) => setUsername(e.target.value)} />
+                                onChange={(e) => setEmail(e.target.value)} />
                             <br></br><br></br>
                             <InputGroup size='md'>
                                 <Input

@@ -16,7 +16,8 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    Box
+    Box,
+    Image
 } from '@chakra-ui/react';
 
 import { 
@@ -25,7 +26,7 @@ import {
 } from '@chakra-ui/icons';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { RiMovie2Fill, RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
-import { MdOutlineLocalMovies, MdDateRange } from 'react-icons/md';
+import { MdOutlineLocalMovies, MdDateRange, MdFavorite } from 'react-icons/md';
 import { HiOutlineGlobe } from 'react-icons/hi';
 import { ImUserPlus } from 'react-icons/im';
 import moment from 'moment';
@@ -35,6 +36,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { GetSearch } from '../../../redux/actions/search';
 import { Media } from 'react-breakpoints';
 import PropTypes from 'prop-types';
+
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -59,9 +63,12 @@ const SideNavigation = ({
     const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
+    const [user, setUser] = useState('');
 
     const dispatch = useDispatch();
     const search = useSelector(state => state.search);
+
+    const location = useLocation();
 
     const FetchRedux = async (query) => {
         dispatch(GetSearch(query));
@@ -100,6 +107,9 @@ const SideNavigation = ({
         }
         
     };
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
     return (
         <GridItem colSpan={{base : 4, sm: 12, md: 12, lg: 12, xl : 4 }} w="100%" height="80px" 
             className="component side-navigation-container">
@@ -145,7 +155,6 @@ const SideNavigation = ({
                                                 <div className='side-navigation-results-text-cont'>
                                                     <h1 className='side-navigation-results-text'
                                                         onClick={() => {
-                                                            console.log('click');
                                                             handleSearch(e);
                                                         } }>
                                                         {e.title} ({moment(e.release_date).format('YYYY')})
@@ -204,6 +213,17 @@ const SideNavigation = ({
                     variant="outline"
                 />
                 <MenuList sx={{padding : 0}}>
+                    {user?.isAuth && (
+                        <div className='side-navigation-user'>
+                            <Image
+                                borderRadius='full'
+                                boxSize='50px'
+                                src={`${user?.profile?.image}`}
+                                alt={user?.profile?.fullname}
+                            />
+                            <h1>{user?.profile?.fullname}</h1>
+                        </div>
+                    )}
                     <Media>
                         {
                             ({ breakpoints, currentBreakpoint }) => 
@@ -254,33 +274,48 @@ const SideNavigation = ({
                                 ) : null
                         }   
                     </Media>
-                    <div className='side-navigation-auth-cont'>
-                        <div className='side-navigation-login pointer'
-                            onClick={() => handleNavigate('/login')}>
-                            <RiLoginBoxFill className='side-navigation-login-icon'/>
+                    {user?.isAuth && (
+                        <div className='side-navigation-items'
+                            onClick={() => handleNavigate(`${user?.profile?.fullname}/favorite`)}>
+                            <MdFavorite className='side-navigation-items-icon' />
                             <Box flex='1' textAlign='left'>
-                                Log in
+                                Favorites
                             </Box>
                         </div>
-                    </div>
-                    <div className='side-navigation-auth-cont'>
-                        <div className='side-navigation-logout pointer'
-                            onClick={() => handleLogout()}>
-                            <RiLogoutBoxFill className='side-navigation-logout-icon' />
-                            <Box flex='1' textAlign='left'>
-                                Log out
-                            </Box>
+                    )}
+                    {!user?.isAuth && (
+                        <div className='side-navigation-auth-cont'>
+                            <div className='side-navigation-login pointer'
+                                onClick={() => handleNavigate('/login')}>
+                                <RiLoginBoxFill className='side-navigation-login-icon'/>
+                                <Box flex='1' textAlign='left'>
+                                    Log in
+                                </Box>
+                            </div>
                         </div>
-                    </div>
-                    <div className='side-navigation-auth-cont'>
-                        <div className='side-navigation-register pointer'
-                            onClick={() => handleNavigate('/register')}>
-                            <ImUserPlus className='side-navigation-register-icon' />
-                            <Box flex='1' textAlign='left'>
-                                Register
-                            </Box>
+                    )}
+                    {user?.isAuth && (
+                        <div className='side-navigation-auth-cont'>
+                            <div className='side-navigation-logout pointer'
+                                onClick={() => handleLogout()}>
+                                <RiLogoutBoxFill className='side-navigation-logout-icon' />
+                                <Box flex='1' textAlign='left'>
+                                    Log out
+                                </Box>
+                            </div>
                         </div>
-                    </div>
+                    )}
+                    {!user?.isAuth && (
+                        <div className='side-navigation-auth-cont'>
+                            <div className='side-navigation-register pointer'
+                                onClick={() => handleNavigate('/register')}>
+                                <ImUserPlus className='side-navigation-register-icon' />
+                                <Box flex='1' textAlign='left'>
+                                    Register
+                                </Box>
+                            </div>
+                        </div>
+                    )}
                 </MenuList>
             </Menu>
         </GridItem>

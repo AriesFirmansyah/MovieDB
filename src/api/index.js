@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: 'http://localhost:4000' });
+// eslint-disable-next-line no-undef
+const API = axios.create({ baseURL: process.env.API });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
         let token = JSON.parse(localStorage.getItem('profile')).token;
-        // console.log('auth', token);
         req.headers.Authorization = `Bearer ${token}`;
     }
     

@@ -49,7 +49,6 @@ const Genres = () => {
             }, 1000);
         }
     }, []);
-    // console.log(genres);
     return (
         <Media>
             {

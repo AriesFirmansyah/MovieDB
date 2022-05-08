@@ -29,6 +29,19 @@ import {
 } from '@chakra-ui/react';
 import Loading from './skeleton';
 
+import { 
+    AddFavorite,
+    GetAllFavorite,
+    DeleteFavorite
+} from '../../redux/actions/favorite';
+
+import {
+    MdFavoriteBorder,
+    MdFavorite
+} from 'react-icons/md';
+
+import AlertDialog from '../components/AlertDialog';
+
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -38,13 +51,17 @@ const FilterSearch = () => {
 
     const dispatch = useDispatch();
     const discover = useSelector(state => state.discover);
-    
-    // console.log(discover);
+
+    const favorite = useSelector(state => state.favorite);
+    const [user, setUser] = useState('');
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [status, setStatus] = useState('');
+    const [alertText, setAlertText] = useState('');
 
     const [loading, setLoading] = useState(true);
     const [imageLoading, setImageLoading] = useState([]);
-
-    // console.log(location);
+    
     const FetchRedux = async () => {
         switch(location.state.type) {
         case 'year': dispatch(GetMoviesYear(location.state.key)); break;
@@ -83,8 +100,82 @@ const FilterSearch = () => {
         );
     };
 
+    const handleFavorite = (e, movie) => {
+        e.preventDefault();
+
+        if (user?.isAuth) {
+            const found = favorite?.data?.data?.find(e => e.movie_id === movie.id.toString());
+            if (found) {
+                dispatch(DeleteFavorite({
+                    data: {
+                        id: found.movie_id,
+                        uid: found.uid
+                    }
+                }));
+
+                setTimeout(() => {
+                    dispatch(GetAllFavorite());
+                }, 500);
+
+                setTimeout(() => {
+                    if (favorite.message !== '') {
+                        setAlertText(favorite.message);
+                        setStatus('success');
+                        setIsOpen(true);
+                    }
+                }, 1500);
+            } else {
+                dispatch(AddFavorite({ 
+                    data: {
+                        movie: movie,
+                        uid: user.profile.email
+                    }
+                }));
+
+                setTimeout(() => {
+                    dispatch(GetAllFavorite());
+                }, 1000);
+
+                setTimeout(() => {
+                    if (favorite.message !== '') {
+                        setAlertText(favorite.message);
+                        setStatus('success');
+                        setIsOpen(true);
+                    }
+                }, 2500);
+            }
+        } else {
+            setAlertText("Please login first!");
+            setStatus('error');
+            setIsOpen(true);
+        }
+    };
+	
+	
+    const Fill = (id) => {
+        const found = favorite?.data?.data?.find(e => e.movie_id === id.toString());
+        return (
+            found?.uid ? (
+                <MdFavorite className='fill'/>
+            ) : (
+                <MdFavoriteBorder/>
+            )
+        );
+    };
+
+
     useEffect(() => {
-        if(loading) {
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
+    useEffect(() => {
+        if (user?.isAuth) {
+            dispatch(GetAllFavorite());
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (loading) {
             FetchRedux();
             setTimeout(() => {
                 setLoading(!loading);
@@ -96,6 +187,11 @@ const FilterSearch = () => {
                 });
             }, 1000);
         }
+
+        if (location.state === null) {
+            navigate('/notfound');
+        }
+
     }, []);
 
     return (
@@ -117,17 +213,25 @@ const FilterSearch = () => {
                                 return (
                                     e.poster_path && (
                                         <GridItem colSpan={1} w="100%" sx={{textAlign: 'center'}} 
-                                            key={index} onClick={() => handleItems(e)} > 
+                                            key={index} > 
                                             <div className='search-filter-film'>
                                                 <img src={`${poster_BaseURL}${e.poster_path}`} 
                                                     className={!imageLoading[index] ?
                                                         'search-filter-image pointer' :
                                                         'hide'
                                                     }
-                                                    onLoad={(e) => handleImageLoaded(e, index)}/>
+                                                    onLoad={(e) => handleImageLoaded(e, index)}
+                                                    onClick={() => handleItems(e)} />
                                                 {imageLoading[index] && <ImageLoader />}
-                                                <img src={PlayButton} className='search-filter-playing-button' />
+                                                <img src={PlayButton} className='search-filter-playing-button'
+                                                    onClick={() => handleItems(e)} />
                                                 <div className='search-filter-rating pointer'>⭐{e.vote_average.toFixed(1)}</div>
+                                                <div className='now-playing-favorite'
+                                                    onClick={(i) => {
+                                                        handleFavorite(i, e);
+                                                    }}>
+                                                    {Fill(e.id)}
+                                                </div>
                                                 <h1 className='search-filter-film-title pointer'>
                                                     {e.title} ({moment(e.release_date).format('YYYY')})
                                                 </h1>
@@ -138,6 +242,11 @@ const FilterSearch = () => {
                             })
                         }
                     </SimpleGrid>
+                    <AlertDialog 
+                        isOpen={isOpen} 
+                        setIsOpen={setIsOpen} 
+                        alertText={alertText}
+                        status={status} />
                 </div>
             </>
         )
