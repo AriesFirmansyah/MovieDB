@@ -63,4 +63,5 @@
 - Add icon logo tab
 - Add title
 
-[12] OTP Number Validation --> done
+[12] OTP Number Validation
+- Resend OTP Doesn't Work
