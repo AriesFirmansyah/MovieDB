@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import './Register.scss';
 
 import { 
@@ -11,14 +12,25 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
+    InputLeftAddon
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 import { Media } from 'react-breakpoints';
 import { useNavigate } from 'react-router-dom';
+import AlertDialog from '../../components/AlertDialog';
+
+import OTP from '../../components/OTPPopup';
+import { 
+    getAuth, 
+    signInWithPhoneNumber,
+    RecaptchaVerifier
+} from "firebase/auth";
+// eslint-disable-next-line no-unused-vars
+import { firebase } from '../../../firebase/config';
 
 import { UserRegister } from '../../../redux/actions/user';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import RegisterIcon from '../../../images/register/sideimage.png';
 const Register = () => {
@@ -41,35 +53,82 @@ const Register = () => {
         asal_kota: '',
     });
 
+    const userRedux = useSelector(state => state.user);
+
+    const [submitLoading, setSubmitLoading] = useState(false);
+    
+    const [isOpen, setIsOpen] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertText, setAlertText] = useState('');
+    const [statusAlert, setStatusAlert] = useState('');
+    
+    const auth = getAuth();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleShowPassword = () => setShowPassword(!showPassword);
+
+    const captchaConfiguration = () => {
+        window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+            'size': 'invisible',
+            'callback': (response) => {
+                handleSubmit();
+                console.log('recaptcha successed!');
+                console.log('res', response);
+            },
+            defaultCountry: "ID"
+        }, auth);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmit(true);
         
         if (!checkError()) {
-            const userData = new FormData();
-
-            userData.append("fullname", user.name);
-            userData.append("email", user.email);
-            userData.append("password", user.password);
-            userData.append("phone_number", user.no_telp);
-            userData.append('image', user.image);
-            userData.append("occupation", user.pekerjaan);
-            userData.append("region", user.asal_kota);
-
-            dispatch(UserRegister(userData));
-            navigate('/' , {
-                state : {
-                    showAlert: true,
-                    text: 'Register successed!',
-                    status: 'success'
-                }
-            });
+            setSubmitLoading(!submitLoading);
+            setTimeout(() => {
+                setSubmitLoading(false);
+                setIsOpen(!isOpen);
+                sendOTP();
+            }, 2000);
         }
+    };
+
+    const sendOTP = () => {
+        captchaConfiguration();
+
+        const phoneNumber = '+62' + user.no_telp;
+        const appVerifier = window.recaptchaVerifier;
+
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                setAlertText("OTP Sent!");
+                setStatusAlert("success");
+                setShowAlert(true);
+
+                window.confirmationResult = confirmationResult;
+            }).catch((error) => {
+                console.log('err', error);
+            });
+    };
+
+    const resendOTP = () => {
+        const phoneNumber = '+62' + user.no_telp;
+        const appVerifier = window.recaptchaVerifier;
+
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                setAlertText("OTP Sent!");
+                setStatusAlert("success");
+                setShowAlert(true);
+
+                window.confirmationResult = confirmationResult;
+            }).catch((error) => {
+                console.log('err', error);
+            });
     };
 
     const checkError = () => {
@@ -88,6 +147,7 @@ const Register = () => {
         }
         return true;
     };
+
     const handleChange = (e, type) => {
         switch(type) {
         case 'name' : setUser({...user, name: e.target.value}); break;
@@ -99,7 +159,7 @@ const Register = () => {
         case 'region' : setUser({...user, asal_kota: e.target.value}); break;
         }
     };
-
+    
     useEffect(() => {
         if (isSubmit) {
             user.name.length < 5 ? setNameError(true) : setNameError(false);
@@ -112,10 +172,45 @@ const Register = () => {
         }
     }, [user, isSubmit]);
 
+    useEffect(() => { 
+        if (isValid) {
+            const userData = new FormData();
+    
+            userData.append("fullname", user.name);
+            userData.append("email", user.email);
+            userData.append("password", user.password);
+            userData.append("phone_number", user.no_telp);
+            userData.append('image', user.image);
+            userData.append("occupation", user.pekerjaan);
+            userData.append("region", user.asal_kota);
+
+            dispatch(UserRegister(userData));
+
+            setTimeout(() => {
+                if (userRedux.error !== '') {
+                    setAlertText(userRedux.error);
+                    setStatusAlert("error");
+                    setShowAlert(true);
+                }
+                if (userRedux.message !== '') {
+                    navigate('/' , {
+                        state : {
+                            showAlert: true,
+                            text: 'Register successed!',
+                            status: 'success'
+                        }
+                    });
+                }
+                setIsValid(false);
+            }, 500);
+        }
+    }, [isValid]);
+
     return (
         <>
             <Container maxW='container.md'>
                 <form onSubmit={handleSubmit}>
+                    <div id="sign-in-button"></div>
                     <div className='register-container'>
                         <SimpleGrid columns={[6, 6, 10, 10, 10]} 
                             spacing={{base: '10px', sm: '10px', md: '40px', lg: '40px', xl : '40px' }}>
@@ -185,12 +280,16 @@ const Register = () => {
                                     <GridItem colSpan={10}>
                                         <FormControl isInvalid={phoneNumberError}>
                                             <FormLabel htmlFor='phone-number'>Phone Number</FormLabel>
-                                            <Input 
-                                                type='number' 
-                                                className='register-input' 
-                                                name='phone_number'
-                                                onChange={(e) => handleChange(e, 'phone_number')}
-                                            />
+                                            <InputGroup>
+                                                <InputLeftAddon children='+62' />
+                                                <Input 
+                                                    type='number' 
+                                                    className='register-input' 
+                                                    name='phone_number'
+                                                    onChange={(e) => handleChange(e, 'phone_number')}
+                                                />
+                                            </InputGroup>
+                                            
                                             {phoneNumberError && 
                                                 <FormErrorMessage>Phone number must be more than 10 digits.!</FormErrorMessage>
                                             }
@@ -256,7 +355,13 @@ const Register = () => {
                                         </FormControl>
                                     </GridItem>
                                     <GridItem colSpan={10}>
-                                        <Button colorScheme='blue' className='register-submit' type='submit'>
+                                        <Button 
+                                            isLoading={submitLoading}
+                                            loadingText='Submitting'
+                                            spinnerPlacement='start'
+                                            colorScheme='blue' 
+                                            className='register-submit' 
+                                            type='submit'>
                                             Submit
                                         </Button>
                                     </GridItem>
@@ -283,6 +388,18 @@ const Register = () => {
                         </SimpleGrid>
                     </div>
                 </form>
+                <OTP 
+                    isOpen={isOpen} 
+                    setIsOpen={setIsOpen}
+                    phoneNumber={`+62${user.no_telp}`}
+                    setIsValid={setIsValid}
+                    resendOTP={resendOTP} />
+
+                <AlertDialog 
+                    isOpen={showAlert} 
+                    setIsOpen={setShowAlert} 
+                    alertText={alertText}
+                    status={statusAlert} />
             </Container>
         </>
     );

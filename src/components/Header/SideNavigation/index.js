@@ -279,7 +279,7 @@ const SideNavigation = ({
                             onClick={() => handleNavigate(`${user?.profile?.fullname}/favorite`)}>
                             <MdFavorite className='side-navigation-items-icon' />
                             <Box flex='1' textAlign='left'>
-                                Wishlist
+                                Favorites
                             </Box>
                         </div>
                     )}

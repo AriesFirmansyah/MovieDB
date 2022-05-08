@@ -26,7 +26,7 @@ const AlertDialog = ({isOpen, setIsOpen, alertText, status}) => {
                 if (window.location.pathname === '/') {
                     navigate(window.location.pathname, {});
                 }
-            }, 7000);
+            }, 4000);
         }
     }, [isOpen]);
     return (

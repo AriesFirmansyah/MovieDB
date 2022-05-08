@@ -30,6 +30,8 @@ import {
     GetAllFavorite,
     DeleteFavorite
 } from '../../../redux/actions/favorite';
+
+
 // Base URL
 const poster_BaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -126,7 +128,6 @@ const NowPlaying = ({
             )
         );
     };
-
 
     useEffect(() => {
         if(loading) {
