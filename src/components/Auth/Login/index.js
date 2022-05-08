@@ -78,7 +78,7 @@ const Login = () => {
                         }
                     });
                 }
-            }, 900);
+            }, 1500);
 
         } catch (err) {
             console.log(err);
