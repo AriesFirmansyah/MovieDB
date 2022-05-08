@@ -112,7 +112,7 @@ const Popular = ({
 
                 setTimeout(() => {
                     dispatch(GetAllFavorite());
-                }, 200);
+                }, 500);
 
                 setTimeout(() => {
                     if (favorite.message !== '') {
@@ -120,7 +120,7 @@ const Popular = ({
                         setStatus('success');
                         setIsOpen(true);
                     }
-                }, 500);
+                }, 1500);
             } else {
                 dispatch(AddFavorite({ 
                     data: {
@@ -128,16 +128,18 @@ const Popular = ({
                         uid: user.profile.email
                     }
                 }));
+
                 setTimeout(() => {
                     dispatch(GetAllFavorite());
-                }, 200);
+                }, 1000);
+
                 setTimeout(() => {
                     if (favorite.message !== '') {
                         setAlertText(favorite.message);
                         setStatus('success');
                         setIsOpen(true);
                     }
-                }, 500);
+                }, 2500);
             }
         } else {
             setAlertText("Please login first!");

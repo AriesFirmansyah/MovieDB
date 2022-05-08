@@ -147,57 +147,76 @@ const Favorite = () => {
         loading ? (
             <Loading />
         ) : (
-            <>
-                <div className="search-filter-title">
-                    <img src={FilterTitle} style={{marginRight: '10px'}} />
-                    <Heading as='h4' size='xl'>
-                        Favorite Movies
-                    </Heading>
-                </div>
-                <div className="search-filter-cont">
-                    <SimpleGrid columns={[2, 4, 4, 4, 6]}  
-                        spacing={{base: '40px', sm: '40px', md: '40px', lg: '40px', xl : '40px' }}>
-                        {
-                            favorite.data && favorite.data.map ((e, index) => {
-                                return (
-                                    e.poster_path && (
-                                        <GridItem colSpan={1} w="100%" sx={{textAlign: 'center'}} 
-                                            key={index} > 
-                                            <div className='search-filter-film'>
-                                                <img src={`${poster_BaseURL}${e.poster_path}`} 
-                                                    className={!imageLoading[index] ?
-                                                        'search-filter-image pointer' :
-                                                        'hide'
-                                                    }
-                                                    onLoad={(e) => handleImageLoaded(e, index)}
-                                                    onClick={() => handleItems(e)} />
-                                                {imageLoading[index] && <ImageLoader />}
-                                                <img src={PlayButton} className='search-filter-playing-button'
-                                                    onClick={() => handleItems(e)} />
-                                                <div className='search-filter-rating pointer'>⭐{e.vote_average.toFixed(1)}</div>
-                                                <div className='now-playing-favorite'
-                                                    onClick={(i) => {
-                                                        handleFavorite(i, e);
-                                                    }}>
-                                                    <MdFavorite className='fill'/>
+            favorite.data.length !== 0 ? (
+                <>
+                    <div className="search-filter-title">
+                        <img src={FilterTitle} style={{marginRight: '10px'}} />
+                        <Heading as='h4' size='xl'>
+                            Favorite Movies
+                        </Heading>
+                    </div>
+                    <div className="search-filter-cont">
+                        <SimpleGrid columns={[2, 4, 4, 4, 6]}  
+                            spacing={{base: '40px', sm: '40px', md: '40px', lg: '40px', xl : '40px' }}>
+                            {
+                                favorite.data && favorite.data.map ((e, index) => {
+                                    return (
+                                        e.poster_path && (
+                                            <GridItem colSpan={1} w="100%" sx={{textAlign: 'center'}} 
+                                                key={index} > 
+                                                <div className='search-filter-film'>
+                                                    <img src={`${poster_BaseURL}${e.poster_path}`} 
+                                                        className={!imageLoading[index] ?
+                                                            'search-filter-image pointer' :
+                                                            'hide'
+                                                        }
+                                                        onLoad={(e) => handleImageLoaded(e, index)}
+                                                        onClick={() => handleItems(e)} />
+                                                    {imageLoading[index] && <ImageLoader />}
+                                                    <img src={PlayButton} className='search-filter-playing-button'
+                                                        onClick={() => handleItems(e)} />
+                                                    <div className='search-filter-rating pointer'>⭐{e.vote_average.toFixed(1)}</div>
+                                                    <div className='now-playing-favorite'
+                                                        onClick={(i) => {
+                                                            handleFavorite(i, e);
+                                                        }}>
+                                                        <MdFavorite className='fill'/>
+                                                    </div>
+                                                    <h1 className='search-filter-film-title pointer'>
+                                                        {e.title} ({moment(e.release_date).format('YYYY')})
+                                                    </h1>
                                                 </div>
-                                                <h1 className='search-filter-film-title pointer'>
-                                                    {e.title} ({moment(e.release_date).format('YYYY')})
-                                                </h1>
-                                            </div>
-                                        </GridItem>
-                                    )
-                                );
-                            })
-                        }
-                    </SimpleGrid>
-                    <AlertDialog 
-                        isOpen={isOpen} 
-                        setIsOpen={setIsOpen} 
-                        alertText={alertText}
-                        status={status} />
-                </div>
-            </>
+                                            </GridItem>
+                                        )
+                                    );
+                                })
+                            }
+                        </SimpleGrid>
+                        <AlertDialog 
+                            isOpen={isOpen} 
+                            setIsOpen={setIsOpen} 
+                            alertText={alertText}
+                            status={status} />
+                    </div>
+                </>
+
+            ) : (
+                <>
+                    <div className="search-filter-title">
+                        <img src={FilterTitle} style={{marginRight: '10px'}} />
+                        <Heading as='h4' size='xl'>
+                            Favorite Movies
+                        </Heading>
+                    </div>
+                    <h1 
+                        style={{
+                            textAlign: 'center',
+                            paddingBottom: 30
+                        }}>
+                        <i>There is no favorite movies.</i>
+                    </h1>
+                </>
+            )
         )
     );
 };

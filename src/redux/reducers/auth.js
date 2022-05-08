@@ -42,7 +42,7 @@ const authReducer = (state = data, action) => {
 
         localStorage.setItem(
             'profile', 
-            JSON.stringify({...action?.payload?.data?.profile})
+            JSON.stringify({...action?.payload?.data})
         );
         return state;
     case 'FACEBOOK_LOGIN_REJECTED' : 

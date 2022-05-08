@@ -78,7 +78,7 @@ const Login = () => {
                         }
                     });
                 }
-            }, 200);
+            }, 900);
 
         } catch (err) {
             console.log(err);
@@ -100,6 +100,7 @@ const Login = () => {
                     setStatus('error');
                     setIsOpen(!isOpen);
                 }
+                
                 if (dataUser.message !== '') {
                     navigate('/' , {
                         state : {
@@ -109,7 +110,7 @@ const Login = () => {
                         }
                     });
                 }
-            }, 500);
+            }, 1000);
         } catch (err) {
             console.log(err);
         }
