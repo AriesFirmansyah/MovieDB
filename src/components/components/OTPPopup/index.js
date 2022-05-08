@@ -47,16 +47,17 @@ const OTP = ({
         setLoadingButton(!loadingButton);
 
         window.confirmationResult.confirm(otpInput).then(() => {
-            setIsOpen(!isOpen);
-            setIsError(false);
             setIsValid(true);
+            setTimeout(() => {
+                setLoadingButton(false);
+                setIsError(false);
+                setIsOpen(!isOpen);
+            }, 15000);
         }).catch((error) => {
             setIsError(!isError);
             console.log('err', error);
         });
-        setTimeout(() => {
-            setLoadingButton(false);
-        }, 10000);
+        
     };
 
     const handleClose = () => {

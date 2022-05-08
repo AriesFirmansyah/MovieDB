@@ -202,7 +202,7 @@ const Register = () => {
                     });
                 }
                 setIsValid(false);
-            }, 2000);
+            }, 3000);
         }
     }, [isValid]);
 
