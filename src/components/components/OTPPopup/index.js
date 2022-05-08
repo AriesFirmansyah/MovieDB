@@ -46,17 +46,17 @@ const OTP = ({
 
         setLoadingButton(!loadingButton);
 
+        window.confirmationResult.confirm(otpInput).then(() => {
+            setIsOpen(!isOpen);
+            setIsError(false);
+            setIsValid(true);
+        }).catch((error) => {
+            setIsError(!isError);
+            console.log('err', error);
+        });
         setTimeout(() => {
             setLoadingButton(false);
-            window.confirmationResult.confirm(otpInput).then(() => {
-                setIsOpen(!isOpen);
-                setIsError(false);
-                setIsValid(true);
-            }).catch((error) => {
-                setIsError(!isError);
-                console.log('err', error);
-            });
-        }, 1000);
+        }, 10000);
     };
 
     const handleClose = () => {
