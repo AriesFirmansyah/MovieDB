@@ -65,3 +65,5 @@
 
 [12] OTP Number Validation
 - Resend OTP Doesn't Work
+- Reinput Number Doesn't Get OTP
+- Implement Redux Pending For Dispatch Timeout
