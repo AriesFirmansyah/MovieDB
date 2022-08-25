@@ -62,23 +62,37 @@ const Login = () => {
         const token = res?.tokenId;
 
         try {
-            dispatch(AuthOthersLogin({data: { profile, token }}));
-            setTimeout(() => {
-                if (dataUser.error !== '') {
-                    setAlertText(dataUser.error);
-                    setStatus('error');
-                    setIsOpen(!isOpen);
-                }
-                if (dataUser.message !== '') {
-                    navigate('/' , {
-                        state : {
-                            showAlert: true,
-                            text: dataUser.message,
-                            status: 'success'
-                        }
-                    });
-                }
-            }, 1500);
+            await dispatch(AuthOthersLogin({data: { profile, token }}));
+
+            if (dataUser.error !== '') {
+                setAlertText(dataUser.error);
+                setStatus('error');
+                setIsOpen(!isOpen);
+            } else if (dataUser.message !== '') {
+                navigate('/' , {
+                    state : {
+                        showAlert: true,
+                        text: dataUser.message,
+                        status: 'success'
+                    }
+                });
+            }
+            // setTimeout(() => {
+            //     if (dataUser.error !== '') {
+            //         setAlertText(dataUser.error);
+            //         setStatus('error');
+            //         setIsOpen(!isOpen);
+            //     }
+            //     if (dataUser.message !== '') {
+            //         navigate('/' , {
+            //             state : {
+            //                 showAlert: true,
+            //                 text: dataUser.message,
+            //                 status: 'success'
+            //             }
+            //         });
+            //     }
+            // }, 1500);
 
         } catch (err) {
             console.log(err);
@@ -93,48 +107,74 @@ const Login = () => {
 
     const handleFacebookLogin = async (response) => {
         try {
-            dispatch(AuthFacebookLogin(response));
-            setTimeout(() => {
-                if (dataUser.error !== '') {
-                    setAlertText(dataUser.error);
-                    setStatus('error');
-                    setIsOpen(!isOpen);
-                }
+            await dispatch(AuthFacebookLogin(response));
+            if (dataUser.error !== '') {
+                setAlertText(dataUser.error);
+                setStatus('error');
+                setIsOpen(!isOpen);
+            }else if (dataUser.message !== '') {
+                navigate('/' , {
+                    state : {
+                        showAlert: true,
+                        text: dataUser.message,
+                        status: 'success'
+                    }
+                });
+            }
+            // setTimeout(() => {
+            //     if (dataUser.error !== '') {
+            //         setAlertText(dataUser.error);
+            //         setStatus('error');
+            //         setIsOpen(!isOpen);
+            //     }
                 
-                if (dataUser.message !== '') {
-                    navigate('/' , {
-                        state : {
-                            showAlert: true,
-                            text: dataUser.message,
-                            status: 'success'
-                        }
-                    });
-                }
-            }, 1000);
+            //     if (dataUser.message !== '') {
+            //         navigate('/' , {
+            //             state : {
+            //                 showAlert: true,
+            //                 text: dataUser.message,
+            //                 status: 'success'
+            //             }
+            //         });
+            //     }
+            // }, 1000);
         } catch (err) {
             console.log(err);
         }
     };
     
-    const handleLogin = () => {
+    const handleLogin = async () => {
         try {
-            dispatch(AuthLogin({data: { email, password }}));
-            setTimeout(() => {
-                if (dataUser.error !== '') {
-                    setAlertText(dataUser.error);
-                    setStatus('error');
-                    setIsOpen(!isOpen);
-                }
-                if (dataUser.profile !== '') {
-                    navigate('/' , {
-                        state : {
-                            showAlert: true,
-                            text: dataUser.message,
-                            status: 'success'
-                        }
-                    });
-                }
-            }, 400);
+            await dispatch(AuthLogin({data: { email, password }}));
+            if (dataUser.error !== '') {
+                setAlertText(dataUser.error);
+                setStatus('error');
+                setIsOpen(!isOpen);
+            } else if (dataUser.profile !== '') {
+                navigate('/' , {
+                    state : {
+                        showAlert: true,
+                        text: dataUser.message,
+                        status: 'success'
+                    }
+                });
+            }
+            // setTimeout(() => {
+            //     if (dataUser.error !== '') {
+            //         setAlertText(dataUser.error);
+            //         setStatus('error');
+            //         setIsOpen(!isOpen);
+            //     }
+            //     if (dataUser.profile !== '') {
+            //         navigate('/' , {
+            //             state : {
+            //                 showAlert: true,
+            //                 text: dataUser.message,
+            //                 status: 'success'
+            //             }
+            //         });
+            //     }
+            // }, 400);
 
         } catch (err) {
             console.log(err);

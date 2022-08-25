@@ -2,7 +2,8 @@ let data = {
     profile: '',
     token: '',
     error: '',
-    message: ''
+    message: '',
+    loading: false,
 };
 
 const authReducer = (state = data, action) => {
@@ -13,12 +14,16 @@ const authReducer = (state = data, action) => {
         state.message = action?.payload?.data?.message;
 
         localStorage.setItem('profile', JSON.stringify({...action?.payload?.data}));
+
+        state.loading = false;
         return state;
     case 'LOGIN_REJECTED' : 
         state.error = action?.payload?.response?.data?.message;
+        state.loading = false;
         return state;
 
     case 'LOGIN_PENDING' : 
+        state.loading = true;
         return state;
 
     case 'GOOGLE_LOGIN_FULFILLED' : 
@@ -27,12 +32,15 @@ const authReducer = (state = data, action) => {
         state.message = action?.payload?.data?.message;
 
         localStorage.setItem('profile', JSON.stringify({...action?.payload?.data}));
+        state.loading = false;
         return state;
     case 'GOOGLE_LOGIN_REJECTED' : 
         state.error = action?.payload?.response?.data?.message;
+        state.loading = false;
         return state;
 
     case 'GOOGLE_LOGIN_PENDING' : 
+        state.loading = true;
         return state;
 
     case 'FACEBOOK_LOGIN_FULFILLED' : 
