@@ -9,6 +9,8 @@
 }
 .carousel1-image {
     height: 550px;
+    object-fit: cover;
+    object-position: center;
 }
 .carousel1-title {
     position: absolute;
